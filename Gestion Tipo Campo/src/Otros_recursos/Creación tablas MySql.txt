@@ -6,7 +6,7 @@ CREATE TABLE BINARIO(
   nombre2       varchar(20) NOT NULL,
   valor2        varchar(20) NOT NULL,
   valorDefecto  varchar(20) NOT NULL,
-  PRIMARY KEY (correlativo)
+  PRIMARY KEY (correlativo)  
 );
 
 -- Tabla "FECHAHORA"
