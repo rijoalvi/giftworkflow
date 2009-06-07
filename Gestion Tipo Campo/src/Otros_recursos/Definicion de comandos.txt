@@ -1,0 +1,7 @@
+ATENCION!
+Este es el orden de los comandos a la hora de guardarlos en la base de datos:
+
+1 - Comando de Crear
+2 - Comando de borrar
+3 - COmando de Modificar
+4 - Comando con Máscara

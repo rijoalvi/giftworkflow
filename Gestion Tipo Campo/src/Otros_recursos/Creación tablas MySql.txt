@@ -1,0 +1,126 @@
+--tabla: "BINARIO"
+CREATE TABLE BINARIO(
+  correlativo   int NOT NULL,
+  nombre1       varchar(20) NOT NULL,
+  valor1        varchar(20) NOT NULL,
+  nombre2       varchar(20) NOT NULL,
+  valor2        varchar(20) NOT NULL,
+  valorDefecto  varchar(20) NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla "FECHAHORA"
+CREATE TABLE FECHAHORA(
+  correlativo int NOT NULL,
+  despliegue varchar(20) NOT NULL,
+  fechaDefecto datetime,
+  vencimiento varchar(10),
+  preaviso int,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "INCREMENTAL"
+CREATE TABLE INCREMENTAL(
+  correlativo int NOT NULL,
+  valInicial int NOT NULL,
+  incremento int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "NUMERO"
+CREATE TABLE NUMERO(
+  correlativo int NOT NULL,
+  numeroDecimales int NOT NULL DEFAULT 0,
+  mascara varchar(10) NOT NULL,
+  valorDefecto int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "TEXTO"
+CREATE TABLE TEXTO(
+  correlativo int NOT NULL,
+  textoDefecto varchar(20) NOT NULL,
+  tamano int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "TIPOCAMPO"
+CREATE TABLE TIPOCAMPO(
+  correlativo int auto_increment NOT NULL,
+  nombre varchar(20) NOT NULL,
+  descripcion varchar(150),
+  ultimaActualizacion timestamp,
+  tipo int,
+  PRIMARY KEY (correlativo)
+
+);
+
+create table LISTA(
+    correlativo int not null,
+    IDMiembroPorDefecto int,
+    primary key(correlativo)
+);
+
+create table MIEMBROLISTA(
+    correlativo int auto_increment NOT NULL,
+    valor char(50),
+    IDLista int not null,
+    primary key(correlativo)
+);
+
+
+drop table FORMULARIO;
+create table FORMULARIO(
+    correlativo int auto_increment NOT NULL,
+    nombre varchar(20) NOT NULL,
+    descripcion varchar(150),
+    ultimaActualizacion timestamp,
+    primary key(correlativo)
+);
+
+drop table MIEMBROFORMULARIO;
+create table MIEMBROFORMULARIO(
+    correlativo int auto_increment NOT NULL,
+    IDFormulario int NOT NULL,
+    nombre varchar(50),
+    valX int,
+    valY int,
+    ancho int,
+    alto int,
+    tipoLetra varchar(20),
+    color varchar(10),
+    tamanoLetra int,
+    IDTipoCampo int,
+    IDCampo int,
+    tabIndex int,
+    estiloLetra varchar(10),
+    primary key(correlativo),
+	CONSTRAINT Miembro_Formulario_IDFormulario
+        FOREIGN KEY(IDFormulario)		REFERENCES FORMULARIO(correlativo)
+            ON DELETE CASCADE
+);
+
+
+--drop table COMANDO
+CREATE TABLE COMANDO(
+  ID					int  auto_increment NOT NULL,
+  IDFormulario			int NOT NULL,
+  Nombre				varchar(50) NOT NULL,
+  Descripcion			varchar(50) NOT NULL,
+  Tipo					int NOT NULL,
+  IDFormularioATrabajar int,
+  FechaActualizacion		varchar(50) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+--drop table	COMANDOMASCARA
+CREATE TABLE COMANDOMASCARA(
+  ID						int  auto_increment NOT NULL,
+  IDComando					int NOT NULL,
+  TipoCampoInicial			varchar(50) NOT NULL,
+  CondicionInicial			varchar(50) NOT NULL,
+  TipoCampoFinal			varchar(50) NOT NULL,
+  EstadoFinal				varchar(50) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
