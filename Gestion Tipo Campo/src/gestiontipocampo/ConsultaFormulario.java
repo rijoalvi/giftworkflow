@@ -7,7 +7,7 @@ package gestiontipocampo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-import java.util.Map;
+
 /**
  *
  * @author Alberto
@@ -20,26 +20,24 @@ public abstract class ConsultaFormulario extends ControladorBD {
      * @param descripcion
      * @return el ID del formulario creado
      */
-
-
-        /**
+    /**
      * Retorna todos los formularios en un vector como para cargarlos en un combo
      * @param correlativo
      * @return Vector con los datos del formulario en este orden: correlativo, nombre
      */
     public Vector obtenerTodosLosFormularios() {
 
-         Vector campos = new Vector();
+        Vector campos = new Vector();
         ResultSet resultado = null;
 
-            //int tipoCampo;
-            try {
-            resultado = this.getResultSet("select correlativo, nombre from FORMULARIO;" );         
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select correlativo, nombre from FORMULARIO;");
             while (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
                 campos.add(resultado.getObject("nombre").toString());
 
-                }
+            }
 
 
 
@@ -49,35 +47,30 @@ public abstract class ConsultaFormulario extends ControladorBD {
         return campos;
     }
 
-        /**
+    /**
      * Retorna todos los tipo campos contenidos en un formulario
      * @param idFormulario
      * @return Vector con todos los tipo campos con este orde: correlativo, nombre
      */
     public Vector obtenerMiembrosFormularios(int idFormulario) {
 
-         Vector campos = new Vector();
+        Vector campos = new Vector();
         ResultSet resultado = null;
 
-            //int tipoCampo;
-            try {
-            resultado = this.getResultSet("select correlativo, nombre from MIEMBROFORMULARIO where IDFormulario="+idFormulario+";" );
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select correlativo, nombre from MIEMBROFORMULARIO where IDFormulario=" + idFormulario + ";");
             while (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
                 campos.add(resultado.getObject("nombre").toString());
 
-                }
+            }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-
-
-
-
-
-
         return campos;
     }
+
     public abstract int guardaFormulario(String nombre, String descripcion);
 
     /**
@@ -156,7 +149,6 @@ public abstract class ConsultaFormulario extends ControladorBD {
      */
     public abstract Vector obtenerMiembros(int correlativoFormulario);
 
-
     /**
      * Devuelve la lista de elementos de un tipoCampo Lista
      * @param correlativoLista
@@ -176,7 +168,7 @@ public abstract class ConsultaFormulario extends ControladorBD {
         }
 
         result = new String[lista.size()];
-        for(int i = 0; i < lista.size(); i++){
+        for (int i = 0; i < lista.size(); i++) {
             result[i] = lista.get(i);
         }
 

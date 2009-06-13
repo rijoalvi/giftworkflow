@@ -10,10 +10,6 @@
  */
 package gestiontipocampo;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.JFrame;
-
 /**
  *
  * @author Administrator

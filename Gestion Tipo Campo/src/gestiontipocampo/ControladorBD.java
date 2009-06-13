@@ -203,4 +203,14 @@ public class ControladorBD {
         }
         return consulta;
     }
+
+    public ConsultaActividad getConsultaActividad() {
+        ConsultaActividad consulta;
+        if (CONEXION_MYSQL == conexionSeleccionada) {
+            consulta = new ConsultaActividad();//por ahora solo tengo uno
+        } else {
+            consulta = new ConsultaActividad();
+        }
+        return consulta;
+    }
 }
