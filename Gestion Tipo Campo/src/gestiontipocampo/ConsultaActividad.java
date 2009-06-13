@@ -17,6 +17,7 @@ public abstract class ConsultaActividad extends ControladorBD{
 
     /**
      * Crea nueva Actividad en la base de datos y devuelve el correlativo de la Actividad recien creada.
+     * @param correlativoFlujo
      * @param nombre
      * @param descripcion
      * @param tipo
@@ -29,11 +30,12 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param hitoDeControl
      * @return correlativo de la Actividad
      */
-    public abstract int nuevaActividad(String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
+    public abstract int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
 
     /**
      * Actualiza los datos de la Actividad existente en la base de datos.
      * @param correlativo
+     * @param correlativoFlujo
      * @param nombre
      * @param descripcion
      * @param tipo
@@ -45,12 +47,12 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param requiereRevision
      * @param hitoDeControl
      */
-    public abstract void actualizarActividad(int correlativo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
+    public abstract void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
 
     /**
      * Devuelve los datos de la actividad segun el correlativo
      * @param correlativo
-     * @return String[] en este orden: correlativo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl.
+     * @return String[] en este orden: correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl.
      */
     public abstract String[] getActividad(int correlativo);
 

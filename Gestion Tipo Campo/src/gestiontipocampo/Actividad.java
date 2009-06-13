@@ -59,17 +59,18 @@ public class Actividad {
         consultaActividad = buscador.getConsultaActividad();
         String[] datos = consultaActividad.getActividad(correlativo);
         this.correlativo = correlativo;
-        this.nombre = datos[1];
-        this.descripcion = datos[2];
-        this.tipo = Integer.parseInt(datos[3]);
-        this.estadoInicial = datos[4];
-        this.estadoFinal = datos[5];
-        this.fechaActualizacion = new Date(Long.parseLong(datos[6]));
-        this.simple = Boolean.parseBoolean(datos[7]);
-        this.repetible = Boolean.parseBoolean(datos[8]);
-        this.masiva = Boolean.parseBoolean(datos[9]);
-        this.requiereRevision = Boolean.parseBoolean(datos[10]);
-        this.hitoDeControl = Boolean.parseBoolean(datos[11]);
+        this.correlativoFlujo = Integer.parseInt(datos[1]);
+        this.nombre = datos[2];
+        this.descripcion = datos[3];
+        this.tipo = Integer.parseInt(datos[4]);
+        this.estadoInicial = datos[5];
+        this.estadoFinal = datos[6];
+        this.fechaActualizacion = new Date(Long.parseLong(datos[7]));
+        this.simple = Boolean.parseBoolean(datos[8]);
+        this.repetible = Boolean.parseBoolean(datos[9]);
+        this.masiva = Boolean.parseBoolean(datos[10]);
+        this.requiereRevision = Boolean.parseBoolean(datos[11]);
+        this.hitoDeControl = Boolean.parseBoolean(datos[12]);
     }
 
     /**
@@ -134,6 +135,7 @@ public class Actividad {
 
     public Actividad replicar(String nombreNuevo) {
         Actividad replica = new Actividad();
+        replica.correlativoFlujo = this.correlativoFlujo;
         replica.nombre = nombreNuevo;
         replica.descripcion = this.descripcion;
         replica.tipo = this.tipo;
@@ -145,11 +147,12 @@ public class Actividad {
         replica.masiva = this.masiva;
         replica.requiereRevision = this.requiereRevision;
         replica.hitoDeControl = this.hitoDeControl;
-        replica.correlativo = consultaActividad.nuevaActividad(replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl);
-
+        replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl);
         return replica;
     }
 
+
+    //Sets y gets.
     public int getCorrelativo() {
         return correlativo;
     }
