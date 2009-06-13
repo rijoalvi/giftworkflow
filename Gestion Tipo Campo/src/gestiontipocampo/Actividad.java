@@ -22,7 +22,7 @@ public class Actividad {
     private String estadoInicial;
     private String estadoFinal;
     private Date fechaActualizacion;
-    private boolean simple;
+    private boolean simple;     //True - simple, False - compuesta.
     private boolean repetible;
     private boolean masiva;
     private boolean requiereRevision;
@@ -70,6 +70,124 @@ public class Actividad {
         this.masiva = Boolean.parseBoolean(datos[9]);
         this.requiereRevision = Boolean.parseBoolean(datos[10]);
         this.hitoDeControl = Boolean.parseBoolean(datos[11]);
+    }
+
+    /**
+     * Elimina la actividad actual. Si existen instancias basadas en esta actividad no se elimina
+     * @return 0 - Actividad se elimino exitosamente, 1 - Ya existe una instancia, -1 - Actividad no inicializada.
+     */
+    public int eliminar() {
+        int estado = -1;
+        if (this.correlativo != -1) {
+            estado = consultaActividad.eliminar(this.correlativo);
+        }
+        return estado;
+    }
+
+    /**
+     * Agrega un comando a la actividad (solamente si es actividad simple)
+     * @param correlativoComando - correlativo del comando a agregar
+     * @param orden - orden (0 - primero), si ya existe un comando en esta posicion se corre una posicion adelante
+     * @param esObligatorio - si es obligatorio.
+     */
+    public void agregarComando(Comando comando, int orden, boolean esObligatorio){
+        if(isSimple()){//Solo se ejecuta si es Actividad simple
+            consultaActividad.agregarComando(this.correlativo, comando.IDComando, orden, esObligatorio);
+        }
+        else{//No se hace nada
+
+        }
+    }
+
+    /**
+     * Desvincula comando de la actividad (Solamente si es actividad simple)
+     * @param comando a desvincular
+     */
+    public void desvincularComando(Comando comando){
+        if(isSimple()){//Solo se ejecuta si es actividad simple
+            consultaActividad.desvincularComando(this.correlativo, comando.IDComando);
+        }
+        else{
+
+        }
+    }
+
+    public Actividad replicar(String nombreNuevo){
+        Actividad replica = new Actividad();
+        replica.nombre = nombreNuevo;
+        replica.descripcion = this.descripcion;
+        replica.tipo = this.tipo;
+        replica.estadoInicial = this.estadoInicial;
+        replica.estadoFinal = this.estadoFinal;
+        replica.fechaActualizacion = new Date();
+        replica.simple = this.simple;
+        replica.repetible = this.repetible;
+        replica.masiva = this.masiva;
+        replica.requiereRevision = this.requiereRevision;
+        replica.hitoDeControl = this.hitoDeControl;
+        replica.correlativo = consultaActividad.nuevaActividad(replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl);
+
+        return replica;
+    }
+
+    public int getCorrelativo() {
+        return correlativo;
+    }
+
+    public int getCorrelativoFlujo() {
+        return correlativoFlujo;
+    }
+
+    public String getEstadoFinal() {
+        return estadoFinal;
+    }
+
+    public String getEstadoInicial() {
+        return estadoInicial;
+    }
+
+    public boolean isHitoDeControl() {
+        return hitoDeControl;
+    }
+
+    public boolean isMasiva() {
+        return masiva;
+    }
+
+    public boolean isRequiereRevision() {
+        return requiereRevision;
+    }
+
+    public boolean isSimple() {
+        return simple;
+    }
+
+    public void setCorrelativoFlujo(int correlativoFlujo) {
+        this.correlativoFlujo = correlativoFlujo;
+    }
+
+    public void setEstadoFinal(String estadoFinal) {
+        this.estadoFinal = estadoFinal;
+    }
+
+    public void setEstadoInicial(String estadoInicial) {
+        this.estadoInicial = estadoInicial;
+    }
+
+    public void setHitoDeControl(boolean hitoDeControl) {
+        this.hitoDeControl = hitoDeControl;
+    }
+
+    public void setMasiva(boolean masiva) {
+        this.masiva = masiva;
+    }
+
+    public void setRequiereRevision(boolean requiereRevision) {
+        this.requiereRevision = requiereRevision;
+    }
+
+    public void setSimple(boolean simple) {
+        this.simple = simple;
     }
 
     public String getDescripcion() {

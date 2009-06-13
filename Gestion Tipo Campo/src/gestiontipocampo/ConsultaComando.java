@@ -54,8 +54,25 @@ public class ConsultaComando extends ControladorBD{
     public int agregarComandoConMascaraYObtenerID(int IDComando, String TipoCampoInicial,String CondicionInicial,String TipoCampoFinal,String EstadoFinal){
         //INSERT INTO ComandoMascara (IDComando,TipoCampoInicial,CondicionInicial,TipoCampoFinal,EstadoFinal) VALUES (1,'tipoCampoInicial','condicion inicial','campoFinal','dsfa');
         this.doUpdate("INSERT INTO  COMANDOMASCARA (IDComando,TipoCampoInicial,CondicionInicial,TipoCampoFinal,EstadoFinal) VALUES ("+IDComando+",'"+TipoCampoInicial+"','"+CondicionInicial+"','"+TipoCampoFinal+"','"+EstadoFinal+"');");
-
-
         return 0;
+    }
+
+    public String[] getComando(int correlativo){
+        String[] comando = new String[7];
+        try {
+            ResultSet resultado = this.getResultSet("select ID, IDFormulario, Nombre, Descripcion, Tipo, IDFormularioATrabajar, FechaActualizacion from COMANDO where ID = " + correlativo + ";");
+            if (resultado.next()) {
+                comando[0] = resultado.getString("ID");
+                comando[1] = resultado.getString("IDFormulario");
+                comando[2] = resultado.getString("Nombre");
+                comando[3] = resultado.getString("Descripcion");
+                comando[4] = resultado.getString("Tipo");
+                comando[5] = resultado.getString("IDFormularioATrabajar");
+                comando[6] = resultado.getString("FechaActualizacion");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return comando;
     }
 }

@@ -49,6 +49,17 @@ public class Comando  {
         this.condicionFinal = "";
     }
 
+    public Comando(int correlativo){
+        buscador = new ControladorBD();
+        consultaComando=buscador.getConsultaComando();
+        String[] datos = consultaComando.getComando(correlativo);
+        this.IDComando = correlativo;
+        this.nombreComando = datos[2];
+        this.tipoComando = Integer.parseInt(datos[4]);
+        this.descripcion = datos[3];
+        this.formDestino = datos[5];
+    }
+
     public void setNombre(String name){
         this.nombreComando = name;
     }
