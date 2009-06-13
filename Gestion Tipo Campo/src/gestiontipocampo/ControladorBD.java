@@ -205,11 +205,11 @@ public class ControladorBD {
     }
 
     public ConsultaActividad getConsultaActividad() {
-        ConsultaActividad consulta;
+        ConsultaActividad consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
-            consulta = new ConsultaActividad();//por ahora solo tengo uno
+     //       consulta = new ConsultaActividad();//por ahora solo tengo uno
         } else {
-            consulta = new ConsultaActividad();
+     //       consulta = new ConsultaActividad();
         }
         return consulta;
     }
