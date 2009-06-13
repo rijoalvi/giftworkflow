@@ -133,6 +133,11 @@ public class Actividad {
         }
     }
 
+    /**
+     * Clona la actividad con otro nombre (tambien en la BD)
+     * @param nombreNuevo
+     * @return Actividad clonada.
+     */
     public Actividad replicar(String nombreNuevo) {
         Actividad replica = new Actividad();
         replica.correlativoFlujo = this.correlativoFlujo;
