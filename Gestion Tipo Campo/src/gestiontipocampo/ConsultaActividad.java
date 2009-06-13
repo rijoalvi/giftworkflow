@@ -78,4 +78,20 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param IDComando
      */
     public abstract void desvincularComando(int correlativo, int IDComando);
+
+    /**
+     * Desvincula dos actividades
+     * @param correlativoMadre
+     * @param correlativoHija
+     */
+    public abstract void desvincularActividad(int correlativoMadre, int correlativoHija);
+
+    /**
+     * crea vinculo entre dos actividades madre e hija, pone las hijas en orden
+     * @param correlativoMadre
+     * @param correlativoHija
+     * @param orden
+     * @param esObligatorio
+     */
+    public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
 }

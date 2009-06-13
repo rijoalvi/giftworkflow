@@ -90,12 +90,10 @@ public class Actividad {
      * @param orden - orden (0 - primero), si ya existe un comando en esta posicion se corre una posicion adelante
      * @param esObligatorio - si es obligatorio.
      */
-    public void agregarComando(Comando comando, int orden, boolean esObligatorio){
-        if(isSimple()){//Solo se ejecuta si es Actividad simple
+    public void agregarComando(Comando comando, int orden, boolean esObligatorio) {
+        if (isSimple()) {//Solo se ejecuta si es Actividad simple
             consultaActividad.agregarComando(this.correlativo, comando.IDComando, orden, esObligatorio);
-        }
-        else{//No se hace nada
-
+        } else {//No se hace nada
         }
     }
 
@@ -103,16 +101,38 @@ public class Actividad {
      * Desvincula comando de la actividad (Solamente si es actividad simple)
      * @param comando a desvincular
      */
-    public void desvincularComando(Comando comando){
-        if(isSimple()){//Solo se ejecuta si es actividad simple
+    public void desvincularComando(Comando comando) {
+        if (isSimple()) {//Solo se ejecuta si es actividad simple
             consultaActividad.desvincularComando(this.correlativo, comando.IDComando);
-        }
-        else{
-
+        } else {
         }
     }
 
-    public Actividad replicar(String nombreNuevo){
+    /**
+     * Agrega Actividad como actividad hija (Solamente para actividades comuestas)
+     * @param actividadHija
+     * @param orden (0 - primero), si ya existe una Actividad en esta posicion se corre una posicion adelante
+     * @param esObligatorio
+     */
+    public void agregarActividadHija(Actividad actividadHija, int orden, boolean esObligatorio) {
+        if(isSimple()){//Si es simple no se hace nada
+        }else{
+            consultaActividad.vincularActividad(this.correlativo, actividadHija.correlativo, orden, esObligatorio);
+        }
+    }
+
+    /**
+     * Desvincula Actividades (Solamente para actividades comuestas)
+     * @param actividad
+     */
+    public void desvincularActividad(Actividad actividadHija){
+        if(isSimple()){//Si es simple no se hace nada
+        }else{
+            consultaActividad.desvincularActividad(this.correlativo, actividadHija.correlativo);
+        }
+    }
+
+    public Actividad replicar(String nombreNuevo) {
         Actividad replica = new Actividad();
         replica.nombre = nombreNuevo;
         replica.descripcion = this.descripcion;
