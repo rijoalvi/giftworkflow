@@ -41,7 +41,11 @@ public class Lista extends TipoCampo {
             miembroLista.add(vector.get(i));
         }
     }
-
+    /**
+     * Retorna todos los miembros de la lista, según el ID de ésta
+     */
+  
+     
     public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
@@ -50,8 +54,9 @@ public class Lista extends TipoCampo {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero, campoNumero2);
     }
 
-
-
+    public Vector getMiembrosListaPorIDLista(int ID){
+        return consultaLista.getMiembrosListaPorIDLista(ID);
+    }
     /**
      * Cargo en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
      */

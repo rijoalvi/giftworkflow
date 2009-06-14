@@ -95,9 +95,10 @@ public class frameComandos extends javax.swing.JFrame {
     public frameComandos(Formulario datosForm, int correlativoFormulario) {
         initComponents();
         comboListaCondicion.setVisible(false);
+        comboListaEfecto.setVisible(false);
         ocultarCamposConMascara();
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
-               modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
+        modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
 
 
         comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz!
@@ -498,11 +499,35 @@ public class frameComandos extends javax.swing.JFrame {
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
-
     private void comboCampoInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCampoInicialActionPerformed
         System.out.print(((TipoCampo)comboCampoInicial.getSelectedItem()).tipoDeTipoCampo);
         int tipoDeTipoCampo=((TipoCampo)comboCampoInicial.getSelectedItem()).tipoDeTipoCampo;
-        if(7==tipoDeTipoCampo){
+        //int correlativoTipoCampo=((TipoCampo)comboCampoInicial.getSelectedItem()).correlativo;
+        int correlativoTipoCampo=555; //ya casi arregle esto, luisk
+        Lista lista;
+        if(frameManejoCampos.LISTA==tipoDeTipoCampo){
+            lista=new Lista();
+
+
+            javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+            //----------------------------------
+            Vector miembrosLista;
+        miembrosLista=lista.getMiembrosListaPorIDLista(correlativoTipoCampo);
+        int id;
+        String miembroLista;
+        for(int i=0;i<miembrosLista.size(); i++){
+            //id=Integer.parseInt(miembrosLista.get(i).toString());
+           // i++;
+            miembroLista=miembrosLista.get(i).toString();
+
+
+            modelo.addElement(new MiDato(miembroLista, 0));
+
+        }
+
+
+            //-----------------------------------
+            comboListaCondicion.setModel(modelo);
             comboListaCondicion.setVisible(true);
         }
         else{
@@ -536,16 +561,46 @@ public class frameComandos extends javax.swing.JFrame {
             modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
         }
 
- comboCampoInicial.setModel(modelo);
-  comboCampoFinal.setModel(modelo2);
+    comboCampoInicial.setModel(modelo);
+    comboCampoFinal.setModel(modelo2);
 
 
     }//GEN-LAST:event_comboSeleccionFormularioActionPerformed
 
 private void comboCampoFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCampoFinalActionPerformed
-    //ACA DEBERIA QUEDAR CASI IGUAL QUE EN comboCampoInicialActionPerformed CAMBIANDO NADA MAS EL SELECCIONADO
+        System.out.print(((TipoCampo)comboCampoInicial.getSelectedItem()).tipoDeTipoCampo);
+        int tipoDeTipoCampo=((TipoCampo)comboCampoFinal.getSelectedItem()).tipoDeTipoCampo;
+        //int correlativoTipoCampo=((TipoCampo)comboCampoInicial.getSelectedItem()).correlativo;
+        int correlativoTipoCampo=555; //ya casi arregle esto, luisk
+        Lista lista;
+        if(frameManejoCampos.LISTA==tipoDeTipoCampo){
+            lista=new Lista();
 
 
+            javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+            //----------------------------------
+            Vector miembrosLista;
+        miembrosLista=lista.getMiembrosListaPorIDLista(correlativoTipoCampo);
+        int id;
+        String miembroLista;
+        for(int i=0;i<miembrosLista.size(); i++){
+            //id=Integer.parseInt(miembrosLista.get(i).toString());
+           // i++;
+            miembroLista=miembrosLista.get(i).toString();
+
+
+            modelo.addElement(new MiDato(miembroLista, 0));
+
+        }
+
+
+            //-----------------------------------
+            comboListaEfecto.setModel(modelo);
+            comboListaEfecto.setVisible(true);
+        }
+        else{
+            comboListaEfecto.setVisible(false);
+        }
 }//GEN-LAST:event_comboCampoFinalActionPerformed
 
 private void ocultarCamposConMascara(){
