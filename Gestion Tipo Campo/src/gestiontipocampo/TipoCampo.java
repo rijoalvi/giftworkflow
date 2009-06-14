@@ -6,28 +6,29 @@ package gestiontipocampo;
 
 /**
  *
- * @author Administrator
+ * @author luiscarlosch@gmail.com
  */
 public class TipoCampo {
 
-    //lo cambie a INT, no c porq estaba en STRING - beto
+    //lo cambie a INT, no c porq estaba en STRING - beto//mmm yo creo este cambio afecta algo q yo hice con las lista mm pero no me acuerdo, luisk
     protected int correlativo;
     protected String nombre;
     protected String descripcion;
     protected String ultimaActualizacion;
     protected ControladorBD buscador;
-
+    public int tipoDeTipoCampo;
     ///Constructor por omision
     public TipoCampo(){
         buscador = new ControladorBD();
     }
-
+    public TipoCampo(int tipoDeTipoCampo, String nombre, int correlativo){
+        this.tipoDeTipoCampo=tipoDeTipoCampo;
+        this.nombre=nombre;
+        this.correlativo=correlativo;
+    }
     @Override
     public String toString() {
-        String aRetornar = 
-                this.correlativo + "\n" +
-                this.nombre + "\n" +
-                this.descripcion + "\n";
+        String aRetornar = this.nombre;
         return aRetornar;
     }
 
