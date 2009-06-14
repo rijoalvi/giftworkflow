@@ -124,3 +124,43 @@ CREATE TABLE COMANDOMASCARA(
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE ACTIVIDAD(
+    correlativo        int auto_increment not null,
+    correlativoFlujo   int,  --Es el id del flujo al que pertenece, esta en la especificacion
+    nombre             varchar(30),
+    descripcion        varchar(30),--En la especificacion dice proposito, no se si lo dejamos asi
+    tipo               int,
+    fechaActualizacion timestamp,
+    estadoInicial      varchar(30),
+    estadoFinal        varchar(30),
+    esSimple           varchar(6),
+    repetible          varchar(6),
+    masiva             varchar(6),
+    requiereRevision   varchar(6),
+    hitoDeControl      varchar(6),
+    PRIMARY KEY (correlativo)
+);/**/
+
+CREATE TABLE MIEMBROACTIVIDADSIMPLE(
+     correlativo                int auto_increment not null,
+     correlativoMadre           int,     --Apunta a la actividad madre
+     correlativoComando         int, --Apunta al comando ya que es simple
+     paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
+     exclusivo                  varchar(6),           --que puede ejecutarse solo uno, solamente en caso de que son paralelos
+     obligatorio                varchar(6),          --si el comando es obligatorio
+     correlativoSiguiente       int, --Siguiente comando, tambien se puede sustituir por numero de posicion como en el tabOrder
+    PRIMARY KEY (correlativo)
+);/**/
+
+
+
+CREATE TABLE MIEMBRO_ACTIVIDAD_COMPUESTA(
+    correlativo             int      auto_increment not null,
+    correlativoMadre        int,      --Apunta a la actividad madre
+    correlativoHija         int,         --Apunta a la actividad hija
+    paralelo                varchar(6),                --si los comandos se ejecutan en paralelo o en secuencia
+    exclusivo               varchar(6),
+    obligatorio             varchar(6),
+    correlativoSiguiente    int,           --Siguiente actividad
+    PRIMARY KEY (correlativo)
+);/**/
