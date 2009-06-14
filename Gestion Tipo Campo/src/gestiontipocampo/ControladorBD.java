@@ -140,6 +140,36 @@ public class ControladorBD {
         return result;
     }
 
+    /**
+     * Realiza la consulta de actualizacion y devuelve los campos autogenerados
+     * @param consulta
+     * @param incrementales - la lista de columnas autogeneradas
+     * @return - ResultSet con los resultados
+     */
+    public ResultSet doUpdate(String consulta, String[] incrementales) {
+        String conexionAUtilizar = getConexionEstablecida();
+        ResultSet result = null;
+        try {
+            if (getConexionEstablecida().equals(conexionString1)) {
+                Class.forName("com.mysql.jdbc.Driver");
+            } else {
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            }
+            conexion = DriverManager.getConnection(conexionAUtilizar);
+            Statement query = null;
+            String SQL = consulta;
+            query = conexion.createStatement();
+            query.executeUpdate(SQL, incrementales);
+            result = query.getGeneratedKeys();
+            System.out.println("Se realizo la consula con la conexion # " + conexionSeleccionada + "");
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        } catch (ClassNotFoundException cE) {
+            System.out.println("--Class Not Found Exception: --" + cE.toString());
+        }
+        return result;
+    }
+
     /* public Vector getResultSetVector(String consulta) {
     Vector miVector = new Vector();
     try {

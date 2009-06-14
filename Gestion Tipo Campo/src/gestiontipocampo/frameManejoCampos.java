@@ -1044,7 +1044,15 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     limpiarValoresNumero();
                     System.out.println("Modifica");
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1)");
+                    String[] gg = new String[1];
+                    gg[0] = "correlativo";
+                        ResultSet test = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1);", gg);
+            try {
+                test.next();
+                System.out.println("Esta Funcionando: " + test.getInt(1));
+            } catch (SQLException ex) {
+                System.out.println("*SQL Exception: *" + ex.toString());
+            }
                     try { //Se busca el ID de los datos que acaba de insertar
                         ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
 

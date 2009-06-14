@@ -155,7 +155,7 @@ public class Actividad {
         replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl);
         return replica;
     }
-
+    
 
     //Sets y gets.
     public int getCorrelativo() {
