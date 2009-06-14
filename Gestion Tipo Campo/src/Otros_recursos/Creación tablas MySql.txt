@@ -137,7 +137,7 @@ CREATE TABLE ACTIVIDAD(
     repetible          varchar(6),
     masiva             varchar(6),
     requiereRevision   varchar(6),
-    hitoDeControl      varchar(6),
+    hitoDeControl       varchar(6),
     PRIMARY KEY (correlativo)
 );/**/
 
