@@ -1014,6 +1014,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void botonGuardarActionAccepted() {
         boolean existe = false;
         int ID = 0;
+        String[] generados = {"correlativo"};
         try { //Primero se busca en la base de datos si ya existe este campo
             ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
             //
@@ -1044,20 +1045,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     limpiarValoresNumero();
                     System.out.println("Modifica");
                 } else {
-                    String[] gg = new String[1];
-                    gg[0] = "correlativo";
-                        ResultSet test = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1);", gg);
-            try {
-                test.next();
-                System.out.println("Esta Funcionando: " + test.getInt(1));
-            } catch (SQLException ex) {
-                System.out.println("*SQL Exception: *" + ex.toString());
-            }
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
-
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1);", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1073,11 +1064,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update BINARIO set nombre1 = '" + this.valorNombreBinario1.getText() + "', valor1 = '" + this.valorOpcionBinaria1.getText() + "' , nombre2 = '" + this.valorNombreBinario2.getText() + "' , valor2 = '" + this.valorOpcionBinaria2.getText() + "' , valorDefecto = '" + radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
                     limpiarValoresBinario();
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1093,12 +1083,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update FECHAHORA set despliegue = '" + this.comboFormatoFecha.getSelectedItem().toString() + "', fechaDefecto = '" + this.valorFechaDefecto.getText() + "', preaviso = '" + this.valorPreaviso.getText() + "', vencimiento = '" + this.radioFechaHoraSi.isSelected() + "' where correlativo = " + ID);
                     limpiarValoresFechaHora();
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 3)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
-
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 3)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1114,12 +1102,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update TEXTO set tamano = '" + this.valorTextoLargo.getText() + "', textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
                     limpiarValoresTexto();
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 4)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
-
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 4)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1135,12 +1121,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update INCREMENTAL set valInicial = '" + this.valorValorInicial.getText() + "', incremento = '" + this.valorIncremento.getText() + "' where correlativo = " + ID);
                     limpiarValoresIncremental();
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
-
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1155,11 +1139,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
                     conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + this.radioNomUnicoSi.isSelected() + "', conCategorias = '" + this.radioCategoriasSi.isSelected() + "' , IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0) + "' where correlativo = " + ID);
                 } else {
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1179,12 +1162,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
                     conexionBD.doUpdate("Update LISTA set valorPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
                 } else {
-                    System.out.println("guarda en tipo campo la lista");
-                    conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7)");
-                    try { //Se busca el ID de los datos que acaba de insertar
-                        ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt("correlativo");
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1222,7 +1203,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if (padre != null) {
             padre.llenarTreeView();
         }
-        //this.dispose();
+    //this.dispose();
     }
 
     public void limpiarValoresNumero() {
