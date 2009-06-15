@@ -5,7 +5,7 @@ Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
 3. Hay que hacer que al agregar elementos a la lista, si uno apreta enter, se agregue lo que haya en el textbox
    de agregar elemento a lista   roman ........Listo
 4. Al abrir el formulario, los textBox y labels que se les aumento o disminuyo el tamaño aparecen con el tamaño por
-   default, no con el que deberían, creo que es que no se esta guardando el tamaño modificado del label ricardo
+   default, no con el que deberían, creo que es que no se esta guardando el tamaño modificado del label totan.....listo!!
 
 5. Revisar que al agregar un binario en el formulario, ver que se pongan los nombres correcctos
 
