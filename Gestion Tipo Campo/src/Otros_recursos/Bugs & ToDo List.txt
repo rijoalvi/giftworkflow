@@ -8,5 +8,4 @@ Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
    default, no con el que deberían, creo que es que no se esta guardando el tamaño modificado del label totan.....listo!!
 
 5. Revisar que al agregar un binario en el formulario, ver que se pongan los nombres correcctos
-
-6. Averiguar porque se agrega una v, a los miembros formularios tambien aparecen duplicados estos campos
+-------ESTO ES PORQ PONE EL NOMBRE DEL VALOR, DADO Q BINARIO SON 2 COSAS-----

@@ -154,7 +154,7 @@ CREATE TABLE MIEMBROACTIVIDADSIMPLE(
 
 
 
-CREATE TABLE MIEMBRO_ACTIVIDAD_COMPUESTA(
+CREATE TABLE MIEMBROACTIVIDADCOMPUESTA(
     correlativo             int      auto_increment not null,
     correlativoMadre        int,      --Apunta a la actividad madre
     correlativoHija         int,         --Apunta a la actividad hija
