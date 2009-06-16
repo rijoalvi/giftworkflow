@@ -43,13 +43,16 @@ public class frameActividad extends javax.swing.JFrame {
         comboSeleccionFormulario = new javax.swing.JComboBox();
         labelCampoInicial = new javax.swing.JLabel();
         comboComandoAAgregar = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         botonAgregarComando = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        comboComandoExcluyente = new javax.swing.JComboBox();
-        comboComandoParalelo = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        labelCampoInicial1 = new javax.swing.JLabel();
+        comboComandoAAgregar1 = new javax.swing.JComboBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        panelChecksParalelo = new javax.swing.JPanel();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox4 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -63,7 +66,7 @@ public class frameActividad extends javax.swing.JFrame {
         labelTipo.setText(resourceMap.getString("labelTipo.text")); // NOI18N
         labelTipo.setName("labelTipo"); // NOI18N
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crear", "Eliminar", "Modificar", "Comando con Máscara" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Simple", "Compuesto"} ));
         comboTipo.setName("comboTipo"); // NOI18N
         comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,21 +121,6 @@ public class frameActividad extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Actividad");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Comando1");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Com 1.1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Com 1.2");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Comando2");
-        treeNode1.add(treeNode2);
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jTree1.setName("jTree1"); // NOI18N
-        jScrollPane1.setViewportView(jTree1);
-
         botonAgregarComando.setText(resourceMap.getString("botonAgregarComando.text")); // NOI18N
         botonAgregarComando.setName("botonAgregarComando"); // NOI18N
         botonAgregarComando.addActionListener(new java.awt.event.ActionListener() {
@@ -141,25 +129,65 @@ public class frameActividad extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setName("jLabel1"); // NOI18N
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setName("jList1"); // NOI18N
+        jScrollPane1.setViewportView(jList1);
 
-        comboComandoExcluyente.setName("comboComandoExcluyente"); // NOI18N
-        comboComandoExcluyente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboComandoExcluyenteActionPerformed(evt);
+        labelCampoInicial1.setText(resourceMap.getString("labelCampoInicial1.text")); // NOI18N
+        labelCampoInicial1.setName("labelCampoInicial1"); // NOI18N
+        labelCampoInicial1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelCampoInicial1MouseClicked(evt);
             }
         });
 
-        comboComandoParalelo.setName("comboComandoParalelo"); // NOI18N
-        comboComandoParalelo.addActionListener(new java.awt.event.ActionListener() {
+        comboComandoAAgregar1.setName("comboComandoAAgregar1"); // NOI18N
+        comboComandoAAgregar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboComandoParaleloActionPerformed(evt);
+                comboComandoAAgregar1ActionPerformed(evt);
             }
         });
+
+        jCheckBox1.setText(resourceMap.getString("jCheckBox1.text")); // NOI18N
+        jCheckBox1.setName("jCheckBox1"); // NOI18N
+
+        jCheckBox3.setText(resourceMap.getString("jCheckBox3.text")); // NOI18N
+        jCheckBox3.setName("jCheckBox3"); // NOI18N
+
+        panelChecksParalelo.setName("panelChecksParalelo"); // NOI18N
+
+        jCheckBox2.setText(resourceMap.getString("jCheckBox2.text")); // NOI18N
+        jCheckBox2.setName("jCheckBox2"); // NOI18N
+
+        jCheckBox4.setText(resourceMap.getString("jCheckBox4.text")); // NOI18N
+        jCheckBox4.setName("jCheckBox4"); // NOI18N
+
+        javax.swing.GroupLayout panelChecksParaleloLayout = new javax.swing.GroupLayout(panelChecksParalelo);
+        panelChecksParalelo.setLayout(panelChecksParaleloLayout);
+        panelChecksParaleloLayout.setHorizontalGroup(
+            panelChecksParaleloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChecksParaleloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelChecksParaleloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox2)
+                    .addComponent(jCheckBox4))
+                .addContainerGap(13, Short.MAX_VALUE))
+        );
+        panelChecksParaleloLayout.setVerticalGroup(
+            panelChecksParaleloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChecksParaleloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jCheckBox4)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,40 +210,36 @@ public class frameActividad extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelDescripcion))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(labelDescripcion)))
+                    .addComponent(comboSeleccionFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboSeleccionFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(461, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 214, Short.MAX_VALUE)
-                                .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(232, 232, 232)
+                                .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
+                                .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelCampoInicial1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboComandoAAgregar1, 0, 130, Short.MAX_VALUE)
                                     .addComponent(labelCampoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboComandoAAgregar, 0, 130, Short.MAX_VALUE)
-                                    .addComponent(botonAgregarComando, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                    .addComponent(comboComandoAAgregar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(botonAgregarComando))
+                                .addGap(41, 41, 41)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(comboComandoExcluyente, 0, 130, Short.MAX_VALUE)
-                                            .addComponent(comboComandoParalelo, 0, 130, Short.MAX_VALUE))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67))))
+                                    .addComponent(jCheckBox1)
+                                    .addComponent(jCheckBox3))
+                                .addGap(38, 38, 38)
+                                .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelNombre)
@@ -231,32 +255,38 @@ public class frameActividad extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboSeleccionFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelCampoInicial)
-                            .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(comboComandoAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboComandoExcluyente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboComandoParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(botonAgregarComando)
-                        .addGap(49, 49, 49)
+                        .addComponent(comboSeleccionFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(labelCampoInicial1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(comboComandoAAgregar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBox1))
+                                .addGap(18, 18, 18)
+                                .addComponent(labelCampoInicial)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(comboComandoAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCheckBox3))
+                                .addGap(36, 36, 36)
+                                .addComponent(botonAgregarComando))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(103, 103, 103)
+                                .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonAceptar)
-                            .addComponent(botonCancelar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(73, 73, 73))
+                            .addComponent(botonCancelar))
+                        .addGap(73, 73, 73))))
         );
 
         pack();
@@ -349,13 +379,13 @@ public class frameActividad extends javax.swing.JFrame {
         // TODO add your handling code here:
 }//GEN-LAST:event_botonAgregarComandoActionPerformed
 
-    private void comboComandoExcluyenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComandoExcluyenteActionPerformed
+    private void labelCampoInicial1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelCampoInicial1MouseClicked
         // TODO add your handling code here:
-}//GEN-LAST:event_comboComandoExcluyenteActionPerformed
+    }//GEN-LAST:event_labelCampoInicial1MouseClicked
 
-    private void comboComandoParaleloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComandoParaleloActionPerformed
+    private void comboComandoAAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComandoAAgregar1ActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_comboComandoParaleloActionPerformed
+    }//GEN-LAST:event_comboComandoAAgregar1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -373,21 +403,24 @@ public class frameActividad extends javax.swing.JFrame {
     private javax.swing.JButton botonAgregarComando;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JComboBox comboComandoAAgregar;
-    private javax.swing.JComboBox comboComandoExcluyente;
-    private javax.swing.JComboBox comboComandoParalelo;
+    private javax.swing.JComboBox comboComandoAAgregar1;
     private javax.swing.JComboBox comboSeleccionFormulario;
     private javax.swing.JComboBox comboTipo;
     private javax.swing.JTextField fieldDescripcion;
     private javax.swing.JTextField fieldNombre;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTree jTree1;
     private javax.swing.JLabel labelCampoInicial;
+    private javax.swing.JLabel labelCampoInicial1;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelSeleccionFormulario;
     private javax.swing.JLabel labelTipo;
+    private javax.swing.JPanel panelChecksParalelo;
     // End of variables declaration//GEN-END:variables
 
 }
