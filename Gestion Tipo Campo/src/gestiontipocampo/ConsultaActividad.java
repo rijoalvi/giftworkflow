@@ -30,7 +30,7 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param hitoDeControl
      * @return correlativo de la Actividad
      */
-    public abstract int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
+    public abstract int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio);
 
     /**
      * Actualiza los datos de la Actividad existente en la base de datos.
@@ -47,7 +47,7 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param requiereRevision
      * @param hitoDeControl
      */
-    public abstract void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl);
+    public abstract void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio);
 
     /**
      * Devuelve los datos de la actividad segun el correlativo
