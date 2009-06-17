@@ -1,4 +1,4 @@
-Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
+﻿Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
 
 1. Fecha/hora no deja guardar si uno no pone preaviso, aunque haya escogido sin vencimiento roman.....Listo
 2. Treeview principal no se actualiza al salir de lista.  roman......Listo
@@ -12,11 +12,11 @@ Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
 
 
 
-1. Nombre de la ventana abrir formulario
-2. Descripcion de los comandos en agregar comandos
-3. Ver comandos hechos
-4. Solo se muestran comandos del formulario seleccionado
-5. Actividades compuestas no tienen formulario
-6. el campo se llama esSimple no simple, revisar todas las consultas
-7. Atributo excluyente es entre hermanas
-8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime
+1. Nombre de la ventana abrir formulario -------------------------------------------> Luis Carlos
+2. Descripcion de los comandos en agregar comandos ---------------------------------> Beto
+3. Ver comandos hechos--------------------------------------------------------------> Todos (se requiere trabajo en las 3 capas) (beto, Roman y Ricardo)
+4. Solo se muestran comandos del formulario seleccionado----------------------------> Beto (eso es interfaz). Creo que tambien necesita 3 capa entonces yo (ricardo) hago la 3 capa
+5. Actividades compuestas no tienen formulario--------------------------------------> Roman
+6. el campo se llama esSimple no simple, revisar todas las consultas----------------> Ya esta hecho (igual mejor prevenir)
+7. Atributo excluyente es entre hermanas--------------------------------------------> Esto es un despiche, se necesita hacer una tabla nueva entre otras cosas. (CREAR TABLA DE VINCULOS ENTRE HERMANOS)
+8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime---> Jonathan
