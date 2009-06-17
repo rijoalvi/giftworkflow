@@ -140,6 +140,26 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
     }
 
     /**
+     * Retorna todas las actividades en un vector como para cargarlos en un combo
+     * @return Vector con los datos de la actividade en este orden: correlativo, nombre
+     */
+    public Vector obtenerTodasLasActividades() {
+        Vector campos = new Vector();
+        ResultSet resultado = null;
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select correlativo, nombre from ACIVIDAD;");
+            while (resultado.next()) {
+                campos.add(resultado.getObject("correlativo").toString());
+                campos.add(resultado.getObject("nombre").toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return campos;
+    }
+
+    /**
      * Elimina la actividad de la base de datos.
      * @param correlativo de la actividad a eliminar
      * @return 0 - Se elimino correctamente, 1 - Ya existe una instancia de actividad,
