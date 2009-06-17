@@ -120,6 +120,10 @@ public class Actividad {
         this.fechaActualizacion = new Date();
     }
 
+    public void actualizar(){
+        consultaActividad.actualizarActividad(correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+    }
+
     public Vector getTodasLasActividades() {
         Vector datos = consultaActividad.obtenerTodasLasActividades();
         return datos;
