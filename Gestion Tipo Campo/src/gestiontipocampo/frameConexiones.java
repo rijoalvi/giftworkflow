@@ -19,11 +19,15 @@ public class frameConexiones extends javax.swing.JFrame {
     /** Creates new form frameConexiones */
     public frameConexiones() {
         initComponents();
+        grupo.add(jRadioButton1);
+        grupo.add(jRadioButton2);
     }
 
     public frameConexiones(GestionTipoCampoView mama) {
         this.madre = mama;
         initComponents();
+        grupo.add(jRadioButton1);
+        grupo.add(jRadioButton2);
 
     }
 
@@ -36,6 +40,7 @@ public class frameConexiones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupo = new javax.swing.ButtonGroup();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         btnEstablecerConexion = new javax.swing.JButton();
@@ -243,6 +248,7 @@ public class frameConexiones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstablecerConexion;
     private javax.swing.JButton btnRefrescar;
+    private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
