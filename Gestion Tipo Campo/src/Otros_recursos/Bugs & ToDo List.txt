@@ -9,3 +9,13 @@ Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
 
 5. Revisar que al agregar un binario en el formulario, ver que se pongan los nombres correcctos
 -------ESTO ES PORQ PONE EL NOMBRE DEL VALOR, DADO Q BINARIO SON 2 COSAS-----
+
+
+
+1. Nombre de la ventana abrir formulario
+2. Descripcion de los comandos en agregar comandos
+3. Ver comandos hechos
+4. Solo se muestran comandos del formulario seleccionado
+5. Actividades compuestas no tienen formulario
+6. el campo se llama esSimple no simple, revisar todas las consultas
+7. Atributo excluyente es entre hermanas
