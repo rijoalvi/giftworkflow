@@ -93,7 +93,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
     public String[] getActividad(int correlativo){
 
         //se hace la consulta
-        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio From ACTIVIDAD Where correlativo = " + correlativo;
+        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo From ACTIVIDAD Where correlativo = " + correlativo;
         ResultSet resultado = null;
         Vector campos = new Vector();
         try {
