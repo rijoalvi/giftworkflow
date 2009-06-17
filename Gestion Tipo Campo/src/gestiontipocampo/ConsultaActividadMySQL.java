@@ -94,45 +94,32 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
 
         //se hace la consulta
         String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio From ACTIVIDAD Where correlativo = " + correlativo;
-
-        //llenamos un vector con los nombres de elementos de la consulta
+        ResultSet resultado = null;
         Vector campos = new Vector();
-        campos.add("correlativo");
-        campos.add("correlativoFlujo");
-        campos.add("nombre");
-        campos.add("descripcion");
-        campos.add("tipo");
-        campos.add("estadoInicial");
-        campos.add("estadoFinal");
-        campos.add("fechaActualizacion");
-        campos.add("simple");
-        campos.add("repetible");
-        campos.add("masiva");
-        campos.add("requiereRevision");
-        campos.add("hitoDeControl");
-        campos.add("paralelo");
-        campos.add("exclusivo");
-
-        //ahora llenamos el vector con los elementos propiamente de la consulta
-        Map<String, String> mapaDatos = this.getResultSetMap(consulta, campos);
-        campos.clear();
-        campos.add(mapaDatos.get("correlativo"));
-        campos.add(mapaDatos.get("correlativoFlujo"));
-        campos.add(mapaDatos.get("nombre"));
-        campos.add(mapaDatos.get("descripcion"));
-        campos.add(mapaDatos.get("tipo"));
-        campos.add(mapaDatos.get("estadoInicial"));
-        campos.add(mapaDatos.get("estadoFinal"));
-        campos.add(mapaDatos.get("fechaActualizacion"));
-        campos.add(mapaDatos.get("simple"));
-        campos.add(mapaDatos.get("repetible"));
-        campos.add(mapaDatos.get("masiva"));
-        campos.add(mapaDatos.get("requiereRevision"));
-        campos.add(mapaDatos.get("hitoDeControl"));
-        campos.add(mapaDatos.get("paralelo"));
-        campos.add(mapaDatos.get("exclusivo"));
-
-        //Ahora casting de vector a String[] para devolver lo que es
+        try {
+            resultado = this.getResultSet(consulta);
+            if (resultado.next()) {
+                campos.add(resultado.getObject("correlativo").toString());
+                campos.add(resultado.getObject("correlativoFlujo").toString());
+                campos.add(resultado.getObject("nombre").toString());
+                campos.add(resultado.getObject("descripcion").toString());
+                campos.add(resultado.getObject("tipo").toString());
+                campos.add(resultado.getObject("estadoInicial").toString());
+                campos.add(resultado.getObject("estadoFinal").toString());
+                campos.add(resultado.getObject("fechaActualizacion").toString());
+                campos.add(resultado.getObject("simple").toString());
+                campos.add(resultado.getObject("repetible").toString());
+                campos.add(resultado.getObject("masiva").toString());
+                campos.add(resultado.getObject("requiereRevision").toString());
+                campos.add(resultado.getObject("hitoDeControl").toString());
+                campos.add(resultado.getObject("paralelo").toString());
+                campos.add(resultado.getObject("exclusivo").toString());
+                campos.add(resultado.getObject("obligatorio").toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        
         String[] retorno = new String[campos.size()];
         campos.toArray(retorno);
 
