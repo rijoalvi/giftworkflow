@@ -93,7 +93,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
     public String[] getActividad(int correlativo){
 
         //se hace la consulta
-        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio From ACTIVIDAD Where correlativo = " + correlativo;
+        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo From ACTIVIDAD Where correlativo = " + correlativo;
         ResultSet resultado = null;
         Vector campos = new Vector();
         try {
@@ -107,14 +107,13 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
                 campos.add(resultado.getObject("estadoInicial").toString());
                 campos.add(resultado.getObject("estadoFinal").toString());
                 campos.add(resultado.getObject("fechaActualizacion").toString());
-                campos.add(resultado.getObject("simple").toString());
+                campos.add(resultado.getObject("esSimple").toString());
                 campos.add(resultado.getObject("repetible").toString());
                 campos.add(resultado.getObject("masiva").toString());
                 campos.add(resultado.getObject("requiereRevision").toString());
                 campos.add(resultado.getObject("hitoDeControl").toString());
                 campos.add(resultado.getObject("paralelo").toString());
-                campos.add(resultado.getObject("exclusivo").toString());
-                campos.add(resultado.getObject("obligatorio").toString());
+                campos.add(resultado.getObject("exclusivo").toString());                
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

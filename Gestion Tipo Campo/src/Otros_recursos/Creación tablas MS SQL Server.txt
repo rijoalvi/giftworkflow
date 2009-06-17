@@ -125,7 +125,7 @@ CREATE TABLE COMANDOMASCARA(
   PRIMARY KEY (ID)
 );
 
-drop table ACTIVIDAD
+drop table ACTIVIDAD;
 CREATE TABLE ACTIVIDAD(
     correlativo        int  identity (1,1) NOT NULL,
     correlativoFlujo   int,  --Es el id del flujo al que pertenece, esta en la especificacion
@@ -140,30 +140,29 @@ CREATE TABLE ACTIVIDAD(
     masiva             varchar(6),
     requiereRevision   varchar(6),
     hitoDeControl       varchar(6),
-    PRIMARY KEY (correlativo)
-);
+    paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
+    exclusivo                  varchar(6),          --que puede ejecutarse solo uno, solamente en caso de que son paralelos
 
-drop table MIEMBROACTIVIDADSIMPLE
+    PRIMARY KEY (correlativo)
+);/**/
+
+drop table MIEMBROACTIVIDADSIMPLE;
 CREATE TABLE MIEMBROACTIVIDADSIMPLE(
-     correlativo                int  identity (1,1) NOT NULL,
-     correlativoMadre           int,     --Apunta a la actividad madre
-     correlativoComando         int, --Apunta al comando ya que es simple
-     paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
-     exclusivo                  varchar(6),           --que puede ejecutarse solo uno, solamente en caso de que son paralelos
-     obligatorio                varchar(6),          --si el comando es obligatorio
-     correlativoSiguiente       int, --Siguiente comando, tambien se puede sustituir por numero de posicion como en el tabOrder
+    correlativo                int  identity (1,1) NOT NULL,
+    correlativoMadre           int,     --Apunta a la actividad madre
+    correlativoComando         int, --Apunta al comando ya que es simple
+    orden                      int, --Guarda la posicion en que está el elemento en la actividad (si es el primero o segundo elemento etc)
+    obligatorio                varchar(6),          --si el comando es obligatorio
     PRIMARY KEY (correlativo)
-);
+);/**/
 
 
-drop table MIEMBROACTIVIDADCOMPUESTA
+drop table MIEMBROACTIVIDADCOMPUESTA;
 CREATE TABLE MIEMBROACTIVIDADCOMPUESTA(
     correlativo             int  identity (1,1) NOT NULL,
     correlativoMadre        int,      --Apunta a la actividad madre
     correlativoHija         int,         --Apunta a la actividad hija
-    paralelo                varchar(6),                --si los comandos se ejecutan en paralelo o en secuencia
-    exclusivo               varchar(6),
-    obligatorio             varchar(6),
-    correlativoSiguiente    int,           --Siguiente actividad
+    orden                      int, --Guarda la posicion en que está el elemento en la actividad (si es el primero o segundo elemento etc)
+    obligatorio                varchar(6),          --si el comando es obligatorio
     PRIMARY KEY (correlativo)
 );

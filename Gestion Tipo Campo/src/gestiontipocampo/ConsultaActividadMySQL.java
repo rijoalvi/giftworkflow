@@ -107,7 +107,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
                 campos.add(resultado.getObject("estadoInicial").toString());
                 campos.add(resultado.getObject("estadoFinal").toString());
                 campos.add(resultado.getObject("fechaActualizacion").toString());
-                campos.add(resultado.getObject("simple").toString());
+                campos.add(resultado.getObject("esSimple").toString());
                 campos.add(resultado.getObject("repetible").toString());
                 campos.add(resultado.getObject("masiva").toString());
                 campos.add(resultado.getObject("requiereRevision").toString());

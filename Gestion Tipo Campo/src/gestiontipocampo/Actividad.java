@@ -74,7 +74,7 @@ public class Actividad {
         this.tipo = Integer.parseInt(datos[4]);
         this.estadoInicial = datos[5];
         this.estadoFinal = datos[6];
-        this.fechaActualizacion = new Date(datos[7]);
+        //this.fechaActualizacion = new Date(datos[7]);
         this.simple = Boolean.parseBoolean(datos[8]);
         this.repetible = Boolean.parseBoolean(datos[9]);
         this.masiva = Boolean.parseBoolean(datos[10]);

@@ -512,13 +512,12 @@ public class frameActividad extends javax.swing.JFrame {
         else{
             if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta") ){
                 int id = ((MiDato)(comboComponenteAAgregar.getSelectedItem() )).ID;
+                System.out.println("id> "+id);
                 Actividad tmp = new Actividad(id);
                 //Igual que arriba :p
                 //creo q hace falta un get miembro en la clase actividad...
                 //y seria mejor tamb un get num Miembros...
-                miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());
-                javax.swing.DefaultComboBoxModel modelo = (DefaultComboBoxModel)listaComponentes.getModel();
-                modelo.addElement( (comboComponenteAAgregar.getSelectedItem() ));
+                miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());                
             }
         }
         //Cambia los valores de la lista
