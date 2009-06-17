@@ -5,6 +5,8 @@
 
 package gestiontipocampo;
 
+import java.util.Vector;
+
 /**
  *
  * @author Alberto
@@ -187,5 +189,14 @@ public class Comando  {
             //    this.IDComando = consultaComando.agregarComando(IDFormulario, nombreComando, descripcion, tipoComando , IDFormularioTrabajar,"fecha");
             consultaComando.agregarComandoConMascara(IDComando, tipoCampoInicial, condicionInicial, tipoCampoFinal, estadoFinal);
         }
+    }
+
+    /**
+     * Retorna todos los comandos en un vector como para cargarlos en un combo
+     * @return Vector con los datos de los comandos en este orden: correlativo, nombre
+     */
+    public Vector getTodosLosComandos(){
+        Vector datos = consultaComando.obtenerTodosLosComandos();
+        return datos;
     }
 }

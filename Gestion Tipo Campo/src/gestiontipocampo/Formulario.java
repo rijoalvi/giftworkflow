@@ -61,14 +61,10 @@ public class Formulario {
         miembrosFormulario = new TreeSet();
 
         cargarMiembros();
-
     }
-
-
 
     /**
      *
-     * @param
      */
     public Vector getTodosLosFormulario() {
         Vector datos = this.formBD.obtenerTodosLosFormularios();

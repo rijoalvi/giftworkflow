@@ -6,6 +6,7 @@
 package gestiontipocampo;
 
 import java.sql.*;
+import java.util.Vector;
 
 /**
  *
@@ -55,6 +56,26 @@ public class ConsultaComando extends ControladorBD{
         //INSERT INTO ComandoMascara (IDComando,TipoCampoInicial,CondicionInicial,TipoCampoFinal,EstadoFinal) VALUES (1,'tipoCampoInicial','condicion inicial','campoFinal','dsfa');
         this.doUpdate("INSERT INTO  COMANDOMASCARA (IDComando,TipoCampoInicial,CondicionInicial,TipoCampoFinal,EstadoFinal) VALUES ("+IDComando+",'"+TipoCampoInicial+"','"+CondicionInicial+"','"+TipoCampoFinal+"','"+EstadoFinal+"');");
         return 0;
+    }
+
+    /**
+     * Retorna todos los comandos en un vector como para cargarlos en un combo
+     * @return Vector con los datos de los comandos en este orden: correlativo, nombre
+     */
+    public Vector obtenerTodosLosComandos() {
+        Vector campos = new Vector();
+        ResultSet resultado = null;
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select ID, Nombre from COMANDO;");
+            while (resultado.next()) {
+                campos.add(resultado.getObject("ID").toString());
+                campos.add(resultado.getObject("Nombre").toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return campos;
     }
 
     public String[] getComando(int correlativo){

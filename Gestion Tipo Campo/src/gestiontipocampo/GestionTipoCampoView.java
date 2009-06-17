@@ -342,20 +342,21 @@ public class GestionTipoCampoView extends FrameView {
         arbolPrincipal = new javax.swing.JTree();
         pathPane = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
-        javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        javax.swing.JMenu menuArchivo = new javax.swing.JMenu();
         btnNuevoFormulario = new javax.swing.JMenuItem();
         btnNuevoTipoCampo = new javax.swing.JMenuItem();
         btnAbrirTipoCampo = new javax.swing.JMenuItem();
         btnAbrirFormulario = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuEdicion = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JSeparator();
         jMenuItem6 = new javax.swing.JMenuItem();
-        javax.swing.JMenu helpMenu = new javax.swing.JMenu();
+        javax.swing.JMenu menuAyuda = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
@@ -804,7 +805,7 @@ public class GestionTipoCampoView extends FrameView {
 
         valorPorDefectoLista.setEditable(false);
         valorPorDefectoLista.setName("valorPorDefectoLista"); // NOI18N
-        valorPorDefectoLista.setBounds(30, 30, 120, 20);
+        valorPorDefectoLista.setBounds(30, 30, 120, -1);
         paneLista.add(valorPorDefectoLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel26.setText(resourceMap.getString("jLabel26.text")); // NOI18N
@@ -820,34 +821,34 @@ public class GestionTipoCampoView extends FrameView {
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
-        jLabel2.setBounds(50, 70, 41, 14);
+        jLabel2.setBounds(50, 70, -1, -1);
         paneDatosAbrir.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNombreGeneral.setEditable(false);
         valorNombreGeneral.setName("valorNombreGeneral"); // NOI18N
-        valorNombreGeneral.setBounds(50, 90, 120, 20);
+        valorNombreGeneral.setBounds(50, 90, 120, -1);
         paneDatosAbrir.add(valorNombreGeneral, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        jLabel3.setBounds(240, 70, 58, 14);
+        jLabel3.setBounds(240, 70, -1, -1);
         paneDatosAbrir.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valorNota.setEditable(false);
         valorNota.setName("valorNota"); // NOI18N
-        valorNota.setBounds(240, 90, 120, 20);
+        valorNota.setBounds(240, 90, 120, -1);
         paneDatosAbrir.add(valorNota, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(50, 20, 73, 14);
+        jLabel1.setBounds(50, 20, -1, -1);
         paneDatosAbrir.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         comboTipos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Número", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista" }));
         comboTipos.setEnabled(false);
         comboTipos.setFocusable(false);
         comboTipos.setName("comboTipos"); // NOI18N
-        comboTipos.setBounds(50, 40, 120, 20);
+        comboTipos.setBounds(50, 40, 120, -1);
         paneDatosAbrir.add(comboTipos, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         botonCancelarPanel.setText(resourceMap.getString("botonCancelarPanel.text")); // NOI18N
@@ -960,11 +961,11 @@ public class GestionTipoCampoView extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
-        fileMenu.setName("fileMenu"); // NOI18N
-        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+        menuArchivo.setText(resourceMap.getString("menuArchivo.text")); // NOI18N
+        menuArchivo.setName("menuArchivo"); // NOI18N
+        menuArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileMenuActionPerformed(evt);
+                menuArchivoActionPerformed(evt);
             }
         });
 
@@ -975,13 +976,13 @@ public class GestionTipoCampoView extends FrameView {
                 btnNuevoFormularioActionPerformed(evt);
             }
         });
-        fileMenu.add(btnNuevoFormulario);
+        menuArchivo.add(btnNuevoFormulario);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getActionMap(GestionTipoCampoView.class, this);
         btnNuevoTipoCampo.setAction(actionMap.get("mostrarVentanaManejoCampos")); // NOI18N
         btnNuevoTipoCampo.setText(resourceMap.getString("btnNuevoTipoCampo.text")); // NOI18N
         btnNuevoTipoCampo.setName("btnNuevoTipoCampo"); // NOI18N
-        fileMenu.add(btnNuevoTipoCampo);
+        menuArchivo.add(btnNuevoTipoCampo);
 
         btnAbrirTipoCampo.setText(resourceMap.getString("btnAbrirTipoCampo.text")); // NOI18N
         btnAbrirTipoCampo.setName("btnAbrirTipoCampo"); // NOI18N
@@ -990,7 +991,7 @@ public class GestionTipoCampoView extends FrameView {
                 btnAbrirTipoCampoActionPerformed(evt);
             }
         });
-        fileMenu.add(btnAbrirTipoCampo);
+        menuArchivo.add(btnAbrirTipoCampo);
 
         btnAbrirFormulario.setAction(actionMap.get("AbrirFormulario")); // NOI18N
         btnAbrirFormulario.setText(resourceMap.getString("btnAbrirFormulario.text")); // NOI18N
@@ -1000,55 +1001,64 @@ public class GestionTipoCampoView extends FrameView {
                 btnAbrirFormularioActionPerformed(evt);
             }
         });
-        fileMenu.add(btnAbrirFormulario);
+        menuArchivo.add(btnAbrirFormulario);
+
+        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
+        jMenuItem1.setName("jMenuItem1"); // NOI18N
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(jMenuItem1);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
-        fileMenu.add(jSeparator1);
+        menuArchivo.add(jSeparator1);
 
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
-        fileMenu.add(exitMenuItem);
+        menuArchivo.add(exitMenuItem);
 
-        menuBar.add(fileMenu);
+        menuBar.add(menuArchivo);
 
-        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
-        jMenu1.setName("jMenu1"); // NOI18N
+        menuEdicion.setText(resourceMap.getString("menuEdicion.text")); // NOI18N
+        menuEdicion.setName("menuEdicion"); // NOI18N
 
         jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
         jMenuItem5.setName("jMenuItem5"); // NOI18N
-        jMenu1.add(jMenuItem5);
+        menuEdicion.add(jMenuItem5);
 
         jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
         jMenuItem3.setName("jMenuItem3"); // NOI18N
-        jMenu1.add(jMenuItem3);
+        menuEdicion.add(jMenuItem3);
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
         jMenuItem4.setName("jMenuItem4"); // NOI18N
-        jMenu1.add(jMenuItem4);
+        menuEdicion.add(jMenuItem4);
 
         jSeparator2.setName("jSeparator2"); // NOI18N
-        jMenu1.add(jSeparator2);
+        menuEdicion.add(jSeparator2);
 
         jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
         jMenuItem6.setName("jMenuItem6"); // NOI18N
-        jMenu1.add(jMenuItem6);
+        menuEdicion.add(jMenuItem6);
 
-        menuBar.add(jMenu1);
+        menuBar.add(menuEdicion);
 
-        helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
-        helpMenu.setName("helpMenu"); // NOI18N
+        menuAyuda.setText(resourceMap.getString("menuAyuda.text")); // NOI18N
+        menuAyuda.setName("menuAyuda"); // NOI18N
 
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem.setIcon(resourceMap.getIcon("aboutMenuItem.icon")); // NOI18N
         aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
-        helpMenu.add(aboutMenuItem);
+        menuAyuda.add(aboutMenuItem);
 
-        menuBar.add(helpMenu);
+        menuBar.add(menuAyuda);
 
         statusPanel.setName("statusPanel"); // NOI18N
 
@@ -1273,8 +1283,14 @@ public class GestionTipoCampoView extends FrameView {
     frameForm.setVisible(true);*/
 }//GEN-LAST:event_btnAbrirFormularioActionPerformed
 
-    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
-    }//GEN-LAST:event_fileMenuActionPerformed
+    private void menuArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuArchivoActionPerformed
+}//GEN-LAST:event_menuArchivoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        frameActividad frameAct = new frameActividad();
+        frameAct.setVisible(true);
+        frameAct.setLocationRelativeTo(GestionTipoCampoApp.getApplication().getMainFrame());
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo) {
         //Trae todos los valores de la tabla TIPOCAMPO
@@ -1549,7 +1565,7 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1563,6 +1579,7 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLabel labelCategorias;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuEdicion;
     private javax.swing.JLayeredPane paneBinario;
     private javax.swing.JLayeredPane paneDatosAbrir;
     private javax.swing.JLayeredPane paneFechaHora;

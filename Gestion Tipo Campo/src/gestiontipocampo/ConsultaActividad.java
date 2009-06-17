@@ -5,6 +5,8 @@
 
 package gestiontipocampo;
 
+import java.util.Vector;
+
 /**
  *
  * @author admin
@@ -55,6 +57,11 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @return String[] en este orden: correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl.
      */
     public abstract String[] getActividad(int correlativo);
+
+    /**
+     * Devuelve todas las actividades que esten creadas en la BD
+     */
+    public abstract Vector obtenerTodasLasActividades();
 
     /**
      * Elimina la actividad de la base de datos.

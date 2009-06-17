@@ -24,19 +24,6 @@ public class frameComandos extends javax.swing.JFrame {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /** Creates new form frameComandos */
     Comando comandoActual;
     int ConMascara=0;
@@ -68,24 +55,7 @@ public class frameComandos extends javax.swing.JFrame {
 
         correlativo = new Vector();
 
-        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
-        modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
-        modelo.removeAllElements();
-       
-        try {
-            ResultSet resultado = miPrueba.getResultSet("select correlativo, nombre from FORMULARIO;");
-
-            while (resultado.next()) {
-                modelo.addElement(resultado.getObject(2).toString());
-                correlativo.add(resultado.getObject(1));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        }
-
-        comboSeleccionFormulario.setModel(modelo);
-        comboSeleccionFormulario.setVisible(true);
+        llenarComboFormularios();
 
 
     /*comboSeleccionFormulario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));*/
@@ -97,40 +67,8 @@ public class frameComandos extends javax.swing.JFrame {
         comboListaCondicion.setVisible(false);
         comboListaEfecto.setVisible(false);
         ocultarCamposConMascara();
-        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
-        modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
-
-
         comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz!
-
-
-
-        formularioActual= new Formulario();
-        Vector forms = new Vector();
-        forms=formularioActual.getTodosLosFormulario();
-        int id;
-        String nombreForm;
-        for(int i=0;i<forms.size(); i++){
-            id=Integer.parseInt(forms.get(i).toString());
-            i++;
-            nombreForm=forms.get(i).toString();
-
-
-            modelo.addElement(new MiDato(nombreForm, id));
-
-        }
-
- comboSeleccionFormulario.setModel(modelo);
-
-
-
-
-
-
-
-
-
-
+        llenarComboFormularios();
 
 /*
         correlativo = new Vector();
@@ -411,8 +349,26 @@ public class frameComandos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
+    
+    /**
+     * Llena el combo que contiene todos los formularios existentes
+     */
+    private void llenarComboFormularios(){
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
+        formularioActual= new Formulario();
+        Vector forms = new Vector();
+        forms=formularioActual.getTodosLosFormulario();
+        int id;
+        String nombreForm;
+        for(int i=0;i<forms.size(); i++){
+            id=Integer.parseInt(forms.get(i).toString());
+            i++;
+            nombreForm=forms.get(i).toString();
+            modelo.addElement(new MiDato(nombreForm, id));
+        }
+        comboSeleccionFormulario.setModel(modelo);
+    }
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
     // TODO add your handling code here:

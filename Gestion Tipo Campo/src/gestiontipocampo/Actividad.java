@@ -5,6 +5,7 @@
 package gestiontipocampo;
 
 import java.util.Date;
+import java.util.Vector;
 
 /**
  *
@@ -71,6 +72,11 @@ public class Actividad {
         this.masiva = Boolean.parseBoolean(datos[10]);
         this.requiereRevision = Boolean.parseBoolean(datos[11]);
         this.hitoDeControl = Boolean.parseBoolean(datos[12]);
+    }
+
+    public Vector getTodasLasActividades() {
+        Vector datos = consultaActividad.obtenerTodasLasActividades();
+        return datos;
     }
 
     /**

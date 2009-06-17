@@ -20,9 +20,9 @@ public abstract class ConsultaFormulario extends ControladorBD {
      * @param descripcion
      * @return el ID del formulario creado
      */
+
     /**
      * Retorna todos los formularios en un vector como para cargarlos en un combo
-     * @param correlativo
      * @return Vector con los datos del formulario en este orden: correlativo, nombre
      */
     public Vector obtenerTodosLosFormularios() {
@@ -36,11 +36,7 @@ public abstract class ConsultaFormulario extends ControladorBD {
             while (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
                 campos.add(resultado.getObject("nombre").toString());
-
             }
-
-
-
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
