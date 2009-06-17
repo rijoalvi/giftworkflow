@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package gestiontipocampo;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -28,8 +29,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param hitoDeControl
      * @return correlativo de la Actividad
      */
-    public int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio){
-        
+    public int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio) {
+
         //casting a String de cada variable boolean
 
         String strSimple = new Boolean(simple).toString();
@@ -44,14 +45,14 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
         //metemos la vara en la base de datos y buscamos el correlativo de lo que acabamos de meter
         String[] correlativo = {"correlativo"};
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('"+correlativoFlujo+"', '" + nombre + "', '" + descripcion + "', '"+tipo+"', '"+estadoInicial+"', '"+estadoFinal+"', '"+strSimple+"', '"+strRepetible+"', '"+strMasiva+"', '"+strRequiereRevision+"', '"+strHitoDeControl+"', '"+strParalelo+"', '"+strExclusivo+"')", correlativo);
+            ResultSet resultado = this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('" + correlativoFlujo + "', '" + nombre + "', '" + descripcion + "', '" + tipo + "', '" + estadoInicial + "', '" + estadoFinal + "', '" + strSimple + "', '" + strRepetible + "', '" + strMasiva + "', '" + strRequiereRevision + "', '" + strHitoDeControl + "', '" + strParalelo + "', '" + strExclusivo + "')", correlativo);
             if (resultado.next()) {
                 ID = resultado.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
-        return(ID);
+        return (ID);
     }
 
     /**
@@ -69,7 +70,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param requiereRevision
      * @param hitoDeControl
      */
-    public void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio){
+    public void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio) {
 
         //Casting a String
         String strSimple = new Boolean(simple).toString();
@@ -82,7 +83,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
 
 
         //hacer el update
-        this.doUpdate("UPDATE ACTIVIDAD set correlativoFlujo = '"+correlativoFlujo+"', nombre = '" + nombre + "', descripcion= '" + descripcion + "', tipo = '"+tipo+"', estadoInicial = '"+estadoInicial+"', estadoFinal = '"+estadoFinal+"', esSimple = '"+strSimple+"', repetible = '"+strRepetible+"', masiva = '"+strMasiva+"', requiereRevision = '"+strRequiereRevision+"', hitoDeControl = '"+strHitoDeControl+"', paralelo = '"+strParalelo+"', exclusivo = '"+strExclusivo+"' WHERE correlativo = " + correlativo + ";");
+        this.doUpdate("UPDATE ACTIVIDAD set correlativoFlujo = '" + correlativoFlujo + "', nombre = '" + nombre + "', descripcion= '" + descripcion + "', tipo = '" + tipo + "', estadoInicial = '" + estadoInicial + "', estadoFinal = '" + estadoFinal + "', esSimple = '" + strSimple + "', repetible = '" + strRepetible + "', masiva = '" + strMasiva + "', requiereRevision = '" + strRequiereRevision + "', hitoDeControl = '" + strHitoDeControl + "', paralelo = '" + strParalelo + "', exclusivo = '" + strExclusivo + "' WHERE correlativo = " + correlativo + ";");
     }
 
     /**
@@ -90,7 +91,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param correlativo
      * @return String[] en este orden: correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio.
      */
-    public String[] getActividad(int correlativo){
+    public String[] getActividad(int correlativo) {
 
         //se hace la consulta
         String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo From ACTIVIDAD Where correlativo = " + correlativo;
@@ -113,7 +114,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
                 campos.add(resultado.getObject("requiereRevision").toString());
                 campos.add(resultado.getObject("hitoDeControl").toString());
                 campos.add(resultado.getObject("paralelo").toString());
-                campos.add(resultado.getObject("exclusivo").toString());                
+                campos.add(resultado.getObject("exclusivo").toString());
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -122,7 +123,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
         String[] retorno = new String[campos.size()];
         campos.toArray(retorno);
 
-        return(retorno);
+        return (retorno);
     }
 
     /**
@@ -150,7 +151,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param correlativo de la actividad a eliminar
      * @return 0 - Se elimino correctamente, 1 - Ya existe una instancia de actividad,
      */
-    public int eliminar(int correlativo){
+    public int eliminar(int correlativo) {
 
         int retorno;
         this.doUpdate("delete from ACTIVIDAD where correlativo = " + correlativo + ";");
@@ -158,11 +159,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
         //di el retorno siempre va a ser cero porque no supe como hacer lo del menos uno que dice en el criterio de retorno
         retorno = 0;
 
-        return(retorno);
+        return (retorno);
     }
-
-
-    //OJO QUE HAY QUE CAMBIAR LA TABLA PORQUE NO TIENE UNA COLUMNA DE ORDEN. HAY QUE DEFINIR ESTO MAÑANA
 
     /**
      * Agrega comando a la base de datos como parte de la Actividad (se supone que esta actividad es simple).
@@ -172,13 +170,11 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param orden - posicion en la que se inserta comando, 0 - primera posicion
      * @param esObligatorio - si es obligatorio
      */
-    public void agregarComando(int correlativoActividad, int IDComando, int orden, boolean esObligatorio){
-        System.out.println("Voy a agregar comando con: "+correlativoActividad+ " ID Comando: "+IDComando);
+    public void agregarComando(int correlativoActividad, int IDComando, int orden, boolean esObligatorio) {
+        System.out.println("Voy a agregar comando con: " + correlativoActividad + " ID Comando: " + IDComando);
         String strEsObligatorio = new Boolean(esObligatorio).toString();
-        this.doUpdate("Insert Into MIEMBROACTIVIDADSIMPLE (correlativoMadre, correlativoComando, orden, obligatorio) VALUES ('"+correlativoActividad+"', '" + IDComando + "', '" + orden + "', '"+strEsObligatorio+"')");
+        this.doUpdate("Insert Into MIEMBROACTIVIDADSIMPLE (correlativoMadre, correlativoComando, orden, obligatorio) VALUES ('" + correlativoActividad + "', '" + IDComando + "', '" + orden + "', '" + strEsObligatorio + "')");
     }
-
-
 
     /**
      * Desvincula comando de la actividad (se supone que actividad es simple).
@@ -186,8 +182,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param correlativo  //OJO: NOTA: No encuentro como se va a hacer para mandar este correlativo como parametro, me parece que seria mas facil mandar el correlativoMadre pero bueno, yo programo lo que dice ahi, cualq vara me dicen y lo cambio, o lo cambio y ya=S
      * @param IDComando
      */
-    public void desvincularComando(int correlativo, int IDComando){
-        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativoMadre = " + correlativo + " AND correlativoComando = "+ IDComando+";");
+    public void desvincularComando(int correlativo, int IDComando) {
+        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativoMadre = " + correlativo + " AND correlativoComando = " + IDComando + ";");
     }
 
     /**
@@ -195,8 +191,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param correlativoMadre
      * @param correlativoHija
      */
-    public void desvincularActividad(int correlativoMadre, int correlativoHija){
-        this.doUpdate("delete from MIEMBROACTIVIDADCOMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
+    public void desvincularActividad(int correlativoMadre, int correlativoHija) {
+        this.doUpdate("delete from MIEMBROACTIVIDADCOMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = " + correlativoHija + ";");
 
     }
 
@@ -207,9 +203,9 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param orden
      * @param esObligatorio
      */
-    public void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio){
-         String strEsObligatorio = new Boolean(esObligatorio).toString();
+    public void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio) {
+        String strEsObligatorio = new Boolean(esObligatorio).toString();
 
-        this.doUpdate("Insert Into MIEMBROACTIVIDADCOMPUESTA (correlativoMadre, correlativoHija, orden, obligatorio) VALUES ('"+correlativoMadre+"', '" + correlativoHija + "', '" + orden + "', '"+strEsObligatorio+"')");
+        this.doUpdate("Insert Into MIEMBROACTIVIDADCOMPUESTA (correlativoMadre, correlativoHija, orden, obligatorio) VALUES ('" + correlativoMadre + "', '" + correlativoHija + "', '" + orden + "', '" + strEsObligatorio + "')");
     }
 }

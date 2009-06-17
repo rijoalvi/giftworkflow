@@ -19,3 +19,4 @@ Lista de varas que hay que cambiar, bugs y todo lo malo del proyecto jeje
 5. Actividades compuestas no tienen formulario
 6. el campo se llama esSimple no simple, revisar todas las consultas
 7. Atributo excluyente es entre hermanas
+8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime
