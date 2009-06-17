@@ -156,7 +156,7 @@ CREATE TABLE MIEMBROACTIVIDADSIMPLE(
 );/**/
 
 
---drop table MIEMBRO_ACTIVIDAD_COMPUESTA;
+--drop table MIEMBROACTIVIDADCOMPUESTA;
 CREATE TABLE MIEMBROACTIVIDADCOMPUESTA(
     correlativo             int      auto_increment not null,
     correlativoMadre        int,      --Apunta a la actividad madre

@@ -444,6 +444,7 @@ public class frameActividad extends javax.swing.JFrame {
     private void botonAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarComponenteActionPerformed
         //Si se agregan Comandos
         if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
+            System.out.println("Voy a agregar comando");
             int id = ((MiDato)(comboComponenteAAgregar.getSelectedItem() )).ID;
             Comando tmp = new Comando(id);
             //creo q hace falta un get miembro en la clase actividad...

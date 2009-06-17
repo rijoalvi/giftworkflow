@@ -174,8 +174,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param esObligatorio - si es obligatorio
      */
     public void agregarComando(int correlativoActividad, int IDComando, int orden, boolean esObligatorio){
+        System.out.println("Voy a agregar comando con: "+correlativoActividad+ " ID Comando: "+IDComando);
         String strEsObligatorio = new Boolean(esObligatorio).toString();
-
         this.doUpdate("Insert Into MIEMBROACTIVIDADSIMPLE (correlativoMadre, correlativoComando, orden, obligatorio) VALUES ('"+correlativoActividad+"', '" + IDComando + "', '" + orden + "', '"+strEsObligatorio+"')");
     }
 

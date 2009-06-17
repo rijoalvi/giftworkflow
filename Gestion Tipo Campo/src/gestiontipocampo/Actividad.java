@@ -55,6 +55,8 @@ public class Actividad {
         paralelo = false;
         exclusivo = false;
         obligatorio = false;
+        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+        
     }
 
     /**
@@ -189,10 +191,7 @@ public class Actividad {
      * @param esObligatorio - si es obligatorio.
      */
     public void agregarComando(Comando comando, int orden, boolean esObligatorio) {
-        if (isSimple()) {//Solo se ejecuta si es Actividad simple
-            consultaActividad.agregarComando(this.correlativo, comando.IDComando, orden, esObligatorio);
-        } else {//No se hace nada
-        }
+        consultaActividad.agregarComando(this.correlativo, comando.IDComando, orden, esObligatorio);        
     }
 
     /**
