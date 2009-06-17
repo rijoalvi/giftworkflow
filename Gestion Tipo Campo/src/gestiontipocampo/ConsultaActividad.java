@@ -5,6 +5,8 @@
 
 package gestiontipocampo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 /**
@@ -103,4 +105,46 @@ public abstract class ConsultaActividad extends ControladorBD{
      * @param esObligatorio
      */
     public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
+
+    /**
+     * Devuelve los correlativos de las hijas de cierta actividad madre
+     * @param correlativo de la madre
+     * @return int[] correlativos de las hijas (si no hay devuelve null)
+     */
+    public int[] getHijasActividades(int correlativo){
+        int[] hijas = null;
+        int i = 0;
+        ResultSet resultado = null;
+        try {
+            resultado = this.getResultSet("select correlativoHija from MIEMBROACIVIDADCOMPUESTA where correlativoMadre = " + correlativo + ";");
+            hijas = new int[resultado.getFetchSize()];
+            while (resultado.next()) {
+                hijas[i] = resultado.getInt("correlativoHija");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return hijas;
+    }
+
+    /**
+     * Devuelve los correlativos de las hijas de cierta actividad madre
+     * @param correlativo de la madre
+     * @return int[] correlativos de las hijas (si no hay devuelve null)
+     */
+    public int[] getHijosComandos(int correlativo){
+        int[] hijos = null;
+        int i = 0;
+        ResultSet resultado = null;
+        try {
+            resultado = this.getResultSet("select correlativoComando from MIEMBROACIVIDADSIMPLE where correlativoMadre = " + correlativo + ";");
+            hijos = new int[resultado.getFetchSize()];
+            while (resultado.next()) {
+                hijos[i] = resultado.getInt("correlativoComando");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return hijos;
+    }
 }

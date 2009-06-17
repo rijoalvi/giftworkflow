@@ -99,7 +99,7 @@ public class Actividad {
      * @param exclusivo
      * @param obligatorio
      */
-    public Actividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio){
+    public Actividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio) {
         buscador = new ControladorBD();
         consultaActividad = buscador.getConsultaActividad();
         this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
@@ -116,17 +116,58 @@ public class Actividad {
         this.hitoDeControl = hitoDeControl;
         this.paralelo = paralelo;
         this.exclusivo = exclusivo;
-        this.obligatorio= obligatorio;
+        this.obligatorio = obligatorio;
         this.fechaActualizacion = new Date();
     }
 
-    public void actualizar(){
+    /**
+     * Metodo para actualizar los datos en la BD.
+     */
+    public void actualizar() {
         consultaActividad.actualizarActividad(correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
     }
 
+    /**
+     * Devuelve todas las actividades de la BD
+     * @return vector de pares de string {correlativo, nombre}.
+     */
     public Vector getTodasLasActividades() {
         Vector datos = consultaActividad.obtenerTodasLasActividades();
         return datos;
+    }
+
+    /**
+     * Devuelve Actividades hijas de esta actividad (solamente se es actividad compuesta) o devuelve vector null
+     * @return vector de actividades o null
+     */
+    public Actividad[] getHijasActividades() {
+        Actividad[] actividades = null;
+        int[] hijas = null;
+        if (!isSimple()) {
+            hijas = consultaActividad.getHijasActividades(correlativo);
+            actividades = new Actividad[hijas.length];
+            for (int i = 0; i < hijas.length; i++) {
+                actividades[i] = new Actividad(hijas[i]);
+            }
+        }
+        return actividades;
+    }
+
+    /**
+     * Devuelve Comandos hijos de esta actividad (solamente si es actividad simple) o null
+     * @return vector de comandos o null
+     */
+    public Comando[] getHijosComandos() {
+        Comando[] comandos = null;
+        int[] hijos = null;
+        if (isSimple()) {
+            hijos = consultaActividad.getHijosComandos(correlativo);
+            comandos = new Comando[hijos.length];
+            for(int i = 0; i < hijos.length; i++){
+                comandos[i] = new Comando(hijos[i]);
+            }
+        }
+        return comandos;
     }
 
     /**
@@ -172,8 +213,8 @@ public class Actividad {
      * @param esObligatorio
      */
     public void agregarActividadHija(Actividad actividadHija, int orden, boolean esObligatorio) {
-        if(isSimple()){//Si es simple no se hace nada
-        }else{
+        if (isSimple()) {//Si es simple no se hace nada
+        } else {
             consultaActividad.vincularActividad(this.correlativo, actividadHija.correlativo, orden, esObligatorio);
         }
     }
@@ -182,9 +223,9 @@ public class Actividad {
      * Desvincula Actividades (Solamente para actividades comuestas)
      * @param actividad
      */
-    public void desvincularActividad(Actividad actividadHija){
-        if(isSimple()){//Si es simple no se hace nada
-        }else{
+    public void desvincularActividad(Actividad actividadHija) {
+        if (isSimple()) {//Si es simple no se hace nada
+        } else {
             consultaActividad.desvincularActividad(this.correlativo, actividadHija.correlativo);
         }
     }
@@ -213,7 +254,6 @@ public class Actividad {
     }
 
     //Sets y gets.
-
     public int getCorrelativo() {
         return correlativo;
     }
@@ -337,6 +377,4 @@ public class Actividad {
     public void setParalelo(boolean paralelo) {
         this.paralelo = paralelo;
     }
-
-
 }

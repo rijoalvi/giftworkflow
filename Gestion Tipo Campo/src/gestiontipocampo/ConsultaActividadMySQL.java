@@ -93,7 +93,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
     public String[] getActividad(int correlativo){
 
         //se hace la consulta
-        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio From FORMULARIO Where correlativo = " + correlativo;
+        String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio From ACTIVIDAD Where correlativo = " + correlativo;
 
         //llenamos un vector con los nombres de elementos de la consulta
         Vector campos = new Vector();
@@ -148,7 +148,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
         ResultSet resultado = null;
         //int tipoCampo;
         try {
-            resultado = this.getResultSet("select correlativo, nombre from ACIVIDAD;");
+            resultado = this.getResultSet("select correlativo, nombre from ACTIVIDAD;");
             while (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
                 campos.add(resultado.getObject("nombre").toString());
