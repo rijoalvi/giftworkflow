@@ -247,6 +247,11 @@ public class frameComandos extends javax.swing.JFrame {
 
         comboListaEfecto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboListaEfecto.setName("comboListaEfecto"); // NOI18N
+        comboListaEfecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboListaEfectoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -589,7 +594,13 @@ ocultarCamposConMascara();    // TODO add your handling code here:
 
 private void comboListaCondicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboListaCondicionActionPerformed
     // TODO add your handling code here:
+    fieldAccion.setText(comboListaCondicion.getSelectedItem().toString().trim());
 }//GEN-LAST:event_comboListaCondicionActionPerformed
+
+private void comboListaEfectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboListaEfectoActionPerformed
+    // TODO add your handling code here:
+        fieldEfecto.setText(comboListaEfecto.getSelectedItem().toString().trim());
+}//GEN-LAST:event_comboListaEfectoActionPerformed
     private void llenarCombosDificiles() {
         ControladorBD buscador = new ControladorBD();
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
