@@ -239,7 +239,7 @@ public class ControladorBD {
         if (CONEXION_MYSQL == conexionSeleccionada) {
             consulta = new ConsultaActividadMySQL();//por ahora solo tengo uno
         } else {
-     //       consulta = new ConsultaActividadSQLServer();
+            consulta = new ConsultaActividadSQLServer();
         }
         return consulta;
     }
