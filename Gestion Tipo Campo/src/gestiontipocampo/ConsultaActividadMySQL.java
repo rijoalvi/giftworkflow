@@ -188,8 +188,8 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
      * @param IDComando
      */
     public void desvincularComando(int correlativo, int IDComando){
-        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativo = " + correlativo + " AND correlativoComando = "+ IDComando+";");
-            }
+        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativoMadre = " + correlativo + " AND correlativoComando = "+ IDComando+";");
+    }
 
     /**
      * Desvincula dos actividades
@@ -198,7 +198,6 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
      */
     public void desvincularActividad(int correlativoMadre, int correlativoHija){
         this.doUpdate("delete from MIEMBROACTIVIDADCOMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
-
     }
 
     /**

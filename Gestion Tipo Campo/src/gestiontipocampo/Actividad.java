@@ -199,10 +199,7 @@ public class Actividad {
      * @param comando a desvincular
      */
     public void desvincularComando(Comando comando) {
-        if (isSimple()) {//Solo se ejecuta si es actividad simple
-            consultaActividad.desvincularComando(this.correlativo, comando.IDComando);
-        } else {
-        }
+        consultaActividad.desvincularComando(this.correlativo, comando.IDComando);
     }
 
     /**
@@ -212,10 +209,7 @@ public class Actividad {
      * @param esObligatorio
      */
     public void agregarActividadHija(Actividad actividadHija, int orden, boolean esObligatorio) {
-        if (isSimple()) {//Si es simple no se hace nada
-        } else {
-            consultaActividad.vincularActividad(this.correlativo, actividadHija.correlativo, orden, esObligatorio);
-        }
+        consultaActividad.vincularActividad(this.correlativo, actividadHija.correlativo, orden, esObligatorio);
     }
 
     /**
@@ -223,10 +217,7 @@ public class Actividad {
      * @param actividad
      */
     public void desvincularActividad(Actividad actividadHija) {
-        if (isSimple()) {//Si es simple no se hace nada
-        } else {
-            consultaActividad.desvincularActividad(this.correlativo, actividadHija.correlativo);
-        }
+        consultaActividad.desvincularActividad(this.correlativo, actividadHija.correlativo);
     }
 
     /**

@@ -188,8 +188,8 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param IDComando
      */
     public void desvincularComando(int correlativo, int IDComando){
-        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativo = " + correlativo + " AND correlativoComando = "+ IDComando+";");
-            }
+        this.doUpdate("delete from MIEMBROACTIVIDADSIMPLE where correlativoMadre = " + correlativo + " AND correlativoComando = "+ IDComando+";");
+    }
 
     /**
      * Desvincula dos actividades

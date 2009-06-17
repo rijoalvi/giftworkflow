@@ -18,6 +18,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
 /**
  * Frame Actividad
@@ -92,6 +93,7 @@ public class frameActividad extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         radioEnParalelo = new javax.swing.JRadioButton();
         radioSecuencial = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -222,6 +224,14 @@ public class frameActividad extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,7 +266,7 @@ public class frameActividad extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelDescripcion))))
-                        .addContainerGap(41, Short.MAX_VALUE))
+                        .addContainerGap(176, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -275,7 +285,10 @@ public class frameActividad extends javax.swing.JFrame {
                                 .addGap(34, 34, 34)
                                 .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(218, 218, 218))))
+                        .addGap(218, 218, 218))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addContainerGap(741, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,8 +307,7 @@ public class frameActividad extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)))
+                            .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboSeleccionFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,7 +321,6 @@ public class frameActividad extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addComponent(labelAAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboComponenteAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +337,9 @@ public class frameActividad extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
                     .addComponent(botonCancelar))
@@ -355,8 +368,14 @@ public class frameActividad extends javax.swing.JFrame {
      * Llena los combos de agregar y anterior con Comandos(act simple)
      */
     private void llenarCombosConComandos(){
+        llenarComboAAgregarComando();
+        llenarComboAnteriorComando();
+    }
+
+    private void llenarComboAAgregarComando(){
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();
+        modelo.removeAllElements();
         Comando tmp = new Comando();
         Vector comandos = new Vector();
         comandos = tmp.getTodosLosComandos();
@@ -369,15 +388,38 @@ public class frameActividad extends javax.swing.JFrame {
             modelo.addElement(new MiDato(nombreForm, id));
         }
         comboComponenteAAgregar.setModel(modelo);
-        comboComponenteAnterior.setModel(modelo);
+    }
+
+    private void llenarComboAnteriorComando(){
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo = (DefaultComboBoxModel) comboComponenteAnterior.getModel();
+        modelo.removeAllElements();
+        Comando tmp = new Comando();
+        Vector comandos = new Vector();
+        comandos = tmp.getTodosLosComandos();
+        int id;
+        String nombreForm;
+        for(int i=0; i<comandos.size(); i++){
+            id=Integer.parseInt(comandos.get(i).toString());
+            i++;
+            nombreForm = comandos.get(i).toString();
+            modelo.addElement(new MiDato(nombreForm, id));
+        }
+        comboComponenteAAgregar.setModel(modelo);
     }
 
     /**
      * Llena los combos de agregar y anterior con Actividades(act compuesta)
      */
     private void llenarCombosConActividades(){
+        llenarComboAAgregarActv();
+        llenarComboAnteriorActv();
+    }
+
+        private void llenarComboAAgregarActv(){
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();
+        modelo.removeAllElements();
         Actividad tmp = new Actividad();
         Vector actividades = new Vector();
         actividades = tmp.getTodasLasActividades();
@@ -390,7 +432,24 @@ public class frameActividad extends javax.swing.JFrame {
             modelo.addElement(new MiDato(nombreForm, id));
         }
         comboComponenteAAgregar.setModel(modelo);
-        comboComponenteAnterior.setModel(modelo);
+    }
+
+    private void llenarComboAnteriorActv(){
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo = (DefaultComboBoxModel) comboComponenteAnterior.getModel();
+        modelo.removeAllElements();
+        Actividad tmp = new Actividad();
+        Vector actividades = new Vector();
+        actividades = tmp.getTodasLasActividades();
+        int id;
+        String nombreForm;
+        for(int i=0; i<actividades.size(); i++){
+            id=Integer.parseInt(actividades.get(i).toString());
+            i++;
+            nombreForm = actividades.get(i).toString();
+            modelo.addElement(new MiDato(nombreForm, id));
+        }
+        comboComponenteAAgregar.setModel(modelo);
     }
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -444,7 +503,6 @@ public class frameActividad extends javax.swing.JFrame {
     private void botonAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarComponenteActionPerformed
         //Si se agregan Comandos
         if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
-            System.out.println("Voy a agregar comando");
             int id = ((MiDato)(comboComponenteAAgregar.getSelectedItem() )).ID;
             Comando tmp = new Comando(id);
             //creo q hace falta un get miembro en la clase actividad...
@@ -459,8 +517,19 @@ public class frameActividad extends javax.swing.JFrame {
                 //creo q hace falta un get miembro en la clase actividad...
                 //y seria mejor tamb un get num Miembros...
                 miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());
+                javax.swing.DefaultComboBoxModel modelo = (DefaultComboBoxModel)listaComponentes.getModel();
+                modelo.addElement( (comboComponenteAAgregar.getSelectedItem() ));
             }
         }
+        //Cambia los valores de la lista
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.removeAllElements();
+        int size = listaComponentes.getModel().getSize();
+        for(int i = 0; i < size; ++i){
+            modelo.addElement(listaComponentes.getModel().getElementAt(i));
+        }
+        modelo.addElement( comboComponenteAAgregar.getSelectedItem() );
+        listaComponentes.setModel(modelo);
 }//GEN-LAST:event_botonAgregarComponenteActionPerformed
 
     private void radioEnParaleloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEnParaleloActionPerformed
@@ -476,6 +545,41 @@ public class frameActividad extends javax.swing.JFrame {
         else
             panelChecksParalelo.setVisible(true);
     }//GEN-LAST:event_radioSecuencialActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Object dato = listaComponentes.getSelectedValue();
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.removeAllElements();
+        int size = listaComponentes.getModel().getSize();
+        for(int i = 0; i < size; ++i){
+            //Mientras no sea el dato a excluir, copie
+            if( !listaComponentes.getModel().getElementAt(i).equals(dato) )
+                modelo.addElement(listaComponentes.getModel().getElementAt(i));
+        }
+        listaComponentes.setModel(modelo);
+
+        if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
+            miActividad.desvincularComando(new Comando(((MiDato)(dato)).ID));
+        }
+        else{
+            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta") ){
+                miActividad.desvincularActividad(new Actividad(((MiDato)(dato)).ID));
+            }
+        }
+
+        /*
+        DefaultListModel modelo = new DefaultListModel();
+        modelo.removeAllElements();
+        int size = listaComponentes.getModel().getSize();
+        for(int i = 0; i < size; ++i){
+            //Mientras no sea el dato a excluir, copie
+            if( !listaComponentes.getModel().getElementAt(i).equals(dato) )
+                modelo.addElement(listaComponentes.getModel().getElementAt(i));
+        }
+        modelo.addElement( comboComponenteAAgregar.getSelectedItem() );
+        listaComponentes.setModel(modelo);
+        */
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -503,6 +607,7 @@ public class frameActividad extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNombre;
     private javax.swing.ButtonGroup grupoBotonesRadioExOb;
     private javax.swing.ButtonGroup grupoBotonesRadioSecPar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAAgregar;
