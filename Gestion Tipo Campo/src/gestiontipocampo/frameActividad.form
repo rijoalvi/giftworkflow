@@ -2,7 +2,9 @@
 
 <Form version="1.7" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="grupoBotonesRadio">
+    <Component class="javax.swing.ButtonGroup" name="grupoBotonesRadioSecPar">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="grupoBotonesRadioExOb">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -33,75 +35,71 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <Component id="radioEnParalelo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="cheackMasiva" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="checkRepetible" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="checkRequiereRevision" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="radioSecuencial" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="1"/>
-                                  <Component id="fieldNombre" alignment="0" min="-2" pref="179" max="-2" attributes="1"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelNombre" alignment="0" min="-2" max="-2" attributes="1"/>
+                                          <Component id="fieldNombre" alignment="0" min="-2" pref="179" max="-2" attributes="1"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="comboTipo" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                                          <Component id="labelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="labelSeleccionFormulario" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="comboSeleccionFormulario" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="comboTipo" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                                  <Component id="labelTipo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fieldDescripcion" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Component id="labelDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="labelSeleccionFormulario" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelDescripcion" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldDescripcion" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="comboSeleccionFormulario" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="160" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
+                          <Component id="labelAAgregar" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="comboComponenteAAgregar" alignment="0" pref="130" max="32767" attributes="1"/>
+                          <Component id="labelLuegoDe" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="comboComponenteAnterior" alignment="0" max="32767" attributes="1"/>
+                          <Component id="botonAgregarComponente" alignment="0" min="-2" max="-2" attributes="1"/>
+                      </Group>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="botonAceptar" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="botonCancelar" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="1">
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="labelAAgregar" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="comboComponenteAAgregar" alignment="0" pref="130" max="32767" attributes="1"/>
-                                  <Component id="labelLuegoDe" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="comboComponenteAnterior" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="botonAgregarComponente" alignment="0" min="-2" max="-2" attributes="1"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="radioEnParalelo" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="radioSecuencial" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox5" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jCheckBox6" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Component id="panelChecksParalelo" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
+                          <Component id="panelChecksParalelo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="13" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
@@ -117,70 +115,53 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fieldDescripcion" alignment="0" min="-2" pref="54" max="-2" attributes="0"/>
+                          <Component id="fieldDescripcion" min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="comboTipo" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="comboSeleccionFormulario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="radioSecuencial" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="radioEnParalelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cheackMasiva" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkRepetible" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="checkRequiereRevision" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="labelAAgregar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="comboSeleccionFormulario" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="comboComponenteAAgregar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelLuegoDe" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comboComponenteAnterior" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="botonAgregarComponente" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="278" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="203" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="1">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-                                  <Component id="labelAAgregar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="comboComponenteAAgregar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="labelLuegoDe" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace pref="103" max="32767" attributes="0"/>
-                                  <Component id="radioSecuencial" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="radioEnParalelo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCheckBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="comboComponenteAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="botonAgregarComponente" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="panelChecksParalelo" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="panelChecksParalelo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="42" pref="42" max="42" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="botonAceptar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -290,12 +271,12 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="listaComponentes">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
             </Property>
-            <Property name="name" type="java.lang.String" value="jList1" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="listaComponentes" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -314,10 +295,10 @@
         <Property name="name" type="java.lang.String" value="comboComponenteAAgregar" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+    <Component class="javax.swing.JCheckBox" name="cheackMasiva">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jCheckBox3.text"/>
-        <Property name="name" type="java.lang.String" value="jCheckBox3" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="cheackMasiva.text"/>
+        <Property name="name" type="java.lang.String" value="cheackMasiva" noResource="true"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="panelChecksParalelo">
@@ -330,10 +311,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="radioObligatorio" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioExcluyente" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -341,40 +323,40 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="radioObligatorio" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="radioExcluyente" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+        <Component class="javax.swing.JRadioButton" name="radioExcluyente">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jCheckBox2.text"/>
-            <Property name="name" type="java.lang.String" value="jCheckBox2" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="radioExcluyente.text"/>
+            <Property name="name" type="java.lang.String" value="radioExcluyente" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+        <Component class="javax.swing.JRadioButton" name="radioObligatorio">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jCheckBox4.text"/>
-            <Property name="name" type="java.lang.String" value="jCheckBox4" noResource="true"/>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="radioObligatorio.text"/>
+            <Property name="name" type="java.lang.String" value="radioObligatorio" noResource="true"/>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox5">
+    <Component class="javax.swing.JCheckBox" name="checkRepetible">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jCheckBox5.text"/>
-        <Property name="name" type="java.lang.String" value="jCheckBox5" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="checkRepetible.text"/>
+        <Property name="name" type="java.lang.String" value="checkRepetible" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox6">
+    <Component class="javax.swing.JCheckBox" name="checkRequiereRevision">
       <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="jCheckBox6.text"/>
-        <Property name="name" type="java.lang.String" value="jCheckBox6" noResource="true"/>
+        <Property name="text" type="java.lang.String" resourceKey="checkRequiereRevision.text"/>
+        <Property name="name" type="java.lang.String" value="checkRequiereRevision" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
