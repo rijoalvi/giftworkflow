@@ -42,11 +42,11 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
         int ID = -1;
 
         //metemos la vara en la base de datos y buscamos el correlativo de lo que acabamos de meter
-        this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('"+correlativoFlujo+"', '" + nombre + "', '" + descripcion + "', '"+tipo+"', '"+estadoInicial+"', '"+estadoFinal+"', '"+strSimple+"', '"+strRepetible+"', '"+strMasiva+"', '"+strRequiereRevision+"', '"+strHitoDeControl+"', '"+strParalelo+"', '"+strExclusivo+"')");
+        String[] correlativo = {"correlativo"};
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from ACTIVIDAD where nombre = '" + nombre + "'");
+            ResultSet resultado = this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('"+correlativoFlujo+"', '" + nombre + "', '" + descripcion + "', '"+tipo+"', '"+estadoInicial+"', '"+estadoFinal+"', '"+strSimple+"', '"+strRepetible+"', '"+strMasiva+"', '"+strRequiereRevision+"', '"+strHitoDeControl+"', '"+strParalelo+"', '"+strExclusivo+"')", correlativo);
             if (resultado.next()) {
-                ID = resultado.getInt("correlativo");
+                ID = resultado.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

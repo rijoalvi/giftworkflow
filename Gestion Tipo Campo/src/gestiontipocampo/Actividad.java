@@ -28,6 +28,9 @@ public class Actividad {
     private boolean masiva;
     private boolean requiereRevision;
     private boolean hitoDeControl;
+    private boolean paralelo;
+    private boolean exclusivo;
+    private boolean obligatorio;
 
     /**
      * Constructor simple de Actividad, todos los datos estan inicializado en -1, "", false.
@@ -49,6 +52,9 @@ public class Actividad {
         masiva = false;
         requiereRevision = false;
         hitoDeControl = false;
+        paralelo = false;
+        exclusivo = false;
+        obligatorio = false;
     }
 
     /**
@@ -66,12 +72,52 @@ public class Actividad {
         this.tipo = Integer.parseInt(datos[4]);
         this.estadoInicial = datos[5];
         this.estadoFinal = datos[6];
-        this.fechaActualizacion = new Date(Long.parseLong(datos[7]));
+        this.fechaActualizacion = new Date(datos[7]);
         this.simple = Boolean.parseBoolean(datos[8]);
         this.repetible = Boolean.parseBoolean(datos[9]);
         this.masiva = Boolean.parseBoolean(datos[10]);
         this.requiereRevision = Boolean.parseBoolean(datos[11]);
         this.hitoDeControl = Boolean.parseBoolean(datos[12]);
+        this.paralelo = Boolean.parseBoolean(datos[13]);
+        this.exclusivo = Boolean.parseBoolean(datos[14]);
+    }
+
+    /**
+     * Constructor completo, resibe todos los datos y los guarda en la BD de una vez.
+     * @param correlativoFlujo
+     * @param nombre
+     * @param descripcion
+     * @param tipo
+     * @param estadoInicial
+     * @param estadoFinal
+     * @param simple
+     * @param repetible
+     * @param masiva
+     * @param requiereRevision
+     * @param hitoDeControl
+     * @param paralelo
+     * @param exclusivo
+     * @param obligatorio
+     */
+    public Actividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio){
+        buscador = new ControladorBD();
+        consultaActividad = buscador.getConsultaActividad();
+        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+        this.correlativoFlujo = correlativoFlujo;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.estadoInicial = estadoInicial;
+        this.estadoFinal = estadoFinal;
+        this.simple = simple;
+        this.repetible = repetible;
+        this.masiva = masiva;
+        this.requiereRevision = requiereRevision;
+        this.hitoDeControl = hitoDeControl;
+        this.paralelo = paralelo;
+        this.exclusivo = exclusivo;
+        this.obligatorio= obligatorio;
+        this.fechaActualizacion = new Date();
     }
 
     public Vector getTodasLasActividades() {
@@ -158,12 +204,12 @@ public class Actividad {
         replica.masiva = this.masiva;
         replica.requiereRevision = this.requiereRevision;
         replica.hitoDeControl = this.hitoDeControl;
-        replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl);
+        replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl, replica.paralelo, replica.exclusivo, replica.obligatorio);
         return replica;
     }
-    
 
     //Sets y gets.
+
     public int getCorrelativo() {
         return correlativo;
     }
@@ -263,4 +309,30 @@ public class Actividad {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
+    public boolean isExclusivo() {
+        return exclusivo;
+    }
+
+    public void setExclusivo(boolean exclusivo) {
+        this.exclusivo = exclusivo;
+    }
+
+    public boolean isObligatorio() {
+        return obligatorio;
+    }
+
+    public void setObligatorio(boolean obligatorio) {
+        this.obligatorio = obligatorio;
+    }
+
+    public boolean isParalelo() {
+        return paralelo;
+    }
+
+    public void setParalelo(boolean paralelo) {
+        this.paralelo = paralelo;
+    }
+
+
 }
