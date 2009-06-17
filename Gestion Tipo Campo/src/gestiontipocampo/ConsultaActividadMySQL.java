@@ -190,7 +190,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
      * @param correlativoHija
      */
     public void desvincularActividad(int correlativoMadre, int correlativoHija){
-        this.doUpdate("delete from MIEMBRO_ACTIVIDAD_COMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
+        this.doUpdate("delete from MIEMBROACTIVIDADCOMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
 
     }
 

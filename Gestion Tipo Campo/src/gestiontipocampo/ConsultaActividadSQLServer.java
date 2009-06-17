@@ -190,7 +190,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      * @param correlativoHija
      */
     public void desvincularActividad(int correlativoMadre, int correlativoHija){
-        this.doUpdate("delete from MIEMBRO_ACTIVIDAD_COMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
+        this.doUpdate("delete from MIEMBROACTIVIDADCOMPUESTA where correlativoMadre = " + correlativoMadre + " AND correlativoHija = "+ correlativoHija+";");
 
     }
 
@@ -204,6 +204,6 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
     public void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio){
          String strEsObligatorio = new Boolean(esObligatorio).toString();
 
-        this.doUpdate("Insert Into MIEMBRO_ACTIVIDAD_COMPUESTA (correlativoMadre, correlativoHija, orden, obligatorio) VALUES ('"+correlativoMadre+"', '" + correlativoHija + "', '" + orden + "', '"+strEsObligatorio+"')");
+        this.doUpdate("Insert Into MIEMBROACTIVIDADCOMPUESTA (correlativoMadre, correlativoHija, orden, obligatorio) VALUES ('"+correlativoMadre+"', '" + correlativoHija + "', '" + orden + "', '"+strEsObligatorio+"')");
     }
 }
