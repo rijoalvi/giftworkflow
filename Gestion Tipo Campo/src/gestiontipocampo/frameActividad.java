@@ -53,6 +53,8 @@ public class frameActividad extends javax.swing.JFrame {
 
         //Por defecto se inicia una actividad simple
         llenarCombosConComandos();
+        comboComponenteAnterior.setVisible((false));
+        labelLuegoDe.setVisible(false);
     }
 
     /**
@@ -141,6 +143,11 @@ public class frameActividad extends javax.swing.JFrame {
 
         comboSeleccionFormulario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));
         comboSeleccionFormulario.setName("comboSeleccionFormulario"); // NOI18N
+        comboSeleccionFormulario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSeleccionFormularioActionPerformed(evt);
+            }
+        });
 
         labelLuegoDe.setText(resourceMap.getString("labelLuegoDe.text")); // NOI18N
         labelLuegoDe.setName("labelLuegoDe"); // NOI18N
@@ -579,6 +586,10 @@ public class frameActividad extends javax.swing.JFrame {
         listaComponentes.setModel(modelo);
         */
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboSeleccionFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionFormularioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboSeleccionFormularioActionPerformed
 
     /**
     * @param args the command line arguments
