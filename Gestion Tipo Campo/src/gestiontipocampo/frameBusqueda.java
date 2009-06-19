@@ -168,7 +168,7 @@ public class frameBusqueda extends javax.swing.JFrame {
         Object[] fila = new Object[4];
         madre.setVisible(false);
         try {
-            ResultSet resultado = miPrueba.getResultSet("select * from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
+            ResultSet resultado = miPrueba.getResultSet("select correlativo,nombre,descripcion,ultimaActualizacion from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
             while (resultado.next()) {
                     for(int i=0;i<4;i++){
                         fila[i] = resultado.getObject(i+1).toString();

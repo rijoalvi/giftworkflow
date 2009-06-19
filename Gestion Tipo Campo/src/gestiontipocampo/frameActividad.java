@@ -52,7 +52,7 @@ public class frameActividad extends javax.swing.JFrame {
         llenarComboFormularios();
 
         //Por defecto se inicia una actividad simple
-        llenarCombosConComandos();
+        //llenarCombosConComandos();
         comboComponenteAnterior.setVisible((false));
         labelLuegoDe.setVisible(false);
     }
@@ -360,7 +360,7 @@ public class frameActividad extends javax.swing.JFrame {
         //Si se escogio tipo simple
         if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
             //llena los combos con los valores de comandos
-            llenarCombosConComandos();
+            //llenarCombosConComandos();
         }
         else{
             //Si se escogio tipo Compuesto
@@ -374,18 +374,18 @@ public class frameActividad extends javax.swing.JFrame {
     /**
      * Llena los combos de agregar y anterior con Comandos(act simple)
      */
-    private void llenarCombosConComandos(){
-        llenarComboAAgregarComando();
-        llenarComboAnteriorComando();
+    private void llenarCombosConComandos(Vector comandos){
+        llenarComboAAgregarComando(comandos);
+        //llenarComboAnteriorComando();
     }
 
-    private void llenarComboAAgregarComando(){
+    private void llenarComboAAgregarComando(Vector comandos){
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();
         modelo.removeAllElements();
         Comando tmp = new Comando();
-        Vector comandos = new Vector();
-        comandos = tmp.getTodosLosComandos();
+        /*Vector comandos = new Vector();
+        comandos = tmp.getTodosLosComandos();*/
         int id;
         String nombreForm;
         for(int i=0; i<comandos.size(); i++){
@@ -588,7 +588,11 @@ public class frameActividad extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboSeleccionFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionFormularioActionPerformed
-        // TODO add your handling code here:
+       int idFormulario = ((MiDato)comboSeleccionFormulario.getSelectedItem()).ID;
+       Comando com  = new Comando();
+       Vector comandosForm = com.getComandosFormulario(idFormulario);
+       llenarCombosConComandos(comandosForm);
+
     }//GEN-LAST:event_comboSeleccionFormularioActionPerformed
 
     /**

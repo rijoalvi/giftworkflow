@@ -199,4 +199,9 @@ public class Comando  {
         Vector datos = consultaComando.obtenerTodosLosComandos();
         return datos;
     }
+
+    public Vector getComandosFormulario(int idForm){
+        Vector datos = consultaComando.obtenerComandosFormulario(idForm);
+        return datos;
+    }
 }

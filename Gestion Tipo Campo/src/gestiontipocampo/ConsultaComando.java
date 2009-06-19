@@ -78,6 +78,22 @@ public class ConsultaComando extends ControladorBD{
         return campos;
     }
 
+        public Vector obtenerComandosFormulario(int idForm) {
+        Vector campos = new Vector();
+        ResultSet resultado = null;
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select ID, Nombre from COMANDO where IDFormulario = '"+idForm+"';");
+            while (resultado.next()) {
+                campos.add(resultado.getObject("ID").toString());
+                campos.add(resultado.getObject("Nombre").toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return campos;
+    }
+
     public String[] getComando(int correlativo){
         String[] comando = new String[7];
         try {
