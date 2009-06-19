@@ -49,9 +49,10 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         tablaBusqueda = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(SeleccionFormulario.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(SeleccionFormulario.class);
         botonCancelar.setText(resourceMap.getString("botonCancelar.text")); // NOI18N
         botonCancelar.setName("botonCancelar"); // NOI18N
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {

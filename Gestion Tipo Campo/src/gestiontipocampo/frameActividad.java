@@ -8,7 +8,6 @@
  *
  * Created on 16/06/2009, 08:39:38 AM
  */
-
 package gestiontipocampo;
 
 import java.util.Collection;
@@ -28,7 +27,6 @@ public class frameActividad extends javax.swing.JFrame {
 
     //Formulario a partir del cual se crea la actividad
     Formulario formularioActual;
-
 
     /** 
      * Constructor
@@ -55,6 +53,8 @@ public class frameActividad extends javax.swing.JFrame {
         //llenarCombosConComandos();
         comboComponenteAnterior.setVisible((false));
         labelLuegoDe.setVisible(false);
+        labelDescripcion.setVisible(false);
+        txtDescripcion.setVisible(false);
     }
 
     /**
@@ -96,6 +96,9 @@ public class frameActividad extends javax.swing.JFrame {
         radioEnParalelo = new javax.swing.JRadioButton();
         radioSecuencial = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
+        LabelDescripcion = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
@@ -171,6 +174,11 @@ public class frameActividad extends javax.swing.JFrame {
         labelAAgregar.setName("labelAAgregar"); // NOI18N
 
         comboComponenteAAgregar.setName("comboComponenteAAgregar"); // NOI18N
+        comboComponenteAAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboComponenteAAgregarActionPerformed(evt);
+            }
+        });
 
         cheackMasiva.setText(resourceMap.getString("cheackMasiva.text")); // NOI18N
         cheackMasiva.setName("cheackMasiva"); // NOI18N
@@ -239,6 +247,17 @@ public class frameActividad extends javax.swing.JFrame {
             }
         });
 
+        LabelDescripcion.setText(resourceMap.getString("LabelDescripcion.text")); // NOI18N
+        LabelDescripcion.setName("LabelDescripcion"); // NOI18N
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        txtDescripcion.setEnabled(false);
+        txtDescripcion.setName("txtDescripcion"); // NOI18N
+        jScrollPane2.setViewportView(txtDescripcion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,8 +310,13 @@ public class frameActividad extends javax.swing.JFrame {
                                 .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
                                 .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(218, 218, 218))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelDescripcion)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(152, 152, 152))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addContainerGap(741, Short.MAX_VALUE))))
@@ -328,22 +352,27 @@ public class frameActividad extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelAAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboComponenteAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelLuegoDe)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboComponenteAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(botonAgregarComponente))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panelChecksParalelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(LabelDescripcion)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelAAgregar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboComponenteAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(labelLuegoDe)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(comboComponenteAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(36, 36, 36)
+                            .addComponent(botonAgregarComponente))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(4, 4, 4)
@@ -357,14 +386,18 @@ public class frameActividad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
+        ((DefaultComboBoxModel) comboComponenteAAgregar.getModel()).removeAllElements();
         //Si se escogio tipo simple
-        if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
+        if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")) {
+            comboSeleccionFormulario.setVisible(true);
+            labelSeleccionFormulario.setVisible(true);
             //llena los combos con los valores de comandos
             //llenarCombosConComandos();
-        }
-        else{
+        } else {
             //Si se escogio tipo Compuesto
-            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")){
+            if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
+                comboSeleccionFormulario.setVisible(false);
+                labelSeleccionFormulario.setVisible(false);
                 //llena los combos con los valores de comandos
                 llenarCombosConActividades();
             }
@@ -374,12 +407,12 @@ public class frameActividad extends javax.swing.JFrame {
     /**
      * Llena los combos de agregar y anterior con Comandos(act simple)
      */
-    private void llenarCombosConComandos(Vector comandos){
+    private void llenarCombosConComandos(Vector comandos) {
         llenarComboAAgregarComando(comandos);
-        //llenarComboAnteriorComando();
+    //llenarComboAnteriorComando();
     }
 
-    private void llenarComboAAgregarComando(Vector comandos){
+    private void llenarComboAAgregarComando(Vector comandos) {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();
         modelo.removeAllElements();
@@ -388,8 +421,8 @@ public class frameActividad extends javax.swing.JFrame {
         comandos = tmp.getTodosLosComandos();*/
         int id;
         String nombreForm;
-        for(int i=0; i<comandos.size(); i++){
-            id=Integer.parseInt(comandos.get(i).toString());
+        for (int i = 0; i < comandos.size(); i++) {
+            id = Integer.parseInt(comandos.get(i).toString());
             i++;
             nombreForm = comandos.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
@@ -397,7 +430,7 @@ public class frameActividad extends javax.swing.JFrame {
         comboComponenteAAgregar.setModel(modelo);
     }
 
-    private void llenarComboAnteriorComando(){
+    private void llenarComboAnteriorComando() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAnterior.getModel();
         modelo.removeAllElements();
@@ -406,8 +439,8 @@ public class frameActividad extends javax.swing.JFrame {
         comandos = tmp.getTodosLosComandos();
         int id;
         String nombreForm;
-        for(int i=0; i<comandos.size(); i++){
-            id=Integer.parseInt(comandos.get(i).toString());
+        for (int i = 0; i < comandos.size(); i++) {
+            id = Integer.parseInt(comandos.get(i).toString());
             i++;
             nombreForm = comandos.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
@@ -418,12 +451,12 @@ public class frameActividad extends javax.swing.JFrame {
     /**
      * Llena los combos de agregar y anterior con Actividades(act compuesta)
      */
-    private void llenarCombosConActividades(){
+    private void llenarCombosConActividades() {
         llenarComboAAgregarActv();
         llenarComboAnteriorActv();
     }
 
-        private void llenarComboAAgregarActv(){
+    private void llenarComboAAgregarActv() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();
         modelo.removeAllElements();
@@ -432,8 +465,8 @@ public class frameActividad extends javax.swing.JFrame {
         actividades = tmp.getTodasLasActividades();
         int id;
         String nombreForm;
-        for(int i=0; i<actividades.size(); i++){
-            id=Integer.parseInt(actividades.get(i).toString());
+        for (int i = 0; i < actividades.size(); i++) {
+            id = Integer.parseInt(actividades.get(i).toString());
             i++;
             nombreForm = actividades.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
@@ -441,7 +474,7 @@ public class frameActividad extends javax.swing.JFrame {
         comboComponenteAAgregar.setModel(modelo);
     }
 
-    private void llenarComboAnteriorActv(){
+    private void llenarComboAnteriorActv() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAnterior.getModel();
         modelo.removeAllElements();
@@ -450,8 +483,8 @@ public class frameActividad extends javax.swing.JFrame {
         actividades = tmp.getTodasLasActividades();
         int id;
         String nombreForm;
-        for(int i=0; i<actividades.size(); i++){
-            id=Integer.parseInt(actividades.get(i).toString());
+        for (int i = 0; i < actividades.size(); i++) {
+            id = Integer.parseInt(actividades.get(i).toString());
             i++;
             nombreForm = actividades.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
@@ -460,26 +493,27 @@ public class frameActividad extends javax.swing.JFrame {
     }
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        miActividad.eliminar();
         this.dispose();
 }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         //Se guardan todos los datos en la BD
-        miActividad.setDescripcion( fieldDescripcion.getText() );
-        miActividad.setMasiva( cheackMasiva.isSelected() );
-        miActividad.setNombre( fieldNombre.getText() );
-        miActividad.setRepetible( checkRepetible.isSelected() );
-        miActividad.setRequiereRevision( checkRequiereRevision.isSelected() );
-        miActividad.setSimple( comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple"));
+        miActividad.setDescripcion(fieldDescripcion.getText());
+        miActividad.setMasiva(cheackMasiva.isSelected());
+        miActividad.setNombre(fieldNombre.getText());
+        miActividad.setRepetible(checkRepetible.isSelected());
+        miActividad.setRequiereRevision(checkRequiereRevision.isSelected());
+        miActividad.setSimple(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple"));
         //Hmm no veo la diferencia entre es simple o tipo...¿?¿?¿?
         //¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?¿?
-        miActividad.setTipo( comboTipo.getSelectedIndex() );
+        miActividad.setTipo(comboTipo.getSelectedIndex());
 
         //estos campos solo se guardan si existen valores agregados
         int size = listaComponentes.getModel().getSize();
-        if( size > 0){
-            miActividad.setEstadoInicial( listaComponentes.getModel().getElementAt(0).toString() );
-            miActividad.setEstadoInicial( listaComponentes.getModel().getElementAt(size-1).toString() );
+        if (size > 0) {
+            miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
+            miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
         }
         miActividad.actualizar();
 
@@ -490,7 +524,7 @@ public class frameActividad extends javax.swing.JFrame {
     /**
      * Llena el combo que contiene todos los formularios existentes
      */
-    private void llenarComboFormularios(){
+    private void llenarComboFormularios() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboSeleccionFormulario.getModel();
         formularioActual = new Formulario();
@@ -498,8 +532,8 @@ public class frameActividad extends javax.swing.JFrame {
         forms = formularioActual.getTodosLosFormulario();
         int id;
         String nombreForm;
-        for(int i=0;i<forms.size(); i++){
-            id=Integer.parseInt(forms.get(i).toString());
+        for (int i = 0; i < forms.size(); i++) {
+            id = Integer.parseInt(forms.get(i).toString());
             i++;
             nombreForm = forms.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
@@ -509,47 +543,48 @@ public class frameActividad extends javax.swing.JFrame {
 
     private void botonAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarComponenteActionPerformed
         //Si se agregan Comandos
-        if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
-            int id = ((MiDato)(comboComponenteAAgregar.getSelectedItem() )).ID;
+        if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")) {
+            int id = ((MiDato) (comboComponenteAAgregar.getSelectedItem())).ID;
             Comando tmp = new Comando(id);
             //creo q hace falta un get miembro en la clase actividad...
             //y seria mejor tamb un get num Miembros...
-            miActividad.agregarComando(tmp, 0, radioObligatorio.isSelected() );
-        }
-        else{
-            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta") ){
-                int id = ((MiDato)(comboComponenteAAgregar.getSelectedItem() )).ID;
-                System.out.println("id> "+id);
+            miActividad.agregarComando(tmp, 0, radioObligatorio.isSelected());
+        } else {
+            if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
+                int id = ((MiDato) (comboComponenteAAgregar.getSelectedItem())).ID;
+                System.out.println("id> " + id);
                 Actividad tmp = new Actividad(id);
                 //Igual que arriba :p
                 //creo q hace falta un get miembro en la clase actividad...
                 //y seria mejor tamb un get num Miembros...
-                miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());                
+                miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());
             }
         }
         //Cambia los valores de la lista
         DefaultListModel modelo = new DefaultListModel();
         modelo.removeAllElements();
         int size = listaComponentes.getModel().getSize();
-        for(int i = 0; i < size; ++i){
+        for (int i = 0; i < size; ++i) {
             modelo.addElement(listaComponentes.getModel().getElementAt(i));
         }
-        modelo.addElement( comboComponenteAAgregar.getSelectedItem() );
+        modelo.addElement(comboComponenteAAgregar.getSelectedItem());
         listaComponentes.setModel(modelo);
 }//GEN-LAST:event_botonAgregarComponenteActionPerformed
 
     private void radioEnParaleloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEnParaleloActionPerformed
-        if(radioEnParalelo.isSelected() )
+        if (radioEnParalelo.isSelected()) {
             panelChecksParalelo.setVisible(true);
-        else
+        } else {
             panelChecksParalelo.setVisible(false);
+        }
     }//GEN-LAST:event_radioEnParaleloActionPerformed
 
     private void radioSecuencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioSecuencialActionPerformed
-        if(radioSecuencial.isSelected() )
+        if (radioSecuencial.isSelected()) {
             panelChecksParalelo.setVisible(false);
-        else
+        } else {
             panelChecksParalelo.setVisible(true);
+        }
     }//GEN-LAST:event_radioSecuencialActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -557,49 +592,78 @@ public class frameActividad extends javax.swing.JFrame {
         DefaultListModel modelo = new DefaultListModel();
         modelo.removeAllElements();
         int size = listaComponentes.getModel().getSize();
-        for(int i = 0; i < size; ++i){
+        for (int i = 0; i < size; ++i) {
             //Mientras no sea el dato a excluir, copie
-            if( !listaComponentes.getModel().getElementAt(i).equals(dato) )
+            if (!listaComponentes.getModel().getElementAt(i).equals(dato)) {
                 modelo.addElement(listaComponentes.getModel().getElementAt(i));
+            }
         }
         listaComponentes.setModel(modelo);
 
-        if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")){
-            miActividad.desvincularComando(new Comando(((MiDato)(dato)).ID));
-        }
-        else{
-            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta") ){
-                miActividad.desvincularActividad(new Actividad(((MiDato)(dato)).ID));
+        if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")) {
+            miActividad.desvincularComando(new Comando(((MiDato) (dato)).ID));
+        } else {
+            if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
+                miActividad.desvincularActividad(new Actividad(((MiDato) (dato)).ID));
             }
         }
 
-        /*
-        DefaultListModel modelo = new DefaultListModel();
-        modelo.removeAllElements();
-        int size = listaComponentes.getModel().getSize();
-        for(int i = 0; i < size; ++i){
-            //Mientras no sea el dato a excluir, copie
-            if( !listaComponentes.getModel().getElementAt(i).equals(dato) )
-                modelo.addElement(listaComponentes.getModel().getElementAt(i));
-        }
-        modelo.addElement( comboComponenteAAgregar.getSelectedItem() );
-        listaComponentes.setModel(modelo);
-        */
+    /*
+    DefaultListModel modelo = new DefaultListModel();
+    modelo.removeAllElements();
+    int size = listaComponentes.getModel().getSize();
+    for(int i = 0; i < size; ++i){
+    //Mientras no sea el dato a excluir, copie
+    if( !listaComponentes.getModel().getElementAt(i).equals(dato) )
+    modelo.addElement(listaComponentes.getModel().getElementAt(i));
+    }
+    modelo.addElement( comboComponenteAAgregar.getSelectedItem() );
+    listaComponentes.setModel(modelo);
+     */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboSeleccionFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionFormularioActionPerformed
-       int idFormulario = ((MiDato)comboSeleccionFormulario.getSelectedItem()).ID;
-       Comando com  = new Comando();
-       Vector comandosForm = com.getComandosFormulario(idFormulario);
-       llenarCombosConComandos(comandosForm);
+        int idFormulario = ((MiDato) comboSeleccionFormulario.getSelectedItem()).ID;
+        Comando com = new Comando();
+        Vector comandosForm = com.getComandosFormulario(idFormulario);
+        llenarCombosConComandos(comandosForm);
 
     }//GEN-LAST:event_comboSeleccionFormularioActionPerformed
 
+    private void comboComponenteAAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComponenteAAgregarActionPerformed
+
+        if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")) {
+            txtDescripcion.setVisible(false);
+            labelDescripcion.setVisible(false);
+            if (comboComponenteAAgregar.getSelectedItem() != null) {
+                int idComando = ((MiDato) comboComponenteAAgregar.getSelectedItem()).ID;
+                Comando com = new Comando(idComando);
+                String des = com.getDescripcion() != null ? com.getDescripcion() : "";
+                txtDescripcion.setText(des);
+                txtDescripcion.setVisible(true);
+                labelDescripcion.setVisible(true);
+            }
+        }else{
+            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")){
+                if(((MiDato)comboComponenteAAgregar.getSelectedItem())!= null){
+                    int idAct = ((MiDato)comboComponenteAAgregar.getSelectedItem()).ID;
+                    Actividad a = new Actividad(idAct);
+                    String desc = a.getDescripcion();
+                    txtDescripcion.setText(desc);
+                    txtDescripcion.setVisible(true);
+                    labelDescripcion.setVisible(true);
+                }
+            }
+        }
+
+    }//GEN-LAST:event_comboComponenteAAgregarActionPerformed
+
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameActividad().setVisible(true);
             }
@@ -607,6 +671,7 @@ public class frameActividad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelDescripcion;
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonAgregarComponente;
     private javax.swing.JButton botonCancelar;
@@ -624,6 +689,7 @@ public class frameActividad extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAAgregar;
     private javax.swing.JLabel labelDescripcion;
     private javax.swing.JLabel labelLuegoDe;
@@ -636,8 +702,8 @@ public class frameActividad extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioExcluyente;
     private javax.swing.JRadioButton radioObligatorio;
     private javax.swing.JRadioButton radioSecuencial;
+    private javax.swing.JTextArea txtDescripcion;
     // End of variables declaration//GEN-END:variables
-
     private Actividad miActividad;
     private SortedSet todasActividades;
     private SortedSet todosComandos;

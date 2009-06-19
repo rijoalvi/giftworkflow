@@ -12,11 +12,11 @@
 
 
 
-1. Nombre de la ventana abrir formulario -------------------------------------------> Luis Carlos
-2. Descripcion de los comandos en agregar comandos ---------------------------------> Beto
+1. Nombre de la ventana abrir formulario -------------------------------------------> Listo
+2. Descripcion de los comandos en agregar comandos ---------------------------------> Listo
 3. Ver comandos hechos--------------------------------------------------------------> Todos (se requiere trabajo en las 3 capas) (beto, Roman y Ricardo)
-4. Solo se muestran comandos del formulario seleccionado----------------------------> Beto (eso es interfaz). Creo que tambien necesita 3 capa entonces yo (ricardo) hago la 3 capa
-5. Actividades compuestas no tienen formulario--------------------------------------> Roman
-6. el campo se llama esSimple no simple, revisar todas las consultas----------------> Ya esta hecho (igual mejor prevenir)
+4. Solo se muestran comandos del formulario seleccionado----------------------------> Listo
+5. Actividades compuestas no tienen formulario--------------------------------------> Listo
+6. el campo se llama esSimple no simple, revisar todas las consultas----------------> Listo
 7. Atributo excluyente es entre hermanas--------------------------------------------> Esto es un despiche, se necesita hacer una tabla nueva entre otras cosas. (CREAR TABLA DE VINCULOS ENTRE HERMANOS)
-8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime---> Jonathan
+8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime---> Listo
