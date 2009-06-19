@@ -23,7 +23,7 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario {
     public int guardaFormulario(String nombre, String descripcion) {
         int ID = -1;
         //Guarda en FORMULARIO
-        this.doUpdate("Insert Into FORMULARIO (nombre, descripcion) VALUES ('" + nombre + "', '" + descripcion + "')");
+        this.doUpdate("Insert Into FORMULARIO (nombre, descripcion, ultimaActualizacion) VALUES ('" + nombre + "', '" + descripcion + "', GetDate())");
         try { //Se busca el ID de los datos que acaba de insertar
             ResultSet resultado = this.getResultSet("select correlativo from FORMULARIO where nombre = '" + nombre + "'");
             if (resultado.next()) {

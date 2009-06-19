@@ -45,7 +45,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
         //metemos la vara en la base de datos y buscamos el correlativo de lo que acabamos de meter
         String[] correlativo = {"correlativo"};
         try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('" + correlativoFlujo + "', '" + nombre + "', '" + descripcion + "', '" + tipo + "', '" + estadoInicial + "', '" + estadoFinal + "', '" + strSimple + "', '" + strRepetible + "', '" + strMasiva + "', '" + strRequiereRevision + "', '" + strHitoDeControl + "', '" + strParalelo + "', '" + strExclusivo + "')", correlativo);
+            ResultSet resultado = this.doUpdate("Insert Into ACTIVIDAD (correlativoFlujo, nombre, descripcion, tipo, fechaActulizacion, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo) VALUES ('" + correlativoFlujo + "', '" + nombre + "', '" + descripcion + "', '" + tipo + "', GetDate(), '" + estadoInicial + "', '" + estadoFinal + "', '" + strSimple + "', '" + strRepetible + "', '" + strMasiva + "', '" + strRequiereRevision + "', '" + strHitoDeControl + "', '" + strParalelo + "', '" + strExclusivo + "')", correlativo);
             if (resultado.next()) {
                 ID = resultado.getInt(1);
             }
@@ -83,7 +83,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
 
 
         //hacer el update
-        this.doUpdate("UPDATE ACTIVIDAD set correlativoFlujo = '" + correlativoFlujo + "', nombre = '" + nombre + "', descripcion= '" + descripcion + "', tipo = '" + tipo + "', estadoInicial = '" + estadoInicial + "', estadoFinal = '" + estadoFinal + "', esSimple = '" + strSimple + "', repetible = '" + strRepetible + "', masiva = '" + strMasiva + "', requiereRevision = '" + strRequiereRevision + "', hitoDeControl = '" + strHitoDeControl + "', paralelo = '" + strParalelo + "', exclusivo = '" + strExclusivo + "' WHERE correlativo = " + correlativo + ";");
+        this.doUpdate("UPDATE ACTIVIDAD set fechaActulizacion = GetFecha(), correlativoFlujo = '" + correlativoFlujo + "', nombre = '" + nombre + "', descripcion= '" + descripcion + "', tipo = '" + tipo + "', estadoInicial = '" + estadoInicial + "', estadoFinal = '" + estadoFinal + "', esSimple = '" + strSimple + "', repetible = '" + strRepetible + "', masiva = '" + strMasiva + "', requiereRevision = '" + strRequiereRevision + "', hitoDeControl = '" + strHitoDeControl + "', paralelo = '" + strParalelo + "', exclusivo = '" + strExclusivo + "' WHERE correlativo = " + correlativo + ";");
     }
 
     /**

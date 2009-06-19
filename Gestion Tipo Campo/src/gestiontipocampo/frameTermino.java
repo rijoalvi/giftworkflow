@@ -257,9 +257,9 @@ public class frameTermino extends javax.swing.JFrame {
         String descripcion = campoDescripcion.getText();
         if (comboCategoria.isVisible()) {
             int categoria = comboCategoria.getSelectedItem().hashCode();
-            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ");");
+            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion,fechaUltimaModificacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", GetDate(),GetDate());");
         } else {
-            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ");");
+            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion,fechaUltimaModificacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ",GetDate(),GetDate());");
         }
         System.out.println("antes d aumentar termino!");
         framePadre.cambiarNumTerminos(1);
@@ -271,9 +271,9 @@ public class frameTermino extends javax.swing.JFrame {
         String descripcion = campoDescripcion.getText();
         if (comboCategoria.isVisible()) {
             int categoria = comboCategoria.getSelectedItem().hashCode();
-            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "', IDInstanciaCategoria = " + categoria + " where ID = " + IDNodoPadre + ";");
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "', IDInstanciaCategoria = " + categoria + ",fechaUltimaModificacion = GetDate() where ID = " + IDNodoPadre + ";");
         } else {
-            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "' where ID = " + IDNodoPadre + ";");
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "',fechaUltimaModificacion = GetDate() where ID = " + IDNodoPadre + ";");
         }
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }

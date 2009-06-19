@@ -1040,13 +1040,13 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         switch (comboTipos.getSelectedIndex()) {
             case NUMERO: //HashCode para Número
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() +"' ultimaActualizacion = GetDate() "+ " where correlativo = " + ID);
                     conexionBD.doUpdate("Update NUMERO set numeroDecimales = '" + this.valorNumDecimales.getText() + "', mascara = '" + this.valorNumeroMascara.getText() + "', valorDefecto = '" + this.valorValorDefectoNumero.getText() + "' where correlativo = " + ID);
                     limpiarValoresNumero();
                     System.out.println("Modifica");
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1);", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 1, GetDate() );", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1060,12 +1060,12 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             case BINARIO: //HashCode para Binario
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() +"' ultimaActualizacion = GetDate() "+ " where correlativo = " + ID);
                     conexionBD.doUpdate("Update BINARIO set nombre1 = '" + this.valorNombreBinario1.getText() + "', valor1 = '" + this.valorOpcionBinaria1.getText() + "' , nombre2 = '" + this.valorNombreBinario2.getText() + "' , valor2 = '" + this.valorOpcionBinaria2.getText() + "' , valorDefecto = '" + radioOpcionBinaria1.isSelected() + "' where correlativo = " + ID);
                     limpiarValoresBinario();
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 2, GetDate() );", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1079,12 +1079,12 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             case FECHAHORA: //HashCode para FechaHora
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' ultimaActualizacion = GetDate() " + " where correlativo = " + ID);
                     conexionBD.doUpdate("Update FECHAHORA set despliegue = '" + this.comboFormatoFecha.getSelectedItem().toString() + "', fechaDefecto = '" + this.valorFechaDefecto.getText() + "', preaviso = '" + this.valorPreaviso.getText() + "', vencimiento = '" + this.radioFechaHoraSi.isSelected() + "' where correlativo = " + ID);
                     limpiarValoresFechaHora();
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 3)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 3, GetDate() );", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1098,12 +1098,12 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
             case TEXTO: //HashCode para Texto
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' ultimaActualizacion = GetDate() " + " where correlativo = " + ID);
                     conexionBD.doUpdate("Update TEXTO set tamano = '" + this.valorTextoLargo.getText() + "', textoDefecto = '" + this.valorTextoDefecto.getText() + "' where correlativo = " + ID);
                     limpiarValoresTexto();
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 4)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 4, GetDate() )", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1117,12 +1117,12 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             case INCREMENTAL: //HashCode para Incremental
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' ultimaActualizacion = GetDate() " + " where correlativo = " + ID);
                     conexionBD.doUpdate("Update INCREMENTAL set valInicial = '" + this.valorValorInicial.getText() + "', incremento = '" + this.valorIncremento.getText() + "' where correlativo = " + ID);
                     limpiarValoresIncremental();
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 5, GetDate() )", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1136,11 +1136,11 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
             case JERARQUIA:
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' ultimaActualizacion = GetDate() " + " where correlativo = " + ID);
                     conexionBD.doUpdate("Update JERARQUIA set repeticionNombreNodo = '" + this.radioNomUnicoSi.isSelected() + "', conCategorias = '" + this.radioCategoriasSi.isSelected() + "' , IDTIpoCategoria = '" + this.comboCategorias.getSelectedItem().toString().charAt(0) + "' where correlativo = " + ID);
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6, GetDate)", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1150,7 +1150,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     try {
                         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
                         //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null??????
-                        conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, " + "fechaCreacion," + " conCategorias, IDTIpoCategoria) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() + "', " + sqlDate/*new Date( fecha.parse( "15/02/1982" ).getTime() ) */ + " , '" + this.radioCategoriasSi.isSelected() + "' , '" + ((MiDato) comboCategorias.getSelectedItem()).ID + "')");
+                        conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, " + "fechaCreacion," + " conCategorias, IDTIpoCategoria) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() + "', GetData() , '" + this.radioCategoriasSi.isSelected() + "' , '" + ((MiDato) comboCategorias.getSelectedItem()).ID + "')");
                     } catch (Exception ex) {
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -1159,11 +1159,11 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 break;
             case LISTA:
                 if (existe) {
-                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' ultimaActualizacion = GetDate() " + " where correlativo = " + ID);
                     conexionBD.doUpdate("Update LISTA set valorPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
                 } else {
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7)", generados);
+                        ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo, ultimaActualizacion) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7, GetDate() )", generados);
                         if (resultado.next()) {
                             ID = resultado.getInt(1);
                         }
@@ -1187,9 +1187,15 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         System.out.println("guardo Lista, IDDefecto: " + IDMiembroPorDefecto);
                         conexionBD.doUpdate("insert into LISTA (correlativo, IDMiembroPorDefecto, conOrden) " +
                                 "values (" + ID + ", " + IDMiembroPorDefecto + ", 'False')");
+
+
+                        /*Falta actualizar la fecha en TIPOCAMPO de las listas cuando se modifica*/
                     } catch (Exception e) {
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
+
+
+
                 }
                 System.out.println("abre lista de ID: " + ID);
                 frameLista fLista = new frameLista(ID);
