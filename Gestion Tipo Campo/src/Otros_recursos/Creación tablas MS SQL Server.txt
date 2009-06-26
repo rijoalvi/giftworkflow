@@ -49,7 +49,7 @@ CREATE TABLE TIPOCAMPO(
   correlativo int identity (1,1) NOT NULL,
   nombre varchar(20) NOT NULL,
   descripcion varchar(150),
-  ultimaActualizacion smallDateTime NOT NULL,
+  ultimaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   tipo int NOT NULL,
   PRIMARY KEY (correlativo)
   
@@ -77,7 +77,7 @@ create table FORMULARIO(
     correlativo int identity (1,1) NOT NULL,
     nombre varchar(20) NOT NULL,
     descripcion varchar(150),
-    ultimaActualizacion smallDataTime NOT NULL,
+    ultimaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     primary key(correlativo)
 );
 
@@ -111,7 +111,7 @@ CREATE TABLE COMANDO(
   Descripcion			varchar(50) NOT NULL,
   Tipo					int NOT NULL,
   IDFormularioATrabajar int,
-  FechaActualizacion		varchar(50) NOT NULL,
+  FechaActualizacion	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (ID)
 );
 
@@ -133,7 +133,7 @@ CREATE TABLE ACTIVIDAD(
     nombre             varchar(30),
     descripcion        varchar(30),--En la especificacion dice proposito, no se si lo dejamos asi
     tipo               int,
-    fechaActualizacion smallDateTime NOT NULL,
+    fechaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     estadoInicial      varchar(30),
     estadoFinal        varchar(30),
     esSimple           varchar(6),

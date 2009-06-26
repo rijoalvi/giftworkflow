@@ -6,3 +6,10 @@
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
+
+//Se cambia la fecha cada vez q se modifica la tabla..
+CREATE TABLE timeTest (
+
+time_field TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
+);

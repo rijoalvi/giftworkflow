@@ -6,7 +6,7 @@ CREATE TABLE JERARQUIA(
 	repeticionNombreNodo        varchar(6),
 	numeroDeTerminos            int,
 	numeroDeNiveles             int,
-	fechaCreacion               smalldatetime NOT NULL,
+	fechaCreacion               TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	configuracionXML            varchar(100),
 	conCategorias               varchar(6),
 	conNombreNiveles            varchar(6),
@@ -21,16 +21,13 @@ CREATE TABLE NODO(
 	IDInstanciaCategoria			int,
 	nombre                          varchar(30),
 	descripcion                     varchar(100),
-	fechaCreacion                   smalldatetime NOT NULL,
-	fechaUltimaModificacion			smalldatetime NOT NULL,
+	fechaCreacion                   datetime,
+	fechaUltimaModificacion			TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	IDNodoPadre                   	int,
     esHoja                          varchar(6),
     numNivel                        int,
 	PRIMARY KEY (ID)
 );
-
-
-
 
 drop TABLE TIPOCATEGORIA;
 CREATE TABLE TIPOCATEGORIA(

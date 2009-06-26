@@ -10,6 +10,7 @@
  */
 package gestiontipocampo;
 
+//import com.sun.xml.internal.messaging.saaj.soap.ver1_1.Message1_1Impl;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.tree.*;
@@ -462,25 +463,39 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 }//GEN-LAST:event_botonCerrarActionPerformed
 
     private void BotonAgregarTerminoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTerminoActionPerformed
-        frameTermino fram;
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
-        if (node != null) {
-            /*   TreeNode[] jerPath = node.getPath();
-            for (int i = 0; i < jerPath.length; i++) {
-            System.out.println(i + " " + jerPath[i].toString());
-            }*/
-            String nombreNodo = node.toString();
-            int nivel = node.getLevel() + 1; //Agrega uno xq utilizamos raiz cmo nivel 1
-            int IDJerarquia = getIDJerarquia(nombreJerarquia);
-            int IDNodoPadre = getIDNodo(nombreNodo);
-
-            fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel);
-            fram.llenarComboCategoria();
-            fram.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para agregarle termino!");
-        }
+        agregarNodo();
 }//GEN-LAST:event_BotonAgregarTerminoActionPerformed
+
+    private void agregarNodo( ){
+        if( isJerarquiaVacia() )
+            agregarRaiz();
+        else{
+            frameTermino fram;
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+            if (node != null) {
+                String nombreNodo = node.toString();
+                int nivel = node.getLevel() + 1; //Agrega uno xq utilizamos raiz cmo nivel 1
+                int IDJerarquia = getIDJerarquia(nombreJerarquia);
+                int IDNodoPadre = getIDNodo(nombreNodo);
+
+                fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel);
+                fram.llenarComboCategoria();
+                fram.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para agregarle termino!");
+            }
+        }
+    }
+
+    private void agregarRaiz( ){
+        frameTermino fram;
+        int nivel = 1; //Agrega uno xq utilizamos raiz cmo nivel 1
+        int IDJerarquia = getIDJerarquia(nombreJerarquia);
+        int IDNodoPadre = -1;
+        fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel);
+        fram.llenarComboCategoria();
+        fram.setVisible(true);
+    }
 
     private int getIDJerarquia(String nombre) {
         String ID = "";
@@ -777,6 +792,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public void cambiarNumTerminos(int cant) {
         //System.out.println("suma/resta: "+ cant + " nombre: "+ nombreJerarquia);
         buscador.doUpdate("UPDATE JERARQUIA SET numeroDeTerminos = (numeroDeTerminos +" + cant + ") WHERE (nombreJerarquia = '" + nombreJerarquia + "')");
+    }
+
+    public void setIDRaiz(int ID) {
+        buscador.doUpdate("UPDATE JERARQUIA SET IDNodoRaiz = " + ID + " WHERE nombreJerarquia = '" + nombreJerarquia + "'");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

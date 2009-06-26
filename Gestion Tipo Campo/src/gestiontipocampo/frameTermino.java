@@ -25,14 +25,19 @@ public class frameTermino extends javax.swing.JFrame {
     }
 
     public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameBuscarTerminos padre, String nombre, int nivel) {
+        initComponents();
+
         this.IDJerarquia = IDJerarquia;
         this.IDNodoPadre = IDNodoPadre;
         this.framePadre = padre;
         nombreJer = nombre;
         this.estado = estado;
-        this.numNivel = nivel;
-        initComponents();
+        this.numNivel = nivel;        
         buscador = new ControladorBD();
+        //Si es la raiz
+        if(this.IDNodoPadre == -1){
+            this.setTitle("¡Jerarquía Vacía! Favor ingresar los valores para la raíz");
+        }
         if (estado == 1) {
             botonAceptar.setName("Modificar");
         }
@@ -241,7 +246,7 @@ public class frameTermino extends javax.swing.JFrame {
         try {
             ResultSet resultado = buscador.getResultSet("select conCategorias from JERARQUIA where correlativo = '" + IDJerarquia + "'");
             if (resultado.next()) {
-                valor += resultado.getObject("IDNodoRaiz").toString(); //IDRaiz
+                valor += resultado.getObject("conCategorias").toString(); //IDRaiz
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -251,17 +256,32 @@ public class frameTermino extends javax.swing.JFrame {
         return false;
     }
 
-    private void agregarNodo() {
-        System.out.println("entro!");
+    private void agregarNodo() {        
+        System.out.println("entre a agregar");
         String nombre = campoNombre.getText();
         String descripcion = campoDescripcion.getText();
+        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+        int nuevoID = -1;
         if (comboCategoria.isVisible()) {
             int categoria = comboCategoria.getSelectedItem().hashCode();
-            buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion,fechaUltimaModificacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", GetDate(),GetDate());");
+            try {
+                String [] generado = {"ID"};
+                ResultSet resultado = buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' )", generado);
+                        
+                if (resultado.next()) {
+                    nuevoID = resultado.getInt(1);                            
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception:12345 *" + e.toString());
+            }
+
         } else {
-            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion,fechaUltimaModificacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ",GetDate(),GetDate());");
+            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' );");
         }
-        System.out.println("antes d aumentar termino!");
+        if(IDNodoPadre == -1){
+            framePadre.setIDRaiz(nuevoID);
+            System.out.println("entro!!!d");
+        }
         framePadre.cambiarNumTerminos(1);
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }
@@ -271,9 +291,9 @@ public class frameTermino extends javax.swing.JFrame {
         String descripcion = campoDescripcion.getText();
         if (comboCategoria.isVisible()) {
             int categoria = comboCategoria.getSelectedItem().hashCode();
-            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "', IDInstanciaCategoria = " + categoria + ",fechaUltimaModificacion = GetDate() where ID = " + IDNodoPadre + ";");
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "', IDInstanciaCategoria = " + categoria + " where ID = " + IDNodoPadre + ";");
         } else {
-            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + "',fechaUltimaModificacion = GetDate() where ID = " + IDNodoPadre + ";");
+            buscador.doUpdate("update NODO set nombre = '" + nombre + "', descripcion = '" + descripcion + " where ID = " + IDNodoPadre + ";");
         }
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }

@@ -1,4 +1,16 @@
+-- Tabla: "TIPOCAMPO"
+drop table TIPOCAMPO;
+CREATE TABLE TIPOCAMPO(
+  correlativo int auto_increment NOT NULL,
+  nombre varchar(20) NOT NULL,
+  descripcion varchar(150),
+  ultimaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  tipo int,
+  PRIMARY KEY (correlativo)
+);
+
 --tabla: "BINARIO"
+drop TABLE BINARIO;
 CREATE TABLE BINARIO(
   correlativo   int NOT NULL,
   nombre1       varchar(20) NOT NULL,
@@ -10,6 +22,7 @@ CREATE TABLE BINARIO(
 );
 
 -- Tabla "FECHAHORA"
+drop TABLE FECHAHORA;
 CREATE TABLE FECHAHORA(
   correlativo int NOT NULL,
   despliegue varchar(20) NOT NULL,
@@ -20,6 +33,7 @@ CREATE TABLE FECHAHORA(
 );
 
 -- Tabla: "INCREMENTAL"
+drop TABLE INCREMENTAL;
 CREATE TABLE INCREMENTAL(
   correlativo int NOT NULL,
   valInicial int NOT NULL,
@@ -28,6 +42,7 @@ CREATE TABLE INCREMENTAL(
 );
 
 -- Tabla: "NUMERO"
+drop TABLE NUMERO;
 CREATE TABLE NUMERO(
   correlativo int NOT NULL,
   numeroDecimales int NOT NULL DEFAULT 0,
@@ -37,6 +52,7 @@ CREATE TABLE NUMERO(
 );
 
 -- Tabla: "TEXTO"
+drop TABLE TEXTO;
 CREATE TABLE TEXTO(
   correlativo int NOT NULL,
   textoDefecto varchar(20) NOT NULL,
@@ -44,23 +60,14 @@ CREATE TABLE TEXTO(
   PRIMARY KEY (correlativo)
 );
 
--- Tabla: "TIPOCAMPO"
-CREATE TABLE TIPOCAMPO(
-  correlativo int auto_increment NOT NULL,
-  nombre varchar(20) NOT NULL,
-  descripcion varchar(150),
-  ultimaActualizacion timestamp,
-  tipo int,
-  PRIMARY KEY (correlativo)
-
-);
-
+drop table LISTA;
 create table LISTA(
     correlativo int not null,
     IDMiembroPorDefecto int,
     primary key(correlativo)
 );
 
+drop table MIEMBROLISTA;
 create table MIEMBROLISTA(
     correlativo int auto_increment NOT NULL,
     valor char(50),
@@ -68,13 +75,12 @@ create table MIEMBROLISTA(
     primary key(correlativo)
 );
 
-
 drop table FORMULARIO;
 create table FORMULARIO(
     correlativo int auto_increment NOT NULL,
     nombre varchar(20) NOT NULL,
     descripcion varchar(150),
-    ultimaActualizacion timestamp,
+    ultimaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,,
     primary key(correlativo)
 );
 
@@ -109,7 +115,7 @@ CREATE TABLE COMANDO(
   Descripcion			varchar(50) NOT NULL,
   Tipo					int NOT NULL,
   IDFormularioATrabajar int,
-  FechaActualizacion		varchar(50) NOT NULL,
+  FechaActualizacion	TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (ID)
 );
 
@@ -131,7 +137,7 @@ CREATE TABLE ACTIVIDAD(
     nombre             varchar(30),
     descripcion        varchar(30),--En la especificacion dice proposito, no se si lo dejamos asi
     tipo               int,
-    fechaActualizacion timestamp,
+    fechaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     estadoInicial      varchar(30),
     estadoFinal        varchar(30),
     esSimple           varchar(6),
