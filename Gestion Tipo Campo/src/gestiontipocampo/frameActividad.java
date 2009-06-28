@@ -10,9 +10,6 @@
  */
 package gestiontipocampo;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.Vector;
@@ -391,8 +388,8 @@ public class frameActividad extends javax.swing.JFrame {
         if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Simple")) {
             comboSeleccionFormulario.setVisible(true);
             labelSeleccionFormulario.setVisible(true);
-            //llena los combos con los valores de comandos
-            //llenarCombosConComandos();
+        //llena los combos con los valores de comandos
+        //llenarCombosConComandos();
         } else {
             //Si se escogio tipo Compuesto
             if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
@@ -643,10 +640,10 @@ public class frameActividad extends javax.swing.JFrame {
                 txtDescripcion.setVisible(true);
                 labelDescripcion.setVisible(true);
             }
-        }else{
-            if(comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")){
-                if(((MiDato)comboComponenteAAgregar.getSelectedItem())!= null){
-                    int idAct = ((MiDato)comboComponenteAAgregar.getSelectedItem()).ID;
+        } else {
+            if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
+                if (((MiDato) comboComponenteAAgregar.getSelectedItem()) != null) {
+                    int idAct = ((MiDato) comboComponenteAAgregar.getSelectedItem()).ID;
                     Actividad a = new Actividad(idAct);
                     String desc = a.getDescripcion();
                     txtDescripcion.setText(desc);
@@ -664,6 +661,7 @@ public class frameActividad extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new frameActividad().setVisible(true);
             }

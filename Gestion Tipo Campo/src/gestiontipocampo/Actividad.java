@@ -23,7 +23,7 @@ public class Actividad {
     private String estadoInicial;
     private String estadoFinal;
     private Date fechaActualizacion;
-    private boolean simple;     //True - simple, False - compuesta.
+    private boolean esSimple;     //True - esSimple, False - compuesta.
     private boolean repetible;
     private boolean masiva;
     private boolean requiereRevision;
@@ -33,7 +33,7 @@ public class Actividad {
     private boolean obligatorio;
 
     /**
-     * Constructor simple de Actividad, todos los datos estan inicializado en -1, "", false.
+     * Constructor esSimple de Actividad, todos los datos estan inicializado en -1, "", false.
      */
     public Actividad() {
         buscador = new ControladorBD();
@@ -47,7 +47,7 @@ public class Actividad {
         estadoInicial = "";
         estadoFinal = "";
         fechaActualizacion = null;
-        simple = false;
+        esSimple = false;
         repetible = false;
         masiva = false;
         requiereRevision = false;
@@ -55,7 +55,7 @@ public class Actividad {
         paralelo = false;
         exclusivo = false;
         obligatorio = false;
-        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
         
     }
 
@@ -75,7 +75,7 @@ public class Actividad {
         this.estadoInicial = datos[5];
         this.estadoFinal = datos[6];
         //this.fechaActualizacion = new Date(datos[7]);
-        this.simple = Boolean.parseBoolean(datos[8]);
+        this.esSimple = Boolean.parseBoolean(datos[8]);
         this.repetible = Boolean.parseBoolean(datos[9]);
         this.masiva = Boolean.parseBoolean(datos[10]);
         this.requiereRevision = Boolean.parseBoolean(datos[11]);
@@ -92,7 +92,7 @@ public class Actividad {
      * @param tipo
      * @param estadoInicial
      * @param estadoFinal
-     * @param simple
+     * @param esSimple
      * @param repetible
      * @param masiva
      * @param requiereRevision
@@ -111,7 +111,7 @@ public class Actividad {
         this.tipo = tipo;
         this.estadoInicial = estadoInicial;
         this.estadoFinal = estadoFinal;
-        this.simple = simple;
+        this.esSimple = simple;
         this.repetible = repetible;
         this.masiva = masiva;
         this.requiereRevision = requiereRevision;
@@ -126,7 +126,7 @@ public class Actividad {
      * Metodo para actualizar los datos en la BD.
      */
     public void actualizar() {
-        consultaActividad.actualizarActividad(correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, simple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+        consultaActividad.actualizarActividad(correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
     }
 
     /**
@@ -156,7 +156,7 @@ public class Actividad {
     }
 
     /**
-     * Devuelve Comandos hijos de esta actividad (solamente si es actividad simple) o null
+     * Devuelve Comandos hijos de esta actividad (solamente si es actividad esSimple) o null
      * @return vector de comandos o null
      */
     public Comando[] getHijosComandos() {
@@ -185,7 +185,7 @@ public class Actividad {
     }
 
     /**
-     * Agrega un comando a la actividad (solamente si es actividad simple)
+     * Agrega un comando a la actividad (solamente si es actividad esSimple)
      * @param correlativoComando - correlativo del comando a agregar
      * @param orden - orden (0 - primero), si ya existe un comando en esta posicion se corre una posicion adelante
      * @param esObligatorio - si es obligatorio.
@@ -195,7 +195,7 @@ public class Actividad {
     }
 
     /**
-     * Desvincula comando de la actividad (Solamente si es actividad simple)
+     * Desvincula comando de la actividad (Solamente si es actividad esSimple)
      * @param comando a desvincular
      */
     public void desvincularComando(Comando comando) {
@@ -234,12 +234,12 @@ public class Actividad {
         replica.estadoInicial = this.estadoInicial;
         replica.estadoFinal = this.estadoFinal;
         replica.fechaActualizacion = new Date();
-        replica.simple = this.simple;
+        replica.esSimple = this.esSimple;
         replica.repetible = this.repetible;
         replica.masiva = this.masiva;
         replica.requiereRevision = this.requiereRevision;
         replica.hitoDeControl = this.hitoDeControl;
-        replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.simple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl, replica.paralelo, replica.exclusivo, replica.obligatorio);
+        replica.correlativo = consultaActividad.nuevaActividad(replica.correlativoFlujo, replica.nombre, replica.descripcion, replica.tipo, replica.estadoInicial, replica.estadoFinal, replica.esSimple, replica.repetible, replica.masiva, replica.requiereRevision, replica.hitoDeControl, replica.paralelo, replica.exclusivo, replica.obligatorio);
         return replica;
     }
 
@@ -273,7 +273,7 @@ public class Actividad {
     }
 
     public boolean isSimple() {
-        return simple;
+        return esSimple;
     }
 
     public void setCorrelativoFlujo(int correlativoFlujo) {
@@ -301,7 +301,7 @@ public class Actividad {
     }
 
     public void setSimple(boolean simple) {
-        this.simple = simple;
+        this.esSimple = simple;
     }
 
     public String getDescripcion() {
