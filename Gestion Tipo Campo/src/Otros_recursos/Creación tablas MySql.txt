@@ -171,3 +171,15 @@ CREATE TABLE MIEMBROACTIVIDADCOMPUESTA(
     obligatorio                varchar(6),          --si el comando es obligatorio
     PRIMARY KEY (correlativo)
 );/**/
+
+
+--drop table FLUJO;
+CREATE TABLE FLUJO(
+    correlativo        int auto_increment not null,
+    nombre             varchar(30),
+    descripcion        varchar(150),--En la especificacion dice proposito, no se si lo dejamos asi
+    actividadRaiz      int,  --Es el correlativo de la actividad que esta en la raiz
+    fechaActualizacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (correlativo)
+);/**/
