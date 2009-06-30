@@ -227,9 +227,9 @@ public class ControladorBD {
     public ConsultaComando getConsultaComando() {
         ConsultaComando consulta;
         if (CONEXION_MYSQL == conexionSeleccionada) {
-            consulta = new ConsultaComando();//por ahora solo tengo uno
+            consulta = new ConsultaComandoMySQL();//por ahora solo tengo uno
         } else {
-            consulta = new ConsultaComando();
+            consulta = new ConsultaComandoSQLServer();
         }
         return consulta;
     }
