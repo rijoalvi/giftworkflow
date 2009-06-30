@@ -19,7 +19,7 @@ public class ControladorBD {
     private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
     protected static int conexionSeleccionada = -1;
     private Connection conexion = null;
-    private ResultSet resultado = null;
+    protected ResultSet resultado = null;
     protected final int CONEXION_MYSQL = 1;
     protected final int CONEXION_SQLSERVER = 2;
 
@@ -252,5 +252,41 @@ public class ControladorBD {
            // consulta = new ConsultaFlujo();
         }
         return consulta;
+    }
+
+    /**
+     * Metodo que devuelve todos los flujos en un vector de MiDatos
+     * @return Vector de MiDato
+     */
+    public Vector<MiDato> getFlujos(){
+        Vector<MiDato> datos = new Vector<MiDato>();
+        try {
+            resultado = this.getResultSet("select correlativo, nombre, descripcion from FLUJO;");
+            while (resultado.next()) {
+                MiDato dato = new MiDato(resultado.getString("nombre"), resultado.getString("descripcion"), resultado.getInt("correlativo"));
+                datos.add(dato);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return datos;
+    }
+
+    /**
+     * Metodo que devuelve todas las Actividades en un vector de MiDato
+     * @return Vector de miDato
+     */
+    public Vector<MiDato> getActividades(){
+        Vector<MiDato> datos = new Vector<MiDato>();
+        try {
+            resultado = this.getResultSet("select correlativo, nombre, descripcion from ACTIVIDAD;");
+            while (resultado.next()) {
+                MiDato dato = new MiDato(resultado.getString("nombre"), resultado.getString("descripcion"), resultado.getInt("correlativo"));
+                datos.add(dato);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return datos;
     }
 }

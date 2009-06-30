@@ -27,7 +27,6 @@ public abstract class ConsultaFlujo extends ControladorBD {
     public int nuevoFlujo(String nombre, String descripcion, int correlativoRaiz) {
         int correlativo = -1;
         String[] incremental = {"correlativo"};
-        ResultSet resultado = null;
         try {
             resultado = this.doUpdate("insert into FLUJO (nombre, descripcion, actividadRaiz) values ('" + nombre + "', '" + descripcion + "', " + correlativoRaiz + ";", incremental);
             while (resultado.next()) {
@@ -46,7 +45,6 @@ public abstract class ConsultaFlujo extends ControladorBD {
      */
     public Vector<String> getFlujo(int correlativo) {
         Vector<String> retorno = new Vector<String>();
-        ResultSet resultado = null;
         try {
             resultado = this.getResultSet("select nombre, descripcion, actividadRaiz from FLUJO where correlativo = " + correlativo + ";");
             while (resultado.next()) {
@@ -61,7 +59,7 @@ public abstract class ConsultaFlujo extends ControladorBD {
     }
 
     /**
-     * Matodo para actualizar los datos de un flujo ya creado en la BD
+     * Metodo para actualizar los datos de un flujo ya creado en la BD
      * @param correlativo
      * @param nombre
      * @param descripcion

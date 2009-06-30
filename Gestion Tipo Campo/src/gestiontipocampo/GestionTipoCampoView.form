@@ -1131,6 +1131,15 @@
                 <Property name="name" type="java.lang.String" value="btnNuevoTipoCampo" noResource="true"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="gestiontipocampo.GestionTipoCampoView" id="mostrarFrameFlujo" methodName="mostrarFrameFlujo"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem2.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem2" noResource="true"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnAbrirTipoCampo">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="btnAbrirTipoCampo.text"/>
