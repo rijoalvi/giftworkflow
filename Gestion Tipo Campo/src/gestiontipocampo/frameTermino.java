@@ -117,15 +117,16 @@ public class frameTermino extends javax.swing.JFrame {
                             .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonCancelar)
+                                .addGap(93, 93, 93)
+                                .addComponent(botonAceptar)
                                 .addGap(18, 18, 18)
-                                .addComponent(botonAceptar))
+                                .addComponent(botonCancelar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(campoDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))))))
-                .addContainerGap(54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +145,8 @@ public class frameTermino extends javax.swing.JFrame {
                 .addComponent(comboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCancelar)
-                    .addComponent(botonAceptar))
+                    .addComponent(botonAceptar)
+                    .addComponent(botonCancelar))
                 .addContainerGap())
         );
 
@@ -267,7 +268,6 @@ public class frameTermino extends javax.swing.JFrame {
             try {
                 String [] generado = {"ID"};
                 ResultSet resultado = buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' )", generado);
-                        
                 if (resultado.next()) {
                     nuevoID = resultado.getInt(1);                            
                 }
@@ -276,11 +276,19 @@ public class frameTermino extends javax.swing.JFrame {
             }
 
         } else {
-            buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' );");
+            try {
+                String [] generado = {"ID"};
+                ResultSet resultado = buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' )", generado);
+                if (resultado.next()) {
+                    nuevoID = resultado.getInt(1);
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception:54321 *" + e.toString());
+            }
         }
         if(IDNodoPadre == -1){
             framePadre.setIDRaiz(nuevoID);
-            System.out.println("entro!!!d");
+            System.out.println("entro con: "+ nuevoID);
         }
         framePadre.cambiarNumTerminos(1);
         framePadre.llenarTreeViewJerarquia(nombreJer);

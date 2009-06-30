@@ -11,6 +11,7 @@ CREATE TABLE JERARQUIA(
 	conCategorias               varchar(6),
 	conNombreNiveles            varchar(6),
 	IDTipoCategoria             int,
+    IDNombresNiveles            int,
   PRIMARY KEY (correlativo)
 );
 
@@ -58,6 +59,7 @@ CREATE TABLE INSTANCIANOMBRENIVEL(
 	ID                          	int auto_increment NOT NULL,
 	IDNombreNivel                	int,
 	valor                           varchar(30),
+    numNivel                        int,
   PRIMARY KEY (ID)
-)
+);
 
