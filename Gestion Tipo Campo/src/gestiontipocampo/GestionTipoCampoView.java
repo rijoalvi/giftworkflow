@@ -1207,7 +1207,7 @@ public class GestionTipoCampoView extends FrameView {
     private void botonAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCategoriaActionPerformed
         String response = JOptionPane.showInputDialog(null, "Digite el nombre de la nueva categoría", "Nueva Categoría", JOptionPane.QUESTION_MESSAGE);
         frameManejoCategorias categorias;
-        categorias = new frameManejoCategorias(response);
+        categorias = new frameManejoCategorias(false, response);
         categorias.setVisible(true);
 }//GEN-LAST:event_botonAgregarCategoriaActionPerformed
 
@@ -1271,7 +1271,10 @@ public class GestionTipoCampoView extends FrameView {
     }//GEN-LAST:event_paneJerarquiaComponentShown
 
     private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed
-        // TODO add your handling code here:
+        String response = JOptionPane.showInputDialog(null, "Digite el nombre del nuevo grupo de niveles", "Nuevo Orden de Niveles", JOptionPane.QUESTION_MESSAGE);
+        frameManejoCategorias niveles;
+        niveles = new frameManejoCategorias(true, response);
+        niveles.setVisible(true);
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
 
     private void btnNuevoFormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoFormularioActionPerformed

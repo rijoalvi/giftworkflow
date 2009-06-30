@@ -317,11 +317,6 @@ public class frameManejoCampos extends javax.swing.JFrame {
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1- Categoria 1", "2- Categoria 2", "3- Categoría 3", "4- Categoría 4" }));
         comboCategorias.setEnabled(false);
         comboCategorias.setName("comboCategorias"); // NOI18N
-        comboCategorias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboCategoriasActionPerformed(evt);
-            }
-        });
         comboCategorias.setBounds(150, 80, 130, -1);
         paneJerarquia.add(comboCategorias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -1150,7 +1145,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     }
                     try {
                         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                        //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null??????
+                        //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null?--> Xq al leerlo cree q no existen datos dl todo y se cae
                         conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, numeroDeTerminos, numeroDeNiveles, fechaCreacion, conCategorias, conNombreNiveles, IDTIpoCategoria, IDNombresNiveles) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() +"', '0', '0', '"+ sqlDate + "', '"+ this.radioCategoriasSi.isSelected() + "' , '"+ this.radioNivelesSi.isSelected() +"', '" +((MiDato) comboCategorias.getSelectedItem()).ID + "', '" + ((MiDato) comboNiveles.getSelectedItem()).ID +"')");
                     } catch (Exception ex) {
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);                        
@@ -1401,7 +1396,7 @@ private void botonGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//
 private void botonAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCategoriaActionPerformed
     String response = JOptionPane.showInputDialog(null, "Digite el nombre de la nueva categoría", "Nueva Categoría", JOptionPane.QUESTION_MESSAGE);
     frameManejoCategorias categorias;
-    categorias = new frameManejoCategorias(response);
+    categorias = new frameManejoCategorias(false, response);
     categorias.setVisible(true);
 }//GEN-LAST:event_botonAgregarCategoriaActionPerformed
 
@@ -1464,12 +1459,11 @@ private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//G
 }//GEN-LAST:event_paneJerarquiaComponentShown
 
 private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed
-    // TODO add your handling code here:
+    String response = JOptionPane.showInputDialog(null, "Digite el nombre del nuevo grupo de niveles", "Nuevo Orden de Niveles", JOptionPane.QUESTION_MESSAGE);
+    frameManejoCategorias niveles;
+    niveles = new frameManejoCategorias(true, response);
+    niveles.setVisible(true);
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
-
-private void comboCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoriasActionPerformed
-    // TODO add your handling code here:
-}//GEN-LAST:event_comboCategoriasActionPerformed
 
     /**
      * Cambia la mascara del valorFechaDefecto

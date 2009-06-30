@@ -25,14 +25,24 @@ import java.lang.Integer;
 
 public class frameManejoCategorias extends javax.swing.JFrame {
 
-    /** Creates new form frameManejoCategorias */
-    public frameManejoCategorias(String nombre) {
+
+    /**
+     * Creates new form frameManejoCategorias
+     * El boolean indica si son de niveles o categorias
+     */
+    public frameManejoCategorias(boolean NombNiveles, String nombre) {
         initComponents();
+
+        IDCategoria = 0;
+        IDNivel = 0;
+        niveles = NombNiveles;
+        numNivel = 0;
         labelNombreCategoria.setText(nombre);
         nombreGlobal=nombre;
     }
-    public int IDCategoria=0;
-        public String nombreGlobal;
+
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -74,11 +84,6 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
         botonAgregarElemento.setText(resourceMap.getString("botonAgregarElemento.text")); // NOI18N
         botonAgregarElemento.setName("botonAgregarElemento"); // NOI18N
-        botonAgregarElemento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonAgregarElementoMouseClicked(evt);
-            }
-        });
         botonAgregarElemento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarElementoActionPerformed(evt);
@@ -129,9 +134,9 @@ public class frameManejoCategorias extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(102, 102, 102)
                         .addComponent(labelNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(144, Short.MAX_VALUE)
                 .addComponent(botonAceptar)
                 .addGap(18, 18, 18)
                 .addComponent(botonCancelar)
@@ -139,7 +144,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(botonBorrarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botonAgregarElemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,36 +186,29 @@ public class frameManejoCategorias extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAgregarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarElementoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarElementoActionPerformed
-
-    private void botonModificarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarElementoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonModificarElementoActionPerformed
-
-    private void botonBorrarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarElementoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonBorrarElementoActionPerformed
-
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
-        ControladorBD buscador= new ControladorBD();
-        buscador.doUpdate("INSERT INTO TIPOCATEGORIA (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");
-        refrescarLista();
-
-    }//GEN-LAST:event_formComponentShown
-
-    private void botonAgregarElementoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAgregarElementoMouseClicked
-
         String elemento = JOptionPane.showInputDialog(null, "Digite el elemento a agregar", "Nuevo elemento", JOptionPane.QUESTION_MESSAGE);// TODO add your handling code here:
         ControladorBD buscador= new ControladorBD();
         //buscador.doUpdate("INSERT INTO TIPOCATEGORIA (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");
         //refrescarLista();
-        
+
           //     ControladorBD buscador = new ControladorBD();
 
-
-
+        //Para niveles
+        if( niveles){
+        try {
+                ResultSet resultado = buscador.getResultSet("SELECT  ID FROM NOMBRENIVEL where nombre='" + nombreGlobal + "'");
+                int contador=0;
+                while (resultado.next()) {
+                    this.IDNivel=Integer.parseInt(resultado.getObject("ID").toString());
+                    contador++;
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+            buscador.doUpdate("INSERT INTO INSTANCIANOMBRENIVEL (IDNombreNivel, valor, numNivel) VALUES ('"+this.IDNivel+"','"+elemento.toString()+"','"+ (++numNivel) +"')");
+        }
+        //Para Categorias
+        else{
             try {
                 //ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA order by ID desc limit 1");
                 ResultSet resultado = buscador.getResultSet("SELECT  ID FROM TIPOCATEGORIA where nombre='"+nombreGlobal+"'");
@@ -224,39 +222,56 @@ public class frameManejoCategorias extends javax.swing.JFrame {
             } catch (SQLException e) {
                 System.out.println("*SQL Exception: *" + e.toString());
             }
+            buscador.doUpdate("INSERT INTO INSTANCIACATEGORIA (IDTipoCategoria, valor) VALUES ('"+this.IDCategoria+"','"+elemento.toString()+"')");
+        }
+        refrescarLista();
+    }//GEN-LAST:event_botonAgregarElementoActionPerformed
 
-        buscador.doUpdate("INSERT INTO INSTANCIACATEGORIA (IDTipoCategoria, valor) VALUES ('"+this.IDCategoria+"','"+elemento.toString()+"')");
+    private void botonModificarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarElementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonModificarElementoActionPerformed
+
+    private void botonBorrarElementoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarElementoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonBorrarElementoActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        ControladorBD buscador= new ControladorBD();
+        if(niveles){
+            buscador.doUpdate("INSERT INTO NOMBRENIVEL (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");            
+        }
+        else{
+            buscador.doUpdate("INSERT INTO TIPOCATEGORIA (nombre, descripcion) VALUES ('"+labelNombreCategoria.getText()+"','No establecida')");            
+        }
         refrescarLista();
 
-
-
-
-    }//GEN-LAST:event_botonAgregarElementoMouseClicked
+    }//GEN-LAST:event_formComponentShown
 
 
 
 
     public void refrescarLista(){
-
-/*Vector listaInstancias = new Vector();
-listaInstancias.add("uno");
-listaInstancias.add("dos");
-listaInstancias.add("tres");*/
-
+        /*Vector listaInstancias = new Vector();
+        listaInstancias.add("uno");
+        listaInstancias.add("dos");
+        listaInstancias.add("tres");*/
         Modelo  miModelo = new Modelo();
-        listInstanciasCategorias.setListData(miModelo.getModeloDeCombo("Select ic.ID , ic.valor as nombre from TIPOCATEGORIA tc, INSTANCIACATEGORIA ic where ic.IDTIpoCategoria=tc.ID and tc.nombre like '"+labelNombreCategoria.getText().trim()+"'"));
-
-
-       // listInstanciasCategorias.setListData(listaInstancias);
-
+        if(niveles){
+            listInstanciasCategorias.setListData(miModelo.getModeloDeCombo("Select ic.ID , ic.valor as nombre from NOMBRENIVEL tc, INSTANCIANOMBRENIVEL ic where ic.IDNombreNivel=tc.ID and tc.nombre like '"+labelNombreCategoria.getText().trim()+"'"));
+        }
+        else{
+            listInstanciasCategorias.setListData(miModelo.getModeloDeCombo("Select ic.ID , ic.valor as nombre from TIPOCATEGORIA tc, INSTANCIACATEGORIA ic where ic.IDTIpoCategoria=tc.ID and tc.nombre like '"+labelNombreCategoria.getText().trim()+"'"));
+        }
     }
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameManejoCategorias("").setVisible(true);
+                new frameManejoCategorias(false, "").setVisible(true);
             }
         });
     }
@@ -272,5 +287,9 @@ listaInstancias.add("tres");*/
     private javax.swing.JLabel labelNombreCategoria;
     private javax.swing.JList listInstanciasCategorias;
     // End of variables declaration//GEN-END:variables
-
+    private int IDCategoria;
+    private int IDNivel;
+    private String nombreGlobal;
+    private boolean niveles;
+    private int numNivel;
 }
