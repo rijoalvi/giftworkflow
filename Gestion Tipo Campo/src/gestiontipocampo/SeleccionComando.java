@@ -20,21 +20,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ea63183
  */
-public class SeleccionFormulario extends javax.swing.JFrame {
+public class SeleccionComando extends javax.swing.JFrame {
 
-    frameFormulario madre;
+    frameComandos madre;
 
     /** Creates new form SeleccionFormulario */
-    public SeleccionFormulario() {
+    public SeleccionComando() {
         initComponents();
+        llenarTabla("");
     }
 
-    public SeleccionFormulario(frameFormulario frameMadre, JTree arbolPrincipal) {
-        initComponents();
-        madre = frameMadre;
-        this.arbolPrincipal = arbolPrincipal;
-    }
-
+    /*public SeleccionComando(frameFormulario frameMadre, JTree arbolPrincipal) {
+    initComponents();
+    madre = frameMadre;
+    this.arbolPrincipal = arbolPrincipal;
+    }*/
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -50,7 +50,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         tablaBusqueda = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(SeleccionFormulario.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(SeleccionComando.class);
         setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
@@ -155,7 +155,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
 }//GEN-LAST:event_tablaBusquedaMouseEntered
 
     private void tablaBusquedaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaBusquedaKeyPressed
-        if (evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             realizarBusqueda();
             this.dispose();
         }
@@ -169,7 +169,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         Object[] fila = new Object[4];
         //       madre.setVisible(false);
         try {
-            ResultSet resultado = miPrueba.getResultSet("select * from FORMULARIO where nombre like '%" + argumentoBusqueda + "%' or descripcion like '%" + argumentoBusqueda + "%';");
+            ResultSet resultado = miPrueba.getResultSet("select ID, Nombre, Descripcion, FechaActualizacion from COMANDO;");
             while (resultado.next()) {
                 for (int i = 0; i < 4; i++) {
                     fila[i] = resultado.getObject(i + 1).toString();
@@ -190,7 +190,10 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         if (filaSeleccionada != -1) {
 
             int llave = Integer.parseInt(tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString());
-            madre = new frameFormulario(arbolPrincipal.getModel(), llave);
+            
+            
+
+            madre = new frameComandos(llave);
             madre.setVisible(true);
 
 
@@ -204,7 +207,7 @@ public class SeleccionFormulario extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new SeleccionFormulario().setVisible(true);
+                new SeleccionComando().setVisible(true);
             }
         });
     }

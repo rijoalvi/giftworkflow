@@ -40,21 +40,10 @@ public class frameComandos extends javax.swing.JFrame {
     /*Constructro con el que inicia todo en blanco*/
     public frameComandos() {
         initComponents();
-        ControladorBD miPrueba = new ControladorBD();
+        comboListaCondicion.setVisible(false);
+        comboListaEfecto.setVisible(false);
+        ocultarCamposConMascara();
         comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz!
-
-
-
-        formularioActual= new Formulario();
-        Vector forms = new Vector();
-        forms=formularioActual.getTodosLosFormulario();
-
-        for(int i=0;i<forms.capacity(); i++){
-            System.out.println(forms.get(i));
-        }
-
-        correlativo = new Vector();
-
         llenarComboFormularios();
 
 
@@ -62,13 +51,16 @@ public class frameComandos extends javax.swing.JFrame {
     }
 
     /*Constructor que recive el correlativo del formulario con el que iniciara*/
-    public frameComandos(Formulario datosForm, int correlativoFormulario) {
+    public frameComandos(int correlativoComando) {
         initComponents();
         comboListaCondicion.setVisible(false);
         comboListaEfecto.setVisible(false);
         ocultarCamposConMascara();
-        comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz!
+        comandoActual = new Comando(correlativoComando); // Clase comando con la que trabajara la interfaz!
         llenarComboFormularios();
+        fieldNombre.setText(comandoActual.getNombre());
+        fieldDescripcion.setText(comandoActual.getDescripcion());
+        comboTipo.setSelectedIndex(comandoActual.getTipoComando()-1);
 
 /*
         correlativo = new Vector();
