@@ -21,10 +21,9 @@
 7. Atributo excluyente es entre hermanas--------------------------------------------> Esto es un despiche, se necesita hacer una tabla nueva entre otras cosas. (CREAR TABLA DE VINCULOS ENTRE HERMANOS)
 8. Cambiar en SQL Server los tipos fecha hora que son timestamp por smallDateTime---> Listo
 
-
-Reparar lista, no se ven valores al agregarlos.
-
-Revisar en jerarquia antes de agregar, que haya etiquetas y categorias
-En formulario, no se aplican las restricciones de los campos (tamano)
-Agregar jerarquia en formulario
-Arreglar comando
+para ultimo script tomar encuenta:
+    Reparar lista, no se ven valores al agregarlos.
+    Revisar en jerarquia antes de agregar, que haya etiquetas y categorias
+    En formulario, no se aplican las restricciones de los campos (tamano)
+    Agregar jerarquia en formulario
+    Arreglar comando
