@@ -188,15 +188,9 @@ public class SeleccionComando extends javax.swing.JFrame {
 
         //JOptionPane.showMessageDialog(null, filaSeleccionada);
         if (filaSeleccionada != -1) {
-
             int llave = Integer.parseInt(tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString());
-            
-            
-
             madre = new frameComandos(llave);
             madre.setVisible(true);
-
-
         }
     }
 

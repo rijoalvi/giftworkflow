@@ -26,7 +26,6 @@ public class Comando  {
     //ESTA ES LA OPCIÓN DE COMANDO CON MÁSCARA
     public int IDFormulario;
 
-
     public String tipoCampoInicial;
     public String condicionInicial;
     public String tipoCampoFinal;
@@ -56,6 +55,7 @@ public class Comando  {
         consultaComando=buscador.getConsultaComando();
         String[] datos = consultaComando.getComando(correlativo);
         this.IDComando = correlativo;
+        this.IDFormulario = Integer.parseInt(datos[1]);
         this.nombreComando = datos[2];
         this.tipoComando = Integer.parseInt(datos[4]);
         this.descripcion = datos[3];
@@ -81,8 +81,6 @@ public class Comando  {
     public int getIDFormulario(){
         return IDFormulario;
     }
-
-
 
     public void setIDFormularioTrabajar(int idForm){
         this.IDFormularioTrabajar = idForm;
@@ -162,8 +160,6 @@ public class Comando  {
     public boolean getFacil(){
         return(this.facil);
     }
-
-
 
     public int guardarComandoSinMascara(){
             int IDComandoAgregado=0;

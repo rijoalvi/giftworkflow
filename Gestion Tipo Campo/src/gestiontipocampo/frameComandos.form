@@ -84,8 +84,13 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboSeleccionFormulario" min="-2" pref="180" max="-2" attributes="0"/>
+              <Component id="comboSeleccionFormulario" min="-2" pref="180" max="-2" attributes="1"/>
               <EmptySpace pref="519" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="fieldFormReadOnly" pref="180" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="519" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +120,9 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="comboSeleccionFormulario" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="fieldFormReadOnly" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="labelCampoFinal" min="-2" max="-2" attributes="0"/>
                   <Component id="labelCampoInicial" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -336,6 +343,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboListaEfectoActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldFormReadOnly">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" resourceKey="fieldFormReadOnly.text"/>
+        <Property name="name" type="java.lang.String" value="fieldFormReadOnly" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
