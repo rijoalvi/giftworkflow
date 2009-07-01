@@ -343,6 +343,7 @@ public class GestionTipoCampoView extends FrameView {
         pathPane = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu menuArchivo = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
         btnNuevoFormulario = new javax.swing.JMenuItem();
         btnNuevoTipoCampo = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -971,6 +972,10 @@ public class GestionTipoCampoView extends FrameView {
                 menuArchivoActionPerformed(evt);
             }
         });
+
+        jMenu1.setText("jMenu1");
+        jMenu1.setName("jMenu1"); // NOI18N
+        menuArchivo.add(jMenu1);
 
         btnNuevoFormulario.setText(resourceMap.getString("btnNuevoFormulario.text")); // NOI18N
         btnNuevoFormulario.setName("btnNuevoFormulario"); // NOI18N
@@ -1612,6 +1617,7 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
