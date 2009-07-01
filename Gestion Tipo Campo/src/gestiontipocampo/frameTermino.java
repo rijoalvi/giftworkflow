@@ -267,7 +267,7 @@ public class frameTermino extends javax.swing.JFrame {
             int categoria = comboCategoria.getSelectedItem().hashCode();
             try {
                 String [] generado = {"ID"};
-                ResultSet resultado = buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' )", generado);
+                ResultSet resultado = buscador.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ numNivel + ", '"+sqlDate+"' )", generado);
                 if (resultado.next()) {
                     nuevoID = resultado.getInt(1);                            
                 }

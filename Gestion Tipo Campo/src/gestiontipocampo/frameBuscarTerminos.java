@@ -28,6 +28,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneTree.setVisible(false);
         paneDatosNodo.setVisible(false);
         paneLista.setVisible(true);
+        panelBotones.setVisible(true);
         buscador = new ControladorBD();
     }
 
@@ -36,6 +37,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         if (i == 1) { //alfabeticamente
             paneTree.setVisible(false);
             paneDatosNodo.setVisible(false);
+            panelBotones.setVisible(true);
             paneLista.setVisible(true);
         }
         buscador = new ControladorBD();
@@ -48,6 +50,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneDatosNodo.setVisible(true);
         paneLista.setVisible(false);
         buscador = new ControladorBD();
+        panelBotones.setVisible(true);
         nombreJerarquia = nombreJer;
         llenarTreeViewJerarquia(nombreJerarquia);
     }
@@ -63,27 +66,29 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         paneFondo = new javax.swing.JLayeredPane();
         paneDatosNodo = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        comboCategoriaNodo = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         valFechaModifNodo = new javax.swing.JTextField();
         valNombreNodo = new javax.swing.JTextField();
         valNumNivelNodo = new javax.swing.JTextField();
         valFechaCreacionNodo = new javax.swing.JTextField();
-        comboCategoriaNodo = new javax.swing.JComboBox();
-        comboNivelNodo = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         valDescripcionNodo = new javax.swing.JTextField();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel6 = new javax.swing.JLabel();
+        comboNivelNodo = new javax.swing.JComboBox();
         paneTree = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolJerarquia = new javax.swing.JTree();
         paneLista = new javax.swing.JLayeredPane();
         scrollPaneJerarquia = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        ButtonPane = new javax.swing.JPanel();
+        panelBotones = new javax.swing.JPanel();
         botonBuscar = new javax.swing.JButton();
         BotonAgregarTermino = new javax.swing.JButton();
         fieldBusqueda = new javax.swing.JTextField();
@@ -103,17 +108,28 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneDatosNodo.setName("paneDatosNodo"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBuscarTerminos.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
-        jLabel1.setEnabled(false);
-        jLabel1.setName("jLabel1"); // NOI18N
-        jLabel1.setBounds(10, 310, 110, 14);
-        paneDatosNodo.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setEnabled(false);
         jLabel2.setName("jLabel2"); // NOI18N
         jLabel2.setBounds(10, 10, 60, 14);
         paneDatosNodo.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setName("jLayeredPane2"); // NOI18N
+
+        comboCategoriaNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCategoriaNodo.setEnabled(false);
+        comboCategoriaNodo.setName("comboCategoriaNodo"); // NOI18N
+        comboCategoriaNodo.setBounds(10, 30, 100, 20);
+        jLayeredPane2.add(comboCategoriaNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setEnabled(false);
+        jLabel1.setName("jLabel1"); // NOI18N
+        jLabel1.setBounds(10, 10, 110, 14);
+        jLayeredPane2.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane2.setBounds(0, 300, 130, 100);
+        paneDatosNodo.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setEnabled(false);
@@ -132,12 +148,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         jLabel5.setName("jLabel5"); // NOI18N
         jLabel5.setBounds(10, 210, 160, 14);
         paneDatosNodo.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
-        jLabel6.setEnabled(false);
-        jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(10, 260, 140, 14);
-        paneDatosNodo.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         valFechaModifNodo.setText(resourceMap.getString("valFechaModifNodo.text")); // NOI18N
         valFechaModifNodo.setEnabled(false);
@@ -160,18 +170,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         valFechaCreacionNodo.setBounds(10, 180, 100, 20);
         paneDatosNodo.add(valFechaCreacionNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        comboCategoriaNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCategoriaNodo.setEnabled(false);
-        comboCategoriaNodo.setName("comboCategoriaNodo"); // NOI18N
-        comboCategoriaNodo.setBounds(10, 330, 100, 20);
-        paneDatosNodo.add(comboCategoriaNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        comboNivelNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboNivelNodo.setEnabled(false);
-        comboNivelNodo.setName("comboNivelNodo"); // NOI18N
-        comboNivelNodo.setBounds(10, 280, 100, 20);
-        paneDatosNodo.add(comboNivelNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
         jLabel7.setEnabled(false);
         jLabel7.setName("jLabel7"); // NOI18N
@@ -182,6 +180,23 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         valDescripcionNodo.setName("valDescripcionNodo"); // NOI18N
         valDescripcionNodo.setBounds(10, 80, 210, 20);
         paneDatosNodo.add(valDescripcionNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane1.setName("jLayeredPane1"); // NOI18N
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setEnabled(false);
+        jLabel6.setName("jLabel6"); // NOI18N
+        jLabel6.setBounds(0, 10, 140, 14);
+        jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        comboNivelNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboNivelNodo.setEnabled(false);
+        comboNivelNodo.setName("comboNivelNodo"); // NOI18N
+        comboNivelNodo.setBounds(0, 30, 100, 20);
+        jLayeredPane1.add(comboNivelNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLayeredPane1.setBounds(10, 250, 120, 60);
+        paneDatosNodo.add(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneDatosNodo.setBounds(180, 0, 230, 390);
         paneFondo.add(paneDatosNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -233,7 +248,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneLista.setBounds(0, 0, 310, 400);
         paneFondo.add(paneLista, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        ButtonPane.setName("ButtonPane"); // NOI18N
+        panelBotones.setName("panelBotones"); // NOI18N
 
         botonBuscar.setText(resourceMap.getString("botonBuscar.text")); // NOI18N
         botonBuscar.setName("botonBuscar"); // NOI18N
@@ -306,29 +321,29 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout ButtonPaneLayout = new javax.swing.GroupLayout(ButtonPane);
-        ButtonPane.setLayout(ButtonPaneLayout);
-        ButtonPaneLayout.setHorizontalGroup(
-            ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
+        panelBotones.setLayout(panelBotonesLayout);
+        panelBotonesLayout.setHorizontalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BotonAgregarTermino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(botonModificar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(botonExcluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(botonListarHijos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonContarTerminos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonListarSubarbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(botonListarSubarbol, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addComponent(fieldBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(labelBusqueda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(botonCerrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
                     .addComponent(botonBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        ButtonPaneLayout.setVerticalGroup(
-            ButtonPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ButtonPaneLayout.createSequentialGroup()
+        panelBotonesLayout.setVerticalGroup(
+            panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotonAgregarTermino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -352,8 +367,8 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        ButtonPane.setBounds(430, 0, 131, 400);
-        paneFondo.add(ButtonPane, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        panelBotones.setBounds(430, 0, 131, 400);
+        paneFondo.add(panelBotones, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -645,10 +660,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             String[] val = valores.split(";"); //divide los valores
             valNombreNodo.setText(nombre);
             valDescripcionNodo.setText(val[0]);
-            valNumNivelNodo.setText(val[1]);
-            valFechaCreacionNodo.setText(val[2]);
-            valFechaModifNodo.setText(val[3]);
-        //valNombreNodo.setText(val[0]);
+            valFechaCreacionNodo.setText(val[1].substring(0, 11));
+            valFechaModifNodo.setText(val[2].substring(0, 11));
+            valNumNivelNodo.setText(val[3]);
+            //valNombreNodo.setText(val[0]);
         }
     }
 
@@ -800,7 +815,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregarTermino;
-    private javax.swing.JPanel ButtonPane;
     private javax.swing.JTree arbolJerarquia;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonCerrar;
@@ -819,6 +833,8 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelBusqueda;
@@ -826,6 +842,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JLayeredPane paneFondo;
     private javax.swing.JLayeredPane paneLista;
     private javax.swing.JLayeredPane paneTree;
+    private javax.swing.JPanel panelBotones;
     private javax.swing.JScrollPane scrollPaneJerarquia;
     private javax.swing.JTextField valDescripcionNodo;
     private javax.swing.JTextField valFechaCreacionNodo;
