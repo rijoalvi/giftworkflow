@@ -247,9 +247,9 @@ public class ControladorBD {
     public ConsultaFlujo getConsultaFlujo() {
         ConsultaFlujo consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
-           // consulta = new ConsultaFlujo();
+           consulta = new ConsultaFlujo();
         } else {
-           // consulta = new ConsultaFlujo();
+           consulta = new ConsultaFlujo();
         }
         return consulta;
     }

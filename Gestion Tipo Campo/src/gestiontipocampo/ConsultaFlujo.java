@@ -4,7 +4,6 @@
  */
 package gestiontipocampo;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
@@ -12,7 +11,7 @@ import java.util.Vector;
  *
  * @author admin
  */
-public abstract class ConsultaFlujo extends ControladorBD {
+public class ConsultaFlujo extends ControladorBD {
 
     public ConsultaFlujo() {
     }
@@ -26,9 +25,10 @@ public abstract class ConsultaFlujo extends ControladorBD {
      */
     public int nuevoFlujo(String nombre, String descripcion, int correlativoRaiz) {
         int correlativo = -1;
-        String[] incremental = {"correlativo"};
+        String[] incremental = new String[1];
+        incremental[0] = "correlativo";
         try {
-            resultado = this.doUpdate("insert into FLUJO (nombre, descripcion, actividadRaiz) values ('" + nombre + "', '" + descripcion + "', " + correlativoRaiz + ";", incremental);
+            resultado = this.doUpdate("insert into FLUJO (nombre, descripcion, actividadRaiz) values ('" + nombre + "', '" + descripcion + "', " + correlativoRaiz + ");", incremental);
             while (resultado.next()) {
                 correlativo = resultado.getInt(1);
             }
@@ -67,5 +67,9 @@ public abstract class ConsultaFlujo extends ControladorBD {
      */
     public void actualizar(int correlativo, String nombre, String descripcion, int raiz) {
         this.doUpdate("UPDATE FLUJO set nombre = '" + nombre + "', descripcion= '" + descripcion + "', actividadRaiz = '" + raiz + "' WHERE correlativo = " + correlativo + ";");
+    }
+
+    public void borrarFlujo(int correlativo){
+        this.doUpdate("delete from FLUJO where correlativo = " + correlativo + ";");
     }
 }

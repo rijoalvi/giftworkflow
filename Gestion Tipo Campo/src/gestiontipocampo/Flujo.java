@@ -17,7 +17,7 @@ public class Flujo {
     private int correlativo;
     private String nombre;
     private String descripcion;
-    private Actividad raiz;
+    private int actividadRaiz;
 
     /**
      * Constructor simple que inicializa todo a null o -1.
@@ -29,7 +29,7 @@ public class Flujo {
         correlativo = -1;
         nombre = "";
         descripcion = "";
-        raiz = null;
+        actividadRaiz = -1;
     }
 
     /**
@@ -38,14 +38,14 @@ public class Flujo {
      * @param descripcion
      * @param raiz
      */
-    public Flujo(String nombre, String descripcion, Actividad raiz) {
+    public Flujo(String nombre, String descripcion, int actividadRaiz) {
         buscador = new ControladorBD();
         consultaFlujo = buscador.getConsultaFlujo();
 
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.raiz = raiz;
-        this.correlativo = consultaFlujo.nuevoFlujo(nombre, descripcion, raiz.getCorrelativo());
+        this.actividadRaiz = actividadRaiz;
+        this.correlativo = consultaFlujo.nuevoFlujo(nombre, descripcion, actividadRaiz);
     }
 
     /**
@@ -60,11 +60,15 @@ public class Flujo {
         this.correlativo = correlativo;
         this.nombre = datos.get(0);
         this.descripcion = datos.get(1);
-        this.raiz = new Actividad(Integer.parseInt(datos.get(2)));
+        this.actividadRaiz = Integer.parseInt(datos.get(2));
     }
 
     public void actualizar() {
-        consultaFlujo.actualizar(this.correlativo, this.nombre, this.descripcion, this.raiz.getCorrelativo());
+        consultaFlujo.actualizar(this.correlativo, this.nombre, this.descripcion, this.actividadRaiz);
+    }
+
+    public void borrar(){
+        consultaFlujo.borrarFlujo(this.correlativo);
     }
 
     //Sets y gets
@@ -88,11 +92,11 @@ public class Flujo {
         this.nombre = nombre;
     }
 
-    public Actividad getRaiz() {
-        return raiz;
+    public int getRaiz() {
+        return actividadRaiz;
     }
 
-    public void setRaiz(Actividad raiz) {
-        this.raiz = raiz;
+    public void setRaiz(int actividadRaiz) {
+        this.actividadRaiz = actividadRaiz;
     }
 }
