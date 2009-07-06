@@ -69,7 +69,31 @@ public class ConsultaFlujo extends ControladorBD {
         this.doUpdate("UPDATE FLUJO set nombre = '" + nombre + "', descripcion= '" + descripcion + "', actividadRaiz = '" + raiz + "' WHERE correlativo = " + correlativo + ";");
     }
 
-    public void borrarFlujo(int correlativo){
+    /**
+     * Metodo para borrar flujo
+     * @param correlativo - correlativo del flujo a borrar
+     */
+    public void borrarFlujo(int correlativo) {
         this.doUpdate("delete from FLUJO where correlativo = " + correlativo + ";");
+    }
+
+    /**
+     * Metodo para probar en la BD si ya existe un flujo con el nombre dado
+     * @param nombre - nombre de flujo a probar
+     * @return true - ya existe, false - no existe
+     */
+    public boolean yaExiste(String nombre) {
+        boolean retorno = false;
+        try {
+            resultado = this.getResultSet("select correlativo from FLUJO where nombre = '" + nombre + "';");
+            if (resultado.next()) {
+                retorno = true;
+            } else {
+                retorno = false;
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return retorno;
     }
 }

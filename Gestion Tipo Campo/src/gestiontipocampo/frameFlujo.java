@@ -81,6 +81,8 @@ public class frameFlujo extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         campoDescripcionActividad = new javax.swing.JTextArea();
         botonBorrar = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        statusLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameFlujo.class);
@@ -160,6 +162,11 @@ public class frameFlujo extends javax.swing.JFrame {
             }
         });
 
+        jSeparator1.setName("jSeparator1"); // NOI18N
+
+        statusLabel.setText(resourceMap.getString("statusLabel.text")); // NOI18N
+        statusLabel.setName("statusLabel"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,6 +174,7 @@ public class frameFlujo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -182,19 +190,19 @@ public class frameFlujo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botonBorrar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(botonGuardar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(botonCerrar))
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(comboRaiz, 0, 207, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botonBorrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonGuardar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonCerrar))
+                    .addComponent(statusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,12 +229,16 @@ public class frameFlujo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboRaiz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCerrar)
                     .addComponent(botonGuardar)
                     .addComponent(botonBorrar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(statusLabel)
                 .addContainerGap())
         );
 
@@ -234,8 +246,15 @@ public class frameFlujo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        if (!campoNombre.getText().isEmpty() && ((MiDato) comboRaiz.getSelectedItem()).ID >= 0) {
+        if (!campoNombre.getText().isEmpty() && ((MiDato) comboRaiz.getSelectedItem()).ID > 0) {
+            if(Flujo.yaExiste(campoNombre.getText().trim())){
+                JOptionPane.showMessageDialog(this, "Ya existe Flujo con este nombre!");
+                statusLabel.setText("Status: Ya existe Flujo con el nombre " + flujo.getNombre());
+            }
+            else{
             flujo = new Flujo(campoNombre.getText(), campoDescripcionFlujo.getText(), ((MiDato) comboRaiz.getSelectedItem()).ID);
+            statusLabel.setText("Status: Se guardó Flujo con el nombre " + flujo.getNombre());
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Hay Campos sin llenar ó la Actividad raíz no está seleccionada!");
         }
@@ -252,6 +271,7 @@ public class frameFlujo extends javax.swing.JFrame {
                 this.campoNombre.setText("");
                 this.campoDescripcionActividad.setText("");
                 this.comboRaiz.setSelectedIndex(0);
+                this.flujo = null;
             } else {
                 flujo = new Flujo(((MiDato) comboFlujos.getSelectedItem()).ID);
                 int ID = flujo.getRaiz();
@@ -278,7 +298,9 @@ public class frameFlujo extends javax.swing.JFrame {
 
     private void botonBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBorrarActionPerformed
         if (flujo != null && comboFlujos.getSelectedIndex() > 0) {
+            String nom = flujo.getNombre();
             flujo.borrar();
+            statusLabel.setText("Status: Se borró Flujo con el nombre: " + nom);
         }
     }//GEN-LAST:event_botonBorrarActionPerformed
 
@@ -354,6 +376,8 @@ public class frameFlujo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel statusLabel;
     // End of variables declaration//GEN-END:variables
     private Flujo flujo;
 }

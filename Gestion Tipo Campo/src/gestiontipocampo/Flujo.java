@@ -63,12 +63,34 @@ public class Flujo {
         this.actividadRaiz = Integer.parseInt(datos.get(2));
     }
 
+    /**
+     * Actualiza los deatos de este flujo en la base de datos.
+     */
     public void actualizar() {
         consultaFlujo.actualizar(this.correlativo, this.nombre, this.descripcion, this.actividadRaiz);
     }
 
+    /**
+     * Metodo para borrar flujo de la base de datos
+     */
     public void borrar(){
         consultaFlujo.borrarFlujo(this.correlativo);
+        this.nombre = "";
+        this.descripcion = "";
+        this.correlativo = -1;
+        this.actividadRaiz = -1;
+    }
+
+    /**
+     * Metodo para probar si ya existe un flujo con el nombre dado
+     * @param tempNombre - nombre a probar
+     * @return true - ya existe, false - no hay flujo con este nombre
+     */
+    public static boolean yaExiste(String tempNombre){
+        ControladorBD cont = new ControladorBD();
+        ConsultaFlujo consulta = cont.getConsultaFlujo();
+        boolean resultado = consulta.yaExiste(tempNombre);
+        return resultado;
     }
 
     //Sets y gets
