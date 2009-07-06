@@ -22,9 +22,10 @@ public class frameTermino extends javax.swing.JFrame {
     /** Creates new form frameTermino */
     public frameTermino() {
         initComponents();
+        conCategorias = false;
     }
 
-    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameBuscarTerminos padre, String nombre, int nivel) {
+    public frameTermino(int IDJerarquia, int IDNodoPadre, int estado, frameEditarTerminos padre, String nombre, int nivel, boolean conCateg) {
         initComponents();
 
         this.IDJerarquia = IDJerarquia;
@@ -32,12 +33,17 @@ public class frameTermino extends javax.swing.JFrame {
         this.framePadre = padre;
         nombreJer = nombre;
         this.estado = estado;
-        this.numNivel = nivel;        
+        this.numNivel = nivel;
+        this.conCategorias = conCateg;
+        comboCategoria.setVisible(true);
+        labelCategoria.setVisible(true);
         buscador = new ControladorBD();
         //Si es la raiz
-        if(this.IDNodoPadre == -1){
+        /*
+         if(this.IDNodoPadre == -1){
             this.setTitle("¡Jerarquía Vacía! Favor ingresar los valores para la raíz");
         }
+        */
         if (estado == 1) {
             botonAceptar.setName("Modificar");
         }
@@ -104,24 +110,24 @@ public class frameTermino extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCategoria)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(42, 42, 42))
-                                .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
-                            .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(182, 182, 182)
+                        .addComponent(botonAceptar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCancelar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelCategoria)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addComponent(botonAceptar)
-                                .addGap(18, 18, 18)
-                                .addComponent(botonCancelar))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel1)
+                                            .addGap(42, 42, 42))
+                                        .addComponent(campoNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                                    .addComponent(comboCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -130,7 +136,7 @@ public class frameTermino extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -158,20 +164,24 @@ public class frameTermino extends javax.swing.JFrame {
 }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void getIDCategoria() {
-        String ID = "";
-        try {
-            ResultSet resultado = buscador.getResultSet("select IDTIpoCategoria from JERARQUIA where correlativo = " + IDJerarquia + ";");
-            if (resultado.next()) {
-                ID = resultado.getObject("IDTipoCategoria").toString();
+        if(conCategorias){
+            String ID = "";
+            try {
+                ResultSet resultado = buscador.getResultSet("select IDTIpoCategoria from JERARQUIA where correlativo = " + IDJerarquia + ";");
+                if (resultado.next()) {
+                    ID = resultado.getObject("IDTipoCategoria").toString();
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
             }
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
+            if (ID.equalsIgnoreCase("NULL")) {
+                IDCategoria = -1;
+            } else {
+                IDCategoria = Integer.parseInt(ID);
+            }
         }
-        if (ID.equalsIgnoreCase("NULL")) {
+        else
             IDCategoria = -1;
-        } else {
-            IDCategoria = Integer.parseInt(ID);
-        }
     }
 
     /**
@@ -209,39 +219,43 @@ public class frameTermino extends javax.swing.JFrame {
             }
         campoNombre.setText(nombre);
         campoDescripcion.setText(descripcion);
-        llenarComboCategoria();
-    }
-
-    public void llenarComboCategoria() {
-        comboCategoria.removeAllItems();
-        if( tieneCategorias() ){ //para q no se caiga con jerarquias no relacionadas a categorias
-            getIDCategoria();
-            comboCategoria.setVisible(true);
-            labelCategoria.setVisible(true);
-            if (IDCategoria < 0) {
-                comboCategoria.setVisible(false);
-                comboCategoria.setEditable(false);
-                labelCategoria.setVisible(false);
-                this.repaint();
-            } else {
-                try {
-                    ResultSet resultado = buscador.getResultSet("select ID, valor from INSTANCIACATEGORIA where IDTIpoCategoria = " + IDCategoria + ";");
-                    while (resultado.next()) {
-                        String ID = resultado.getObject("ID").toString();
-                        String valor = resultado.getObject("valor").toString();
-                        comboCategoria.addItem(makeObj(valor, Integer.parseInt(ID)));
-                    }
-                } catch (SQLException e) {
-                    System.out.println("*SQL Exception: *" + e.toString());
-                }
-            }
-        }
+        //Si esta asociada a categorias
+        if(conCategorias)
+            llenarComboCategoria();
         else{
             comboCategoria.setVisible(false);
             labelCategoria.setVisible(false);
         }
     }
 
+    public void llenarComboCategoria() {
+        comboCategoria.removeAllItems();
+        getIDCategoria();
+        comboCategoria.setVisible(true);
+        labelCategoria.setVisible(true);
+        if (IDCategoria < 0) {
+            comboCategoria.setVisible(false);
+            comboCategoria.setEditable(false);
+            labelCategoria.setVisible(false);
+            this.repaint();
+        } else {
+            try {
+                ResultSet resultado = buscador.getResultSet("select ID, valor from INSTANCIACATEGORIA where IDTIpoCategoria = " + IDCategoria + ";");
+                while (resultado.next()) {
+                    String ID = resultado.getObject("ID").toString();
+                    String valor = resultado.getObject("valor").toString();
+                    comboCategoria.addItem(makeObj(valor, Integer.parseInt(ID)));
+                }
+            } catch (SQLException e) {
+                System.out.println("*SQL Exception: *" + e.toString());
+            }
+        }
+    }
+
+    /**
+     * Hace una consulta revisando si la jerarquia esta asociada a categorias
+     * @return
+     */
     private boolean tieneCategorias(){
         String valor = "";
         try {
@@ -278,7 +292,7 @@ public class frameTermino extends javax.swing.JFrame {
         } else {
             try {
                 String [] generado = {"ID"};
-                ResultSet resultado = buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ (numNivel+1) + ", '"+sqlDate+"' )", generado);
+                ResultSet resultado = buscador.doUpdate("insert into NODO (nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values ('" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ numNivel + ", '"+sqlDate+"' )", generado);
                 if (resultado.next()) {
                     nuevoID = resultado.getInt(1);
                 }
@@ -349,7 +363,8 @@ public class frameTermino extends javax.swing.JFrame {
     private int IDCategoria;
     private int estado;
     private int numNivel;
+    private boolean conCategorias;
     ControladorBD buscador;
-    frameBuscarTerminos framePadre;
+    frameEditarTerminos framePadre;
     String nombreJer;
 }

@@ -1204,8 +1204,8 @@ public class GestionTipoCampoView extends FrameView {
     }//GEN-LAST:event_botonCancelarPanelActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        frameBuscarTerminos f;
-        f = new frameBuscarTerminos(valorNombreGeneral.getText()); //abre el tree view de la jerarquia
+        frameEditarTerminos f;
+        f = new frameEditarTerminos(valorNombreGeneral.getText()); //abre el tree view de la jerarquia
         f.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1273,6 +1273,8 @@ public class GestionTipoCampoView extends FrameView {
     private void paneJerarquiaComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_paneJerarquiaComponentShown
         Modelo miModelo = new Modelo();
         comboCategorias.setModel(new javax.swing.DefaultComboBoxModel(miModelo.getModeloDeCombo("select nombre, ID from TIPOCATEGORIA;")));
+        Modelo miModeloNiveles = new Modelo();
+        comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(miModeloNiveles.getModeloDeCombo("select nombre, ID from NOMBRENIVEL;")));
     }//GEN-LAST:event_paneJerarquiaComponentShown
 
     private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarNivelActionPerformed

@@ -21,14 +21,14 @@ import java.sql.*;
  */
 public class frameBusquedaNodos extends javax.swing.JFrame {
 
-    private frameBuscarTerminos madre;
+    private frameEditarTerminos madre;
 
     /** Creates new form frameBusqueda */
     public frameBusquedaNodos() {
         initComponents();
     }
 
-    public frameBusquedaNodos(frameBuscarTerminos frameMadre) {
+    public frameBusquedaNodos(frameEditarTerminos frameMadre) {
         initComponents();
         madre = frameMadre;
     }

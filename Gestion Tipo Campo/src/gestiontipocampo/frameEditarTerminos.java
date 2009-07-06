@@ -4,7 +4,7 @@
  */
 
 /*
- * frameBuscarTerminos.java
+ * frameEditarTerminos.java
  *
  * Created on 01/04/2009, 12:11:45 AM
  */
@@ -20,11 +20,15 @@ import javax.swing.JTree;
  *
  * @author Ricardo
  */
-public class frameBuscarTerminos extends javax.swing.JFrame {
+public class frameEditarTerminos extends javax.swing.JFrame {
 
-    /** Creates new form frameBuscarTerminos */
-    public frameBuscarTerminos() {
+    /** Creates new form frameEditarTerminos */
+    public frameEditarTerminos() {
         initComponents();
+        conCategorias = false;
+        conNombreNiveles = false;
+        paneCategoriaAsociada.setVisible(false);
+        paneNivelAsociado.setVisible(false);
         paneTree.setVisible(false);
         paneDatosNodo.setVisible(false);
         paneLista.setVisible(true);
@@ -32,8 +36,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         buscador = new ControladorBD();
     }
 
-    public frameBuscarTerminos(int i) {
+    public frameEditarTerminos(int i) {
         initComponents();
+        conCategorias = false;
+        conNombreNiveles = false;
+        paneCategoriaAsociada.setVisible(false);
+        paneNivelAsociado.setVisible(false);
         if (i == 1) { //alfabeticamente
             paneTree.setVisible(false);
             paneDatosNodo.setVisible(false);
@@ -44,7 +52,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     }
 
     //Constructor de vista por niveles
-    public frameBuscarTerminos(String nombreJer) {
+    public frameEditarTerminos(String nombreJer) {
         initComponents();
         paneTree.setVisible(true);
         paneDatosNodo.setVisible(true);
@@ -52,6 +60,10 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         buscador = new ControladorBD();
         panelBotones.setVisible(true);
         nombreJerarquia = nombreJer;
+        conCategorias = false;
+        conNombreNiveles = false;
+        paneCategoriaAsociada.setVisible(false);
+        paneNivelAsociado.setVisible(false);
         llenarTreeViewJerarquia(nombreJerarquia);
     }
 
@@ -67,9 +79,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         paneFondo = new javax.swing.JLayeredPane();
         paneDatosNodo = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        comboCategoriaNodo = new javax.swing.JComboBox();
+        paneCategoriaAsociada = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
+        valorCategoriaAsociada = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -79,9 +91,9 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         valFechaCreacionNodo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         valDescripcionNodo = new javax.swing.JTextField();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        paneNivelAsociado = new javax.swing.JLayeredPane();
         jLabel6 = new javax.swing.JLabel();
-        comboNivelNodo = new javax.swing.JComboBox();
+        valorNombreNivel = new javax.swing.JTextField();
         paneTree = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbolJerarquia = new javax.swing.JTree();
@@ -107,29 +119,29 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 
         paneDatosNodo.setName("paneDatosNodo"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameBuscarTerminos.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameEditarTerminos.class);
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setEnabled(false);
         jLabel2.setName("jLabel2"); // NOI18N
         jLabel2.setBounds(10, 10, 60, 14);
         paneDatosNodo.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setName("jLayeredPane2"); // NOI18N
-
-        comboCategoriaNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboCategoriaNodo.setEnabled(false);
-        comboCategoriaNodo.setName("comboCategoriaNodo"); // NOI18N
-        comboCategoriaNodo.setBounds(10, 30, 100, 20);
-        jLayeredPane2.add(comboCategoriaNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneCategoriaAsociada.setName("paneCategoriaAsociada"); // NOI18N
 
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setEnabled(false);
         jLabel1.setName("jLabel1"); // NOI18N
         jLabel1.setBounds(10, 10, 110, 14);
-        jLayeredPane2.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneCategoriaAsociada.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane2.setBounds(0, 300, 130, 100);
-        paneDatosNodo.add(jLayeredPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorCategoriaAsociada.setText(resourceMap.getString("valorCategoriaAsociada.text")); // NOI18N
+        valorCategoriaAsociada.setEnabled(false);
+        valorCategoriaAsociada.setName("valorCategoriaAsociada"); // NOI18N
+        valorCategoriaAsociada.setBounds(10, 30, 100, 20);
+        paneCategoriaAsociada.add(valorCategoriaAsociada, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        paneCategoriaAsociada.setBounds(0, 300, 130, 100);
+        paneDatosNodo.add(paneCategoriaAsociada, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setEnabled(false);
@@ -181,22 +193,21 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         valDescripcionNodo.setBounds(10, 80, 210, 20);
         paneDatosNodo.add(valDescripcionNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane1.setName("jLayeredPane1"); // NOI18N
+        paneNivelAsociado.setName("paneNivelAsociado"); // NOI18N
 
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setEnabled(false);
         jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setBounds(0, 10, 140, 14);
-        jLayeredPane1.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel6.setBounds(10, 10, 140, 14);
+        paneNivelAsociado.add(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        comboNivelNodo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        comboNivelNodo.setEnabled(false);
-        comboNivelNodo.setName("comboNivelNodo"); // NOI18N
-        comboNivelNodo.setBounds(0, 30, 100, 20);
-        jLayeredPane1.add(comboNivelNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        valorNombreNivel.setEnabled(false);
+        valorNombreNivel.setName("valorNombreNivel"); // NOI18N
+        valorNombreNivel.setBounds(10, 30, 100, 20);
+        paneNivelAsociado.add(valorNombreNivel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLayeredPane1.setBounds(10, 250, 120, 60);
-        paneDatosNodo.add(jLayeredPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        paneNivelAsociado.setBounds(0, 250, 120, 60);
+        paneDatosNodo.add(paneNivelAsociado, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         paneDatosNodo.setBounds(180, 0, 230, 390);
         paneFondo.add(paneDatosNodo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -343,7 +354,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         );
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesLayout.createSequentialGroup()
+            .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(BotonAgregarTermino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -400,7 +411,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             int IDJerarquia = getIDJerarquia(nombreJerarquia);
             int IDNodoPadre = getIDNodo(nombreNodo);
 
-            fram = new frameTermino(IDJerarquia, IDNodoPadre, 1, this, nombreJerarquia, nivel);
+            fram = new frameTermino(IDJerarquia, IDNodoPadre, 1, this, nombreJerarquia, nivel, conCategorias);
             fram.llenarDatos();
             fram.llenarComboCategoria();
 
@@ -482,18 +493,19 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
 }//GEN-LAST:event_BotonAgregarTerminoActionPerformed
 
     private void agregarNodo( ){
-        if( isJerarquiaVacia() )
-            agregarRaiz();
+        frameTermino fram;
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
+        if( isJerarquiaVacia() || node == null )
+            agregarNivelUno();
         else{
-            frameTermino fram;
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
             if (node != null) {
                 String nombreNodo = node.toString();
-                int nivel = node.getLevel() + 1; //Agrega uno xq utilizamos raiz cmo nivel 1
+                int nivel = node.getLevel() + 2; //Agrega dos xq es un nivel mas abajo y el arbol empieza en 0, no 1
+                System.out.println("numNivel nuevo: "+nivel);
                 int IDJerarquia = getIDJerarquia(nombreJerarquia);
                 int IDNodoPadre = getIDNodo(nombreNodo);
 
-                fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel);
+                fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel, conCategorias);
                 fram.llenarComboCategoria();
                 fram.setVisible(true);
             } else {
@@ -502,12 +514,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         }
     }
 
-    private void agregarRaiz( ){
+    private void agregarNivelUno( ){
         frameTermino fram;
         int nivel = 1; //Agrega uno xq utilizamos raiz cmo nivel 1
         int IDJerarquia = getIDJerarquia(nombreJerarquia);
         int IDNodoPadre = -1;
-        fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel);
+        fram = new frameTermino(IDJerarquia, IDNodoPadre, 0, this, nombreJerarquia, nivel, conCategorias);
         fram.llenarComboCategoria();
         fram.setVisible(true);
     }
@@ -528,17 +540,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private int getIDNodo(/*TreeNode[] path*/String nombre) {
         //TreeNode[] jerPath = path;
         String idNodo = "";
-        // String tempNodo = "";
-       /* try {
-        ResultSet resultado = buscador.getResultSet("select IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "';");
-        if (resultado.next()) {
-        idNodo = resultado.getObject("IDNodoRaiz").toString();
-        }
-        } catch (SQLException e) {
-        System.out.println("*SQL Exception: *" + e.toString());
-        }
-        for (int i = 1; i < jerPath.length; i++) {
-        tempNodo = idNodo;*/
         try {
             ResultSet resultado = buscador.getResultSet("select ID from NODO where nombre = '" + nombre + "';");
             if (resultado.next()) {
@@ -646,13 +647,13 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             String nombre = nodo.toString(); //nombre del nodo
             String valores = "";
             try {
-                ResultSet resultado = buscador.getResultSet("SELECT * from NODO where nombre = '" + nombre + " '");
+                ResultSet resultado = buscador.getResultSet("SELECT * from NODO where nombre = '" + nombre + "'");
                 if (resultado.next()) {
                     valores += resultado.getObject("descripcion").toString() + ";";
                     valores += resultado.getObject("fechaCreacion").toString() + ";";
                     valores += resultado.getObject("fechaUltimaModificacion").toString() + ";";
                     valores += resultado.getObject("numNivel").toString() + ";";
-                //valores += resultado.getObject("IDInstanciaCategoria").toString() + ";";
+                    valores += resultado.getObject("IDInstanciaCategoria") != null ? resultado.getObject("IDInstanciaCategoria").toString() + ";" : "-1;";
                 }
             } catch (SQLException e) {
                 System.out.println("*SQL Exception: *" + e.toString());
@@ -663,8 +664,55 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
             valFechaCreacionNodo.setText(val[1].substring(0, 11));
             valFechaModifNodo.setText(val[2].substring(0, 11));
             valNumNivelNodo.setText(val[3]);
+            //Si esta asociada a categorias
+            if( conCategorias ){
+                String categ = getInstanciaCategoria(val[4]);
+                valorCategoriaAsociada.setText(categ);
+            }
+            //Si esta asociada a nombres de nivel
+            if( conNombreNiveles ){
+                String nivel = getNombreNivel(val[3]);
+                valorNombreNivel.setText(nivel);
+            }
             //valNombreNodo.setText(val[0]);
         }
+    }
+
+    private String getInstanciaCategoria(String categ){
+        String miCateg = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("SELECT * from INSTANCIACATEGORIA where ID = '" + categ + "'");
+            if (resultado.next()) {
+                miCateg += resultado.getObject("valor").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception(instancia Categ): *" + e.toString());
+        }
+        return miCateg;
+
+    }
+
+
+    private String getNombreNivel(String nivel){
+        String miNivel = "";
+        String IDNivel = "";
+        try {
+            ResultSet resultado = buscador.getResultSet("SELECT * from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
+            if (resultado.next()) {
+                IDNivel += resultado.getObject("IDNombresNiveles").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception(instancia Nivel): *" + e.toString());
+        }
+        try {
+            ResultSet resultado = buscador.getResultSet("SELECT * from INSTANCIANOMBRENIVEL where IDNombreNivel = '"+ IDNivel +"' AND numNivel = '" + nivel + "'");
+            if (resultado.next()) {
+                miNivel += resultado.getObject("valor").toString();
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception(nombre Nivel): *" + e.toString());
+        }
+        return miNivel;
     }
 
     /**
@@ -674,7 +722,7 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new frameBuscarTerminos().setVisible(true);
+                new frameEditarTerminos().setVisible(true);
             }
         });
     }
@@ -704,7 +752,16 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
                     raizArbol.add(nodoTemp);
                 }
             }
-            //   }
+            //Revisa si la jerarquia esta asociada a categorias o tiene nombre de niveles, aqui para no usa una coneccion a BD innecesaria
+            if(valTrim[3].equalsIgnoreCase("true")){
+                conCategorias = true;
+                paneCategoriaAsociada.setVisible(true);
+            }
+            if(valTrim[4].equalsIgnoreCase("true")){
+                conNombreNiveles = true;
+                paneNivelAsociado.setVisible(true);
+            }
+
             JTree arbolnuevo = new JTree(raizArbol);
             arbolJerarquia.setModel(arbolnuevo.getModel());
         }
@@ -731,9 +788,11 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     public boolean isJerarquiaVacia() {
         String valor = "";
         try {
-            ResultSet resultado = buscador.getResultSet("select nombreJerarquia, IDNodoRaiz from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
+            ResultSet resultado = buscador.getResultSet("select nombreJerarquia, IDNodoRaiz, conCategorias from JERARQUIA where nombreJerarquia = '" + nombreJerarquia + "'");
             if (resultado.next()) {
                 valor += resultado.getObject("IDNodoRaiz").toString(); //IDRaiz
+                if( resultado.getBoolean("conCategorias") )
+                    conCategorias = true;
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
@@ -753,11 +812,13 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
         String valores = "";
         System.out.println(nombre);
         try {
-            ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, numeroDeNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "'");
+            ResultSet resultado = buscador.getResultSet("select correlativo, IDNodoRaiz, numeroDeNiveles, conCategorias, conNombreNiveles from JERARQUIA where nombreJerarquia = '" + nombre + "'");
             if (resultado.next()) {
                 valores += resultado.getObject("correlativo").toString() + ";"; //ID correlativo
                 valores += resultado.getObject("IDNodoRaiz").toString() + ";"; //IDRaiz
                 valores += resultado.getObject("NumeroDeNiveles").toString() + ";"; //num niveles
+                valores += resultado.getObject("conCategorias").toString() + ";"; //num niveles
+                valores += resultado.getObject("conNombreNiveles").toString() + ";"; //num niveles
             //System.out.println("valores: "+valores);
             }
         } catch (SQLException e) {
@@ -823,8 +884,6 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JButton botonListarHijos;
     private javax.swing.JButton botonListarSubarbol;
     private javax.swing.JButton botonModificar;
-    private javax.swing.JComboBox comboCategoriaNodo;
-    private javax.swing.JComboBox comboNivelNodo;
     private javax.swing.JTextField fieldBusqueda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -833,14 +892,14 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelBusqueda;
+    private javax.swing.JLayeredPane paneCategoriaAsociada;
     private javax.swing.JLayeredPane paneDatosNodo;
     private javax.swing.JLayeredPane paneFondo;
     private javax.swing.JLayeredPane paneLista;
+    private javax.swing.JLayeredPane paneNivelAsociado;
     private javax.swing.JLayeredPane paneTree;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JScrollPane scrollPaneJerarquia;
@@ -849,7 +908,12 @@ public class frameBuscarTerminos extends javax.swing.JFrame {
     private javax.swing.JTextField valFechaModifNodo;
     private javax.swing.JTextField valNombreNodo;
     private javax.swing.JTextField valNumNivelNodo;
+    private javax.swing.JTextField valorCategoriaAsociada;
+    private javax.swing.JTextField valorNombreNivel;
     // End of variables declaration//GEN-END:variables
     private ControladorBD buscador;
     String nombreJerarquia;
+    boolean conCategorias;
+    boolean conNombreNiveles;
+    String nombresNiveles;
 }
