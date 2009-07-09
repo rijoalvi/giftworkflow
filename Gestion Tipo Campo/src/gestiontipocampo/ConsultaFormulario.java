@@ -73,10 +73,10 @@ public abstract class ConsultaFormulario extends ControladorBD {
 
         //int tipoCampo;
         try {
-            resultado = this.getResultSet("select correlativo, nombre, IDTipoCampo from MIEMBROFORMULARIO where IDFormulario=" + idFormulario + " and IDTipoCampo <> 0;");
+            resultado = this.getResultSet("select correlativo, nombre, IDTipoCampo from MIEMBROFORMULARIO where IDFormulario=" + idFormulario + ";");//and IDTipoCampo > 0
             while (resultado.next()) {
                 //campos.add(resultado.getObject("nombre").toString());
-                campos.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
+                //campos.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
                 campos.add(new TipoCampo(0,resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
 
             }

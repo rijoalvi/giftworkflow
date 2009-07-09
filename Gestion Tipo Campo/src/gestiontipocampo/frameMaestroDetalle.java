@@ -387,6 +387,7 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
         maestroDetalle.formularioDetalle=new Formulario(((MiDato)this.comboFormularioMaestro.getSelectedItem()).ID,((MiDato)this.comboFormularioDetalle.getSelectedItem()).nombre);
         maestroDetalle.agregarNuevoMaestroDetalle();
+        this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
