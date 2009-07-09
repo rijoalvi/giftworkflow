@@ -20,17 +20,30 @@ import javax.swing.DefaultComboBoxModel;
 public class frameMaestroDetalle extends javax.swing.JFrame {
 
     /** Creates new form frameMaestroDetalle */
+    Vector modeloMaestroSeleccionados;
+    Vector modeloMaestroCamposDisponibles;
+
+    Vector modeloDetalleSeleccionados;
+    Vector modeloDetalleCamposDisponibles;
+
+    MaestroDetalle maestroDetalle;
     public Formulario formulario;
 
     public frameMaestroDetalle() {
         initComponents();
         formulario= new Formulario();
         llenarComboFormularios();
+        maestroDetalle = new MaestroDetalle();
+        modeloMaestroSeleccionados= new Vector();
+        modeloDetalleSeleccionados= new Vector();
+
     }
     private void llenarComboFormularios() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboFormularioMaestro.getModel();
         modelo.removeAllElements();
+        modelo2.removeAllElements();
         formulario = new Formulario();
         Vector forms = new Vector();
         forms = formulario.getTodosLosFormulario();
@@ -41,9 +54,10 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
             i++;
             nombreForm = forms.get(i).toString();
             modelo.addElement(new MiDato(nombreForm, id));
+            modelo2.addElement(new MiDato(nombreForm, id));
         }
         comboFormularioMaestro.setModel(modelo);
-        comboFormularioDetalle.setModel(modelo);
+        comboFormularioDetalle.setModel(modelo2);
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -62,16 +76,18 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         listaCamposMaestroDisponibles = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        listaCampoDetalleDisponibles = new javax.swing.JList();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList();
+        listaCamposMaestroSeleccionados = new javax.swing.JList();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList();
+        listaCamposDetalleSeleccionados = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameMaestroDetalle.class);
@@ -107,12 +123,12 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        listaCamposMaestroDisponibles.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         listaCamposMaestroDisponibles.setName("listaCamposMaestroDisponibles"); // NOI18N
+        listaCamposMaestroDisponibles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaCamposMaestroDisponiblesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaCamposMaestroDisponibles);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
@@ -120,23 +136,18 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        listaCampoDetalleDisponibles.setName("listaCampoDetalleDisponibles"); // NOI18N
+        listaCampoDetalleDisponibles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaCampoDetalleDisponiblesMouseClicked(evt);
+            }
         });
-        jList2.setName("jList2"); // NOI18N
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listaCampoDetalleDisponibles);
 
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
-        jList3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList3.setName("jList3"); // NOI18N
-        jScrollPane3.setViewportView(jList3);
+        listaCamposMaestroSeleccionados.setName("listaCamposMaestroSeleccionados"); // NOI18N
+        jScrollPane3.setViewportView(listaCamposMaestroSeleccionados);
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
@@ -146,16 +157,16 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
 
         jScrollPane4.setName("jScrollPane4"); // NOI18N
 
-        jList4.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList4.setName("jList4"); // NOI18N
-        jScrollPane4.setViewportView(jList4);
+        listaCamposDetalleSeleccionados.setName("listaCamposDetalleSeleccionados"); // NOI18N
+        jScrollPane4.setViewportView(listaCamposDetalleSeleccionados);
 
         jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
         jButton1.setName("jButton1"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
@@ -168,6 +179,17 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
+        jButton4.setName("jButton4"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setName("jLabel6"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,84 +197,107 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
                                 .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
                                 .addComponent(jButton3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(98, 98, 98))
+                            .addGap(16, 16, 16))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addComponent(jButton4)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
+                .addGap(102, 102, 102))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(444, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addGap(34, 34, 34))
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(8, 8, 8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel4))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel5)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
-                .addGap(42, 42, 42)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(445, 445, 445))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboFormularioMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFormularioMaestroActionPerformed
-     /*   // TODO add your handling code here:
+         /*    System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
+
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo.removeAllElements();
+
+        javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
+        modelo2.removeAllElements();
+        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
+
+        //formularioActual = new Formulario();
+
+        modeloMaestroCamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
+
+
+        comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
+        listaCamposMaestroDisponibles.setListData(modeloMaestroCamposDisponibles);
+        
+      /*
 System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
@@ -302,32 +347,87 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
 
         //formularioActual = new Formulario();
-        Vector forms = new Vector();
-        forms = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
-        /*int id;
-        String tipoCampo;
-        int tipoDeTipoCampo;
-        for (int i = 0; i < forms.size(); i++) {
-            id = Integer.parseInt(forms.get(i).toString());
-            i++;
-            tipoCampo = forms.get(i).toString();
-            i++;
-            tipoDeTipoCampo = Integer.parseInt(forms.get(i).toString());
-            modelo.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
-            modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
-        }*/
 
-        //comboCampoInicial.setModel(modelo);
-       // comboCampoFinal.setModel(modelo2);
+        modeloMaestroCamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
 
-        comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
-        listaCamposMaestroDisponibles.setListData(forms);
+
+        //comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
+        listaCamposMaestroDisponibles.setListData(modeloMaestroCamposDisponibles);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void comboFormularioMaestroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFormularioMaestroMouseReleased
 
     }//GEN-LAST:event_comboFormularioMaestroMouseReleased
+
+    private void listaCamposMaestroDisponiblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaCamposMaestroDisponiblesMouseClicked
+        // TODO add your handling code here:
+
+
+        modeloMaestroSeleccionados.add(listaCamposMaestroDisponibles.getSelectedValue().toString());
+
+        //listaCamposMaestroDisponibles.remove(0);
+        listaCamposMaestroSeleccionados.setListData(modeloMaestroSeleccionados);
+        int a=listaCamposMaestroDisponibles.getSelectedIndex();
+        System.out.print("aa: "+a);
+        //modeloMaestroSeleccionados.remove(a);
+        modeloMaestroCamposDisponibles.remove(a);
+        //listaCamposMaestroDisponibles.remo
+        listaCamposMaestroDisponibles.setListData(modeloMaestroCamposDisponibles);
+        //listaCamposMaestroDisponibles.ABORT
+
+    }//GEN-LAST:event_listaCamposMaestroDisponiblesMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        //maestroDetalle.formularioMaestro=(Formulario)this.comboFormularioMaestro.getSelectedItem();
+        //maestroDetalle.formularioDetalle=(Formulario)this.comboFormularioDetalle.getSelectedItem();
+
+        maestroDetalle.formularioMaestro= new Formulario(((MiDato)this.comboFormularioMaestro.getSelectedItem()).ID,((MiDato)this.comboFormularioMaestro.getSelectedItem()).nombre);
+        //maestroDetalle.formularioDetalle
+
+        maestroDetalle.formularioDetalle=new Formulario(((MiDato)this.comboFormularioMaestro.getSelectedItem()).ID,((MiDato)this.comboFormularioDetalle.getSelectedItem()).nombre);
+        maestroDetalle.agregarNuevoMaestroDetalle();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+                // TODO add your handling code here:
+        System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
+
+       /* javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo.removeAllElements();*/
+
+        javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
+        modelo2.removeAllElements();
+        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
+
+        //formularioActual = new Formulario();
+
+        modeloDetalleCamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioDetalle.getSelectedItem()).ID);
+
+
+        //comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
+        listaCampoDetalleDisponibles.setListData(modeloDetalleCamposDisponibles);
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void listaCampoDetalleDisponiblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaCampoDetalleDisponiblesMouseClicked
+        // TODO add your handling code here:
+
+
+        modeloDetalleSeleccionados.add(listaCampoDetalleDisponibles.getSelectedValue().toString());
+
+        //listaCamposMaestroDisponibles.remove(0);
+        listaCamposDetalleSeleccionados.setListData(modeloDetalleSeleccionados);
+        int a=listaCampoDetalleDisponibles.getSelectedIndex();
+        System.out.print("aa: "+a);
+        //modeloMaestroSeleccionados.remove(a);
+        modeloDetalleCamposDisponibles.remove(a);
+        //listaCamposMaestroDisponibles.remo
+        listaCampoDetalleDisponibles.setListData(modeloDetalleCamposDisponibles);
+        //listaCamposMaestroDisponibles.ABORT
+    }//GEN-LAST:event_listaCampoDetalleDisponiblesMouseClicked
 
     /**
     * @param args the command line arguments
@@ -346,19 +446,21 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList jList2;
-    private javax.swing.JList jList3;
-    private javax.swing.JList jList4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList listaCampoDetalleDisponibles;
+    private javax.swing.JList listaCamposDetalleSeleccionados;
     private javax.swing.JList listaCamposMaestroDisponibles;
+    private javax.swing.JList listaCamposMaestroSeleccionados;
     // End of variables declaration//GEN-END:variables
 
 }

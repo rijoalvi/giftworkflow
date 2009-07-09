@@ -185,3 +185,34 @@ CREATE TABLE FLUJO(
 
     PRIMARY KEY (correlativo)
 );/**/
+
+
+drop table MAESTRODETALLE;
+create table MAESTRODETALLE(
+    ID                      int auto_increment not null,--identity (1,1) NOT NULL,
+    IDFormularioMaestro     int not null,
+    nombreFormularioMaestro varchar(100),
+    IDFormularioDetalle     int not null,
+    nombreFormularioDetalle varchar(100),
+    descripción             varchar(100),
+    primary key(ID)
+);
+
+drop table CAMPOSMAESTRO;
+create table CAMPOSMAESTRO(
+    ID                  int auto_increment not null,--identity (1,1) NOT NULL,
+    IDMAESTRODETALLE    int not null,
+    IDCampo             int not null,
+    nombreCampo         varchar(100),
+    primary key(ID)
+);
+
+
+drop table CAMPOSDETALLE;
+create table CAMPOSDETALLE(
+    ID                  int auto_increment not null,--identity (1,1) NOT NULL,
+    IDMAESTRODETALLE    int not null,
+    IDCampo             int not null,
+    nombreCampo         varchar(100),
+    primary key(ID)
+);

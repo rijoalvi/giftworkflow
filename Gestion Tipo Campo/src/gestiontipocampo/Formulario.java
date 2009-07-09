@@ -12,12 +12,12 @@ import java.util.*;
  */
 public class Formulario {
 
-    protected int correlativo;
-    protected String nombre;
-    protected String descripcion;
-    protected String ultimaActualizacion;
-    protected ControladorBD buscador;
-    private SortedSet miembrosFormulario;
+    public int correlativo;
+    public String nombre;
+    public String descripcion;
+    public String ultimaActualizacion;
+    public ControladorBD buscador;
+    public SortedSet miembrosFormulario;
     public boolean ordenPersonalizado;
     public ConsultaFormulario formBD;
 
@@ -34,7 +34,10 @@ public class Formulario {
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
         miembrosFormulario = new TreeSet();
     }
-
+    public Formulario(int correlativo, String nombre) {
+        this.correlativo =correlativo;
+        this.nombre=nombre;
+    }
     /**
      *
      * @param nombre

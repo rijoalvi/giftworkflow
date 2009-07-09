@@ -77,6 +77,7 @@ public abstract class ConsultaFormulario extends ControladorBD {
             while (resultado.next()) {
                 //campos.add(resultado.getObject("nombre").toString());
                 campos.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
+                campos.add(new TipoCampo(0,resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
 
             }
         } catch (SQLException e) {

@@ -352,6 +352,7 @@ public class GestionTipoCampoView extends FrameView {
         btnAbrirComando = new javax.swing.JMenuItem();
         btnAbrirActividad = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -1044,6 +1045,10 @@ public class GestionTipoCampoView extends FrameView {
         });
         menuArchivo.add(jMenuItem1);
 
+        jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
+        jMenuItem8.setName("jMenuItem8"); // NOI18N
+        menuArchivo.add(jMenuItem8);
+
         jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
         jMenuItem7.setName("jMenuItem7"); // NOI18N
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -1643,6 +1648,7 @@ public class GestionTipoCampoView extends FrameView {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

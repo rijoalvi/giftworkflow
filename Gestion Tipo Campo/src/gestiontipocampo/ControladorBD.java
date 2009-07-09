@@ -244,6 +244,16 @@ public class ControladorBD {
         return consulta;
     }
 
+        public ConsultaMaestroDetalle getConsultaMaestroDetalle() {
+        ConsultaMaestroDetalle consulta = null;
+        if (CONEXION_MYSQL == conexionSeleccionada) {
+            consulta = new ConsultaMaestroDetalle();
+        } else {
+            consulta = new ConsultaMaestroDetalle();
+        }
+        return consulta;
+    }
+
     public ConsultaFlujo getConsultaFlujo() {
         ConsultaFlujo consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
