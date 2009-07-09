@@ -1047,6 +1047,11 @@ public class GestionTipoCampoView extends FrameView {
 
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         menuArchivo.add(jMenuItem8);
 
         jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
@@ -1355,6 +1360,12 @@ public class GestionTipoCampoView extends FrameView {
         frameMaestroDetalle miFrameMaestroDetalle = new frameMaestroDetalle();
         miFrameMaestroDetalle.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+                frameAbriMaestroDetalle miFrameAbriMaestroDetalle = new frameAbriMaestroDetalle();
+        miFrameAbriMaestroDetalle.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public void llenarDatosReadOnly(String nombre, int tipo) {
         //Trae todos los valores de la tabla TIPOCAMPO

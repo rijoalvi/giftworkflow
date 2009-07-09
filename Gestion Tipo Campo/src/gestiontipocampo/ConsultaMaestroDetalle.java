@@ -33,6 +33,25 @@ public class ConsultaMaestroDetalle extends ControladorBD{
 
     }
 
+    public Vector obtenerTodosLosMaestroDetalle() {
+
+        Vector campos = new Vector();
+        ResultSet resultado = null;
+
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select nombreFormularioMaestro, nombreFormularioDetalle from  MAESTRODETALLE;");
+            while (resultado.next()) {
+                campos.add(resultado.getObject("nombreFormularioMaestro").toString());
+                campos.add(resultado.getObject("nombreFormularioDetalle").toString());
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return campos;
+    }
+
+
 
     //public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
 
