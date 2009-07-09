@@ -27,3 +27,5 @@ para ultimo script tomar encuenta:
     En formulario, no se aplican las restricciones de los campos (tamano)
     Agregar jerarquia en formulario
     Arreglar comando
+
+BOton x, cierra todo
