@@ -15,13 +15,36 @@ package gestiontipocampo;
  *
  * @author ea61521
  */
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 public class frameMaestroDetalle extends javax.swing.JFrame {
 
     /** Creates new form frameMaestroDetalle */
+    public Formulario formulario;
+
     public frameMaestroDetalle() {
         initComponents();
+        formulario= new Formulario();
+        llenarComboFormularios();
     }
-
+    private void llenarComboFormularios() {
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo = (DefaultComboBoxModel) comboFormularioMaestro.getModel();
+        modelo.removeAllElements();
+        formulario = new Formulario();
+        Vector forms = new Vector();
+        forms = formulario.getTodosLosFormulario();
+        int id;
+        String nombreForm;
+        for (int i = 0; i < forms.size(); i++) {
+            id = Integer.parseInt(forms.get(i).toString());
+            i++;
+            nombreForm = forms.get(i).toString();
+            modelo.addElement(new MiDato(nombreForm, id));
+        }
+        comboFormularioMaestro.setModel(modelo);
+        comboFormularioDetalle.setModel(modelo);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -32,11 +55,11 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
-        jComboBox2 = new javax.swing.JComboBox();
+        comboFormularioMaestro = new javax.swing.JComboBox();
+        comboFormularioDetalle = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listaCamposMaestroDisponibles = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
@@ -48,6 +71,7 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         jList4 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameMaestroDetalle.class);
@@ -57,24 +81,39 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
+        comboFormularioMaestro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboFormularioMaestro.setName("comboFormularioMaestro"); // NOI18N
+        comboFormularioMaestro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                comboFormularioMaestroMouseReleased(evt);
+            }
+        });
+        comboFormularioMaestro.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboFormularioMaestroItemStateChanged(evt);
+            }
+        });
+        comboFormularioMaestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFormularioMaestroActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setName("jComboBox2"); // NOI18N
+        comboFormularioDetalle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboFormularioDetalle.setName("comboFormularioDetalle"); // NOI18N
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        listaCamposMaestroDisponibles.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setName("jList1"); // NOI18N
-        jScrollPane1.setViewportView(jList1);
+        listaCamposMaestroDisponibles.setName("listaCamposMaestroDisponibles"); // NOI18N
+        jScrollPane1.setViewportView(listaCamposMaestroDisponibles);
 
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
@@ -121,6 +160,14 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
         jButton2.setName("jButton2"); // NOI18N
 
+        jButton3.setText(resourceMap.getString("buttonDesplegarTiposCampoMaestro.text")); // NOI18N
+        jButton3.setName("buttonDesplegarTiposCampoMaestro"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,31 +177,26 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(5, 5, 5)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                                .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(98, 98, 98))
@@ -168,41 +210,124 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(comboFormularioDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                         .addGap(22, 22, 22)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(445, 445, 445))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void comboFormularioMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFormularioMaestroActionPerformed
+     /*   // TODO add your handling code here:
+System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID);        // TODO add your handling code here:
+
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo.removeAllElements();
+
+        javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
+        modelo2.removeAllElements();
+        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
+
+        //formularioActual = new Formulario();
+        Vector forms = new Vector();
+        forms = formulario.getMiembrosFormularioPorID(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
+        int id;
+        String tipoCampo;
+        int tipoDeTipoCampo;
+        for (int i = 0; i < forms.size(); i++) {
+            id = Integer.parseInt(forms.get(i).toString());
+            i++;
+            tipoCampo = forms.get(i).toString();
+            i++;
+            tipoDeTipoCampo = Integer.parseInt(forms.get(i).toString());
+            modelo.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+            modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+        }
+
+        //comboCampoInicial.setModel(modelo);
+       // comboCampoFinal.setModel(modelo2);
+
+        comboFormularioDetalle.setModel(modelo);*/
+
+}//GEN-LAST:event_comboFormularioMaestroActionPerformed
+
+    private void comboFormularioMaestroItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboFormularioMaestroItemStateChanged
+      
+    }//GEN-LAST:event_comboFormularioMaestroItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+  // TODO add your handling code here:
+               // TODO add your handling code here:
+        System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
+
+        javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
+        modelo.removeAllElements();
+
+        javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
+        modelo2.removeAllElements();
+        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
+
+        //formularioActual = new Formulario();
+        Vector forms = new Vector();
+        forms = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
+        /*int id;
+        String tipoCampo;
+        int tipoDeTipoCampo;
+        for (int i = 0; i < forms.size(); i++) {
+            id = Integer.parseInt(forms.get(i).toString());
+            i++;
+            tipoCampo = forms.get(i).toString();
+            i++;
+            tipoDeTipoCampo = Integer.parseInt(forms.get(i).toString());
+            modelo.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+            modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+        }*/
+
+        //comboCampoInicial.setModel(modelo);
+       // comboCampoFinal.setModel(modelo2);
+
+        comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
+        listaCamposMaestroDisponibles.setListData(forms);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void comboFormularioMaestroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFormularioMaestroMouseReleased
+
+    }//GEN-LAST:event_comboFormularioMaestroMouseReleased
 
     /**
     * @param args the command line arguments
@@ -216,16 +341,16 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox comboFormularioDetalle;
+    private javax.swing.JComboBox comboFormularioMaestro;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JList jList1;
     private javax.swing.JList jList2;
     private javax.swing.JList jList3;
     private javax.swing.JList jList4;
@@ -233,6 +358,7 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JList listaCamposMaestroDisponibles;
     // End of variables declaration//GEN-END:variables
 
 }

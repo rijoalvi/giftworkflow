@@ -12,7 +12,7 @@ package gestiontipocampo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
+
 import javax.swing.DefaultComboBoxModel;
 import java.util.*;
 

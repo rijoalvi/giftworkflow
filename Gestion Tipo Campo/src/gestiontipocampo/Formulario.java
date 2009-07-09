@@ -76,6 +76,10 @@ public class Formulario {
         Vector datos = this.formBD.obtenerMiembrosFormularios(idFormulario);
         return datos;
     }
+    public Vector getMiembrosFormularioPorIDSoloNombre(int idFormulario) {
+        Vector datos = this.formBD.obtenerMiembrosFormulariosSoloNombres(idFormulario);
+        return datos;
+    }
     /**
      * Carga y crea los miembros en miembrosFormulario
      */

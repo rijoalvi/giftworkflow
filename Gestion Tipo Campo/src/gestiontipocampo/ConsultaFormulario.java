@@ -66,7 +66,24 @@ public abstract class ConsultaFormulario extends ControladorBD {
         }
         return campos;
     }
+    public Vector obtenerMiembrosFormulariosSoloNombres(int idFormulario) {
 
+        Vector campos = new Vector();
+        ResultSet resultado = null;
+
+        //int tipoCampo;
+        try {
+            resultado = this.getResultSet("select correlativo, nombre, IDTipoCampo from MIEMBROFORMULARIO where IDFormulario=" + idFormulario + " and IDTipoCampo <> 0;");
+            while (resultado.next()) {
+                //campos.add(resultado.getObject("nombre").toString());
+                campos.add(new MiDato(resultado.getObject("nombre").toString(),Integer.parseInt(resultado.getObject("correlativo").toString())));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return campos;
+    }
     public abstract int guardaFormulario(String nombre, String descripcion);
 
     /**
