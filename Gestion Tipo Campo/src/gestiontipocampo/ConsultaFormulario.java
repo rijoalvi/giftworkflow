@@ -99,7 +99,36 @@ public abstract class ConsultaFormulario extends ControladorBD {
      * @param IDTP
      * @return El ID del nuevo miembro
      */
-    public abstract int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra);
+    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra){
+        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, IDCampo, tabIndex, estiloLetra, esEtiqueta) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + IDCC + ", " + tabIndex + ", '" + estiloLetra + "', '"+ (1 == 0) +"');");
+        int ID = -1;
+        try { //Se busca el ID de los datos que acaba de insertar
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = " + IDFormulario + ";");
+            if (resultado.next()) {
+                ID = resultado.getInt("correlativo");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return ID;
+    }
+
+    /**
+     * Agrega una etiqueta
+     */
+        public int agregarEtiq(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra){
+        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, IDCampo, tabIndex, estiloLetra, esEtiqueta) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + IDCC + ", " + tabIndex + ", '" + estiloLetra + "', '"+ (1 == 1) +"');");
+        int ID = -1;
+        try { //Se busca el ID de los datos que acaba de insertar
+            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = " + IDFormulario + ";");
+            if (resultado.next()) {
+                ID = resultado.getInt("correlativo");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return ID;
+    }
 
     /**
      * Borra un miembro formulario en la BD

@@ -1533,7 +1533,10 @@ public class frameFormulario extends javax.swing.JFrame {
      */
     private void agregarRotulo(String texto,int idCampo) {
         //Como es etiqueta uso tabIndex -1
-        IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
+        //Esta era la original
+        //IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
+        //la nueva:
+        IDEnUso = miFormulario.agregarEtiq(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
         agregarEtiqueta(texto, IDEnUso);
         llenarDatosMiembro(IDEnUso);
     }

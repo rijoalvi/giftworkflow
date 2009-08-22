@@ -138,6 +138,31 @@ public class Formulario {
     }
 
     /**
+     * Agrega una etiqueta
+     * @param nombre
+     * @param valX
+     * @param valY
+     * @param ancho
+     * @param alto
+     * @param tipoLetra
+     * @param color
+     * @param tamanoLetra
+     * @param IDTP
+     * @param IDCC
+     * @param tabIndex
+     * @param estiloLetra
+     * @return
+     */
+    public int agregarEtiq(String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra) {
+        //agrega en la BD el dato nuevo
+        int ID = formBD.agregarEtiq(this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, IDCC, tabIndex, estiloLetra);
+        //crea una instancia del miembro
+        MiembroFormulario datoNuevo = new MiembroFormulario(ID, this.correlativo, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTP, IDCC, tabIndex, estiloLetra);
+        miembrosFormulario.add(datoNuevo);
+        return ID;
+    }
+
+    /**
      * Borra a un componente del formulario
      * @param ID ID del componente a eliminar
      */

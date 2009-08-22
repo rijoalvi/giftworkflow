@@ -37,32 +37,6 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario {
     }
 
     /**
-     * Agrega un nuevo miembro formulario a la BD
-     * @param IDFormulario
-     * @param nombre
-     * @param valX
-     * @param valY
-     * @param tipoLetra
-     * @param color
-     * @param tamanoLetra
-     * @param IDTP
-     * @return El ID del nuevo miembro
-     */
-    public int agregarMiembro(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra) {
-        this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, IDCampo, tabIndex, estiloLetra) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + IDCC + ", " + tabIndex + ", '" + estiloLetra + "');");
-        int ID = -1;
-        try { //Se busca el ID de los datos que acaba de insertar
-            ResultSet resultado = this.getResultSet("select correlativo from MIEMBROFORMULARIO where nombre = '" + nombre + "' AND IDFormulario = " + IDFormulario + ";");
-            if (resultado.next()) {
-                ID = resultado.getInt("correlativo");
-            }
-        } catch (SQLException e) {
-            System.out.println("*SQL Exception: *" + e.toString());
-        }
-        return ID;
-    }
-
-    /**
      * Borra un miembro formulario en la BD
      * @param ID
      */
