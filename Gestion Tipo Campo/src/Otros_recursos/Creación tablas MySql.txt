@@ -103,10 +103,7 @@ create table MIEMBROFORMULARIO(
     tabIndex int,
     estiloLetra varchar(10),
     esEtiqueta varchar(6),
-    primary key(correlativo),
-	CONSTRAINT Miembro_Formulario_IDFormulario
-        FOREIGN KEY(IDFormulario)		REFERENCES FORMULARIO(correlativo)
-            ON DELETE CASCADE
+    primary key(correlativo)
 );
 
 
