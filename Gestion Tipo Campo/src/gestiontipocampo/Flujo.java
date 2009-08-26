@@ -45,6 +45,7 @@ public class Flujo {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.actividadRaiz = actividadRaiz;
+        //crea el flujo en la BD
         this.correlativo = consultaFlujo.nuevoFlujo(nombre, descripcion, actividadRaiz);
     }
 
@@ -61,6 +62,11 @@ public class Flujo {
         this.nombre = datos.get(0);
         this.descripcion = datos.get(1);
         this.actividadRaiz = Integer.parseInt(datos.get(2));
+    }
+
+    public void actualizarActividad(int IDActividad, int IDFlujo){
+        String consulta = "UPDATE ACTIVIDAD set correlativoFlujo = '" + IDFlujo + "' WHERE correlativo = " + IDActividad + ";";
+        consultaFlujo.actualizarActividad(consulta);
     }
 
     /**

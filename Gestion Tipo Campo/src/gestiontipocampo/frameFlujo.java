@@ -252,8 +252,11 @@ public class frameFlujo extends javax.swing.JFrame {
                 statusLabel.setText("Status: Ya existe Flujo con el nombre " + flujo.getNombre());
             }
             else{
-            flujo = new Flujo(campoNombre.getText(), campoDescripcionFlujo.getText(), ((MiDato) comboRaiz.getSelectedItem()).ID);
-            statusLabel.setText("Status: Se guardó Flujo con el nombre " + flujo.getNombre());
+                int IDActividad = ((MiDato) comboRaiz.getSelectedItem()).ID;
+                flujo = new Flujo(campoNombre.getText(), campoDescripcionFlujo.getText(), IDActividad);
+                statusLabel.setText("Status: Se guardó Flujo con el nombre " + flujo.getNombre());
+                int IDFlujo = flujo.getCorrelativo();
+                flujo.actualizarActividad(IDActividad, IDFlujo);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Hay Campos sin llenar ó la Actividad raíz no está seleccionada!");

@@ -38,6 +38,10 @@ public class ConsultaFlujo extends ControladorBD {
         return correlativo;
     }
 
+    public void actualizarActividad(String consulta) {
+        this.doUpdate(consulta);
+    }
+
     /**
      * Metodo que recupera datos de un flujo ya creado y devuelve los datos en un vector
      * @param correlativo

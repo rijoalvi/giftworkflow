@@ -1235,14 +1235,14 @@ public class frameFormulario extends javax.swing.JFrame {
                 //agrega el componente 1:
                 String temp = valorNombreBinario1.getText();
                 //Agrega todos los otros datos por defecto
-                IDEnUso = miFormulario.agregarMiembro(nombre + " " + temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, IDcampoConcreto, tabIndex++, "Plain");
+                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, IDcampoConcreto, tabIndex++, "Plain");
                 JRadioButton bin1 = agregarTipoBinario(temp, IDEnUso);
                 componentes[tabIndex - 1] = bin1;
                 idsComponentes[tabIndex - 1] = IDEnUso;
 
                 //agrega el componente 2:
                 temp = valorNombreBinario2.getText();
-                IDEnUso = miFormulario.agregarMiembro(nombre + " " + temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, IDcampoConcreto, tabIndex++, "Plain");
+                IDEnUso = miFormulario.agregarMiembro(temp, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 2, IDcampoConcreto, tabIndex++, "Plain");
                 JRadioButton bin2 = agregarTipoBinario(temp, IDEnUso);
                 componentes[tabIndex - 1] = bin2;
                 idsComponentes[tabIndex - 1] = IDEnUso;
