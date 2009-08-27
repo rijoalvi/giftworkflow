@@ -194,7 +194,6 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
 
-        comboCampoLlaveMaestro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCampoLlaveMaestro.setName("comboCampoLlaveMaestro"); // NOI18N
         comboCampoLlaveMaestro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -212,7 +211,6 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
             }
         });
 
-        comboCampoLLaveDetalle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCampoLLaveDetalle.setName("comboCampoLlaveMaestro"); // NOI18N
         comboCampoLLaveDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -462,6 +460,14 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
         //comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
         listaCampoDetalleDisponibles.setListData(modeloDetalleCamposDisponibles);
+
+
+        javax.swing.DefaultComboBoxModel modeloCamposDetalle = new javax.swing.DefaultComboBoxModel();
+        Vector vectorCampos = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboFormularioMaestro.getSelectedItem()).ID);
+        for (int i = 0; i < vectorCampos.size(); i++) {
+            modeloCamposDetalle.addElement(vectorCampos.get(i).toString());
+        }
+        comboCampoLLaveDetalle.setModel(modeloCamposDetalle);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
