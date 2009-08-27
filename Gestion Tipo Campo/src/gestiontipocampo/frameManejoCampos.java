@@ -1002,6 +1002,18 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 }//GEN-LAST:event_botonGuardarActionPerformed
 
+    private String quitarEspacios(String conEspacios){
+        //toma el nombre, pero puede q venga con espacios
+        conEspacios = conEspacios.trim();
+        String[] tmp = conEspacios.split(" ");
+        String sinEspacios = "";
+        for (int k = 0; k < tmp.length; ++k)
+        {
+            sinEspacios += tmp[k];
+        }
+        return sinEspacios;
+    }
+
     /**
      * Esta clase determina sobre cual frame se realiza la accion de guardar y
      * hace lo necesario para guardar los cambios en la base de datos.
@@ -1010,6 +1022,8 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         boolean existe = false;
         int ID = 0;
         String[] generados = {"correlativo"};
+        
+        this.valorNombreGeneral.setText(quitarEspacios(this.valorNombreGeneral.getText()));
         try { //Primero se busca en la base de datos si ya existe este campo
             ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
             //
