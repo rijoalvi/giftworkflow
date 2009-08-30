@@ -185,3 +185,4 @@ CREATE TABLE FLUJO(
 
     PRIMARY KEY (correlativo)
 );/**/
+

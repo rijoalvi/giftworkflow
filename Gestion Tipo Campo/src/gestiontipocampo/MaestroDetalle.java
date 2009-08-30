@@ -29,10 +29,7 @@ public class MaestroDetalle extends TipoCampo{//puse tipo campo porque ocupe bus
     public void agregarNuevoMaestroDetalle(){
         try{
         consultaMaestroDetalle=new ConsultaMaestroDetalle();
-
-        consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre);
-
-        
+        consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre);      
         //consultaMaestroDetalle.agregarMaestroDetalle(0, "", 0, " ");
         }
         catch(Exception e){

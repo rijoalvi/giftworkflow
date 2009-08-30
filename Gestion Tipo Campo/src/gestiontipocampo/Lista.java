@@ -102,7 +102,7 @@ public class Lista extends TipoCampo {
      * @param posicion
      */
     public void agregarMiembro(String nombreMiembro, int posicion) {
-       this.consultaLista.agregarMiembro(nombreMiembro, this.correlativo, posicion);
+       this.consultaLista.agregarMiembro(nombreMiembro, posicion, this.correlativo);
 
     }
 

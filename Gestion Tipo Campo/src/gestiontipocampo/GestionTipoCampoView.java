@@ -353,6 +353,7 @@ public class GestionTipoCampoView extends FrameView {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        NuevaSimetria = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         menuEdicion = new javax.swing.JMenu();
@@ -1058,6 +1059,15 @@ public class GestionTipoCampoView extends FrameView {
         });
         menuArchivo.add(jMenuItem7);
 
+        NuevaSimetria.setText(resourceMap.getString("NuevaSimetria.text")); // NOI18N
+        NuevaSimetria.setName("NuevaSimetria"); // NOI18N
+        NuevaSimetria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaSimetriaActionPerformed(evt);
+            }
+        });
+        menuArchivo.add(NuevaSimetria);
+
         jSeparator1.setName("jSeparator1"); // NOI18N
         menuArchivo.add(jSeparator1);
 
@@ -1362,6 +1372,12 @@ public class GestionTipoCampoView extends FrameView {
         miFrameAbriMaestroDetalle.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void NuevaSimetriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaSimetriaActionPerformed
+        // TODO add your handling code here:
+        frameSimetria miFrameSimetria = new frameSimetria();
+        miFrameSimetria.setVisible(true);
+    }//GEN-LAST:event_NuevaSimetriaActionPerformed
+
     public void llenarDatosReadOnly(String nombre, int tipo) {
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
@@ -1607,6 +1623,7 @@ public class GestionTipoCampoView extends FrameView {
          */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem NuevaSimetria;
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonActualizar;
     private javax.swing.JButton botonAgregarCategoria;

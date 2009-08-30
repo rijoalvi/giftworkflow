@@ -10,10 +10,12 @@ import java.util.*;
  * @author luiscarlosch
  */
 public class ConsultaListaSQLServer extends ConsultaLista {
+    @Override
     public void agregarMiembro(String nombreMiembro, int posicion, int correlativo) {//agregar elemento a la lista
         System.out.print("agregando...");
         this.doUpdate("insert into MIEMBROLISTA (valor,IDLista, numeroElemento) values ('" + nombreMiembro + "'," + correlativo + ", " + posicion + ");");
     }
+    @Override
     public Map<String, String> getInfoLista(int correlativo){
         Vector campos = new Vector();
         campos.add("correlativo");//diferencia con mysql

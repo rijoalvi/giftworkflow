@@ -214,3 +214,16 @@ create table CAMPOSDETALLE(
     nombreCampo         varchar(100),
     primary key(ID)
 );
+
+
+drop table SIMETRICOS;
+create table SIMETRICOS(
+    ID                  int auto_increment not null,--identity (1,1) NOT NULL,
+    IDForm1                 int,
+    IDForm2                 int,
+    ElementosForm1          varchar(300), --son los campos del form1 que se despelegaran en el form 2 separados por (,)
+    ElementosForm2          varchar(300), --son los campos del form2 que se despelegaran en el form 1 separados por (,)
+    IDTipoCampoLlavePrimariaForm1 int,
+    IDTipoCampoLlavePrimariaForm2 int,
+    PRIMARY KEY (ID)
+);

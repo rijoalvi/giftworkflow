@@ -299,4 +299,14 @@ public class ControladorBD {
         }
         return datos;
     }
+
+    public ConsultaSimetria getConsultaSimetria() {
+        ConsultaSimetria consulta = null;
+        if (CONEXION_MYSQL == conexionSeleccionada) {
+            consulta = new ConsultaSimetria();
+        } else {
+            consulta = new ConsultaSimetria();
+        }
+        return consulta;
+    }
 }

@@ -1183,7 +1183,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             case LISTA:
                 if (existe) {
                     conexionBD.doUpdate("Update TIPOCAMPO set descripcion = '" + this.valorNota.getText() + "' where correlativo = " + ID);
-                    conexionBD.doUpdate("Update LISTA set valorPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
+                    conexionBD.doUpdate("Update LISTA set IDMiembroPorDefecto = '" + this.valorPorDefectoLista.getText() + "' where correlativo = " + ID);
                 } else {
                     try {
                         ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 7 )", generados);
