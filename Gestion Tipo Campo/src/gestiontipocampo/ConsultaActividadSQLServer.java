@@ -101,7 +101,10 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
             resultado = this.getResultSet(consulta);
             if (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
-                campos.add(resultado.getObject("correlativoFlujo").toString());
+                if(resultado.getObject("correlativoFlujo") != null)
+                    campos.add(resultado.getObject("correlativoFlujo").toString());
+                else
+                    campos.add("-1");
                 campos.add(resultado.getObject("nombre").toString());
                 campos.add(resultado.getObject("descripcion").toString());
                 campos.add(resultado.getObject("tipo").toString());

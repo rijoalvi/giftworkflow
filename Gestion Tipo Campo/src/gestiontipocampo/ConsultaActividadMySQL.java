@@ -96,11 +96,17 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
         String consulta = "Select correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo From ACTIVIDAD Where correlativo = " + correlativo;
         ResultSet resultado = null;
         Vector campos = new Vector();
+        System.out.println("Voy a leer de actividad");
         try {
             resultado = this.getResultSet(consulta);
             if (resultado.next()) {
                 campos.add(resultado.getObject("correlativo").toString());
-                campos.add(resultado.getObject("correlativoFlujo").toString());
+                //System.out.println("voy a leer el ID flujo");
+                if(resultado.getObject("correlativoFlujo") != null)
+                    campos.add(resultado.getObject("correlativoFlujo").toString());
+                else
+                    campos.add("-1");
+                //System.out.println("acabo de leer el ID flujo");
                 campos.add(resultado.getObject("nombre").toString());
                 campos.add(resultado.getObject("descripcion").toString());
                 campos.add(resultado.getObject("tipo").toString());
@@ -113,8 +119,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
                 campos.add(resultado.getObject("requiereRevision").toString());
                 campos.add(resultado.getObject("hitoDeControl").toString());
                 campos.add(resultado.getObject("paralelo").toString());
-                campos.add(resultado.getObject("exclusivo").toString());
-                campos.add(resultado.getObject("obligatorio").toString());
+                campos.add(resultado.getObject("exclusivo").toString());               
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());

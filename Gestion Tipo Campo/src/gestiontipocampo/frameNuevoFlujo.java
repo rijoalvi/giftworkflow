@@ -28,9 +28,8 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
     public frameNuevoFlujo() {
         initComponents();
 
-        miActividad = new Actividad();
+//        miActividad = new Actividad();
         todasActividades = new TreeSet();
-        todosComandos = new TreeSet();
 
         //Llena el combo con todas las actividades existentes
         llenarComboAAgregarActv();
@@ -153,8 +152,7 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
                             .addComponent(botonAgregarComponente, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(comboComponenteAAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(490, 490, 490))
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,11 +165,9 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
                                     .addComponent(botonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(34, 34, 34)
                                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(115, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(703, Short.MAX_VALUE))))
+                                .addComponent(fieldDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel2))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,37 +227,66 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
 
    
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        miActividad.eliminar();
+//        miActividad.eliminar();
         this.dispose();
 }//GEN-LAST:event_botonCancelarActionPerformed
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        int size = listaComponentes.getModel().getSize();
+        //Si se agregaron actividades, si no, no hace nada
+        if (size > 0) {
+            Object[] arregloActividades = todasActividades.toArray();
+            String nombreFlujo = fieldNombre.getText();
+            String descripcionFlujo = fieldDescripcion.getText();
+            Actividad temp = ((Actividad)(arregloActividades[0]));
+
+            //crea el flujo
+            Flujo miFlujo = new Flujo(nombreFlujo, descripcionFlujo, temp.getCorrelativo());
+            
+            //Va actualizando todas las actividades para q se relacionen con el flujo
+            miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo());
+            for(int i = 1; i < size; ++i){
+                temp = ((Actividad)(arregloActividades[i]));
+                miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo());
+            }
+             //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
+             //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
+            this.dispose();
+        }
+
+
+
+        /* COSAS VIEJAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //Se guardan todos los datos en la BD
-        miActividad.setDescripcion(fieldDescripcion.getText());
-        miActividad.setNombre(fieldNombre.getText());
+//        miActividad.setDescripcion(fieldDescripcion.getText());
+//        miActividad.setNombre(fieldNombre.getText());
         
         //estos campos solo se guardan si existen valores agregados
         int size = listaComponentes.getModel().getSize();
         if (size > 0) {
-            miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
-            miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
+         //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
+         //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
         }
-        miActividad.actualizar();
-
-
+//        miActividad.actualizar();
         this.dispose();
+        */
+
+        
 }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void botonAgregarComponenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarComponenteActionPerformed
         //Si se agregan Comandos
         int id = ((MiDato) (comboComponenteAAgregar.getSelectedItem())).ID;
-        System.out.println("id> " + id);
+        System.out.println("id: " + id);
+        //Crea un objeto Actividada a partir d la actividad ya creada anterirmente
         Actividad tmp = new Actividad(id);
-        //Igual que arriba :p
-        //creo q hace falta un get miembro en la clase actividad...
-        //y seria mejor tamb un get num Miembros...
-        miActividad.agregarActividadHija(tmp, 0, true /*TEMP*/);
+        
+        //Se actualiza a cual flujo pertenece?¿ creo q no, hasta el final
+        //tmp.setCorrelativoFlujo(id);
+        //Agrega la actividad agregada a la lista de actividades, para q al final se relacionen con el flujo
+        todasActividades.add(tmp);
 
+        //miActividad.agregarActividadHija(tmp, 0, true /*TEMP*/);
         
         //Cambia los valores de la lista
         DefaultListModel modelo = new DefaultListModel();
@@ -286,17 +311,19 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
             }
         }
         listaComponentes.setModel(modelo);
-        miActividad.desvincularActividad(new Actividad(((MiDato) (dato)).ID));
+        //miActividad.desvincularActividad(new Actividad(((MiDato) (dato)).ID));
+        todasActividades.remove(new Actividad(((MiDato) (dato)).ID));
     }//GEN-LAST:event_botonExcluirActionPerformed
 
     private void comboComponenteAAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboComponenteAAgregarActionPerformed
-
+       /*
+        //CREO Q ESTO NO ES NECESARIO. Beto
         if (((MiDato) comboComponenteAAgregar.getSelectedItem()) != null) {
             int idAct = ((MiDato) comboComponenteAAgregar.getSelectedItem()).ID;
             Actividad a = new Actividad(idAct);
             String desc = a.getDescripcion();
         }
-
+*/
     }//GEN-LAST:event_comboComponenteAAgregarActionPerformed
 
     /**
@@ -333,5 +360,4 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     private Actividad miActividad;
     private SortedSet todasActividades;
-    private SortedSet todosComandos;
 }

@@ -11,7 +11,7 @@ import java.util.Vector;
  *
  * @author admin
  */
-public class Actividad {
+public class Actividad implements Comparable{
 
     private ControladorBD buscador;
     private ConsultaActividad consultaActividad; //controlador BD de Actividad
@@ -31,6 +31,13 @@ public class Actividad {
     private boolean paralelo;
     private boolean exclusivo;
     private boolean obligatorio;
+
+    @Override
+    public int compareTo(Object o) {
+        if( this.correlativo == ((Actividad)(o)).correlativo)
+            return 0;
+        return 1;
+    }
 
     /**
      * Constructor esSimple de Actividad, todos los datos estan inicializado en -1, "", false.
@@ -118,7 +125,6 @@ public class Actividad {
         this.hitoDeControl = hitoDeControl;
         this.paralelo = paralelo;
         this.exclusivo = exclusivo;
-        this.obligatorio = obligatorio;
         this.fechaActualizacion = new Date();
     }
 
