@@ -256,7 +256,7 @@ public class frameFlujo extends javax.swing.JFrame {
                 flujo = new Flujo(campoNombre.getText(), campoDescripcionFlujo.getText(), IDActividad);
                 statusLabel.setText("Status: Se guardó Flujo con el nombre " + flujo.getNombre());
                 int IDFlujo = flujo.getCorrelativo();
-                flujo.actualizarActividad(IDActividad, IDFlujo);
+                flujo.actualizarActividad(IDActividad, IDFlujo, 0);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Hay Campos sin llenar ó la Actividad raíz no está seleccionada!");

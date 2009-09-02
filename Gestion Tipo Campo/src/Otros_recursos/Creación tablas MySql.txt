@@ -147,7 +147,7 @@ CREATE TABLE ACTIVIDAD(
     hitoDeControl       varchar(6),
     paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
     exclusivo                  varchar(6),          --que puede ejecutarse solo uno, solamente en caso de que son paralelos
-
+    ordenEjecucion      int, --indica dentro de un flujo en q orden se deben ejecutar las actvs
     PRIMARY KEY (correlativo)
 );/**/
 

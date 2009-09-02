@@ -64,8 +64,8 @@ public class Flujo {
         this.actividadRaiz = Integer.parseInt(datos.get(2));
     }
 
-    public void actualizarActividad(int IDActividad, int IDFlujo){
-        String consulta = "UPDATE ACTIVIDAD set correlativoFlujo = '" + IDFlujo + "' WHERE correlativo = " + IDActividad + ";";
+    public void actualizarActividad(int IDActividad, int IDFlujo, int ordenEjecucion){
+        String consulta = "UPDATE ACTIVIDAD set correlativoFlujo = '" + IDFlujo + "', ordenEjecucion = '"+ ordenEjecucion +"' WHERE correlativo = " + IDActividad + ";";
         consultaFlujo.actualizarActividad(consulta);
     }
 

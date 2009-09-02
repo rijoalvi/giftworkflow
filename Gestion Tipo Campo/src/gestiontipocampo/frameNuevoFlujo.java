@@ -244,10 +244,10 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
             Flujo miFlujo = new Flujo(nombreFlujo, descripcionFlujo, temp.getCorrelativo());
             
             //Va actualizando todas las actividades para q se relacionen con el flujo
-            miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo());
+            miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo(), 0);
             for(int i = 1; i < size; ++i){
                 temp = ((Actividad)(arregloActividades[i]));
-                miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo());
+                miFlujo.actualizarActividad(temp.getCorrelativo(), miFlujo.getCorrelativo(), i);
             }
              //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
              //   miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
