@@ -81,15 +81,20 @@ public class frameSimetria extends javax.swing.JFrame {
         listaCamposForm2Seleccionados = new javax.swing.JList();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnCargarCamposForm1 = new javax.swing.JButton();
+        btnCargarCamposForm2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        comboCampoLlaveForm1 = new javax.swing.JComboBox();
+        comboCampoLlaveForm2 = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("Form.title")); // NOI18N
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        jLabel1.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel1.text")); // NOI18N
+        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
         comboForm1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -113,7 +118,7 @@ public class frameSimetria extends javax.swing.JFrame {
         comboForm2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboForm2.setName("comboForm2"); // NOI18N
 
-        jLabel2.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel2.text")); // NOI18N
+        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -126,7 +131,7 @@ public class frameSimetria extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listaCamposForm1Disponibles);
 
-        jLabel3.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel3.text")); // NOI18N
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
@@ -144,10 +149,10 @@ public class frameSimetria extends javax.swing.JFrame {
         listaCamposForm1Seleccionados.setName("listaCamposForm1Seleccionados"); // NOI18N
         jScrollPane3.setViewportView(listaCamposForm1Seleccionados);
 
-        jLabel4.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel4.text")); // NOI18N
+        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jLabel5.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel5.text")); // NOI18N
+        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
         jScrollPane4.setName("jScrollPane4"); // NOI18N
@@ -155,7 +160,7 @@ public class frameSimetria extends javax.swing.JFrame {
         listaCamposForm2Seleccionados.setName("listaCamposForm2Seleccionados"); // NOI18N
         jScrollPane4.setViewportView(listaCamposForm2Seleccionados);
 
-        btnAceptar.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("btnAceptar.text")); // NOI18N
+        btnAceptar.setText(resourceMap.getString("btnAceptar.text")); // NOI18N
         btnAceptar.setName("btnAceptar"); // NOI18N
         btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -163,107 +168,155 @@ public class frameSimetria extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("btnCancelar.text")); // NOI18N
+        btnCancelar.setText(resourceMap.getString("btnCancelar.text")); // NOI18N
         btnCancelar.setName("btnCancelar"); // NOI18N
 
-        jButton3.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("buttonDesplegarTiposCampoMaestro.text")); // NOI18N
-        jButton3.setName("buttonDesplegarTiposCampoMaestro"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarCamposForm1.setText(resourceMap.getString("buttonDesplegarTiposCampoMaestro.text")); // NOI18N
+        btnCargarCamposForm1.setName("buttonDesplegarTiposCampoMaestro"); // NOI18N
+        btnCargarCamposForm1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnCargarCamposForm1ActionPerformed(evt);
             }
         });
 
-        jButton4.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnCargarCamposForm2.setText(resourceMap.getString("btnCargarCamposForm2.text")); // NOI18N
+        btnCargarCamposForm2.setName("btnCargarCamposForm2"); // NOI18N
+        btnCargarCamposForm2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnCargarCamposForm2ActionPerformed(evt);
             }
         });
 
-        jLabel6.setText(org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameSimetria.class).getString("jLabel6.text")); // NOI18N
+        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
         jLabel6.setName("jLabel6"); // NOI18N
+
+        comboCampoLlaveForm1.setName("comboCampoLlaveForm1"); // NOI18N
+        comboCampoLlaveForm1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                comboCampoLlaveForm1MouseReleased(evt);
+            }
+        });
+        comboCampoLlaveForm1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCampoLlaveForm1ItemStateChanged(evt);
+            }
+        });
+        comboCampoLlaveForm1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCampoLlaveForm1ActionPerformed(evt);
+            }
+        });
+
+        comboCampoLlaveForm2.setName("comboCampoLlaveForm2"); // NOI18N
+        comboCampoLlaveForm2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                comboCampoLlaveForm2MouseReleased(evt);
+            }
+        });
+        comboCampoLlaveForm2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCampoLlaveForm2ItemStateChanged(evt);
+            }
+        });
+        comboCampoLlaveForm2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCampoLlaveForm2ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText(resourceMap.getString("jLabel7.text")); // NOI18N
+        jLabel7.setName("jLabel7"); // NOI18N
+
+        jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
+        jLabel8.setName("jLabel8"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(481, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAceptar)
+                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(comboForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(jButton3))
+                            .addComponent(jLabel3)
                             .addGap(16, 16, 16))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                     .addComponent(jLabel4)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(comboCampoLlaveForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCargarCamposForm1)))
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel8)
+                    .addComponent(comboCampoLlaveForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(comboForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jButton4)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
-                .addGap(102, 102, 102))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(444, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAceptar)
-                .addGap(66, 66, 66))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCargarCamposForm2))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboForm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboForm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboForm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCargarCamposForm1))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel7)
+                        .addGap(3, 3, 3)
+                        .addComponent(comboCampoLlaveForm1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel3)
+                        .addGap(8, 8, 8)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addGap(9, 9, 9)
                         .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboForm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCargarCamposForm2))
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel8)
+                        .addGap(3, 3, 3)
+                        .addComponent(comboCampoLlaveForm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAceptar)
                     .addComponent(btnCancelar))
@@ -328,7 +381,7 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
       
     }//GEN-LAST:event_comboForm1ItemStateChanged
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnCargarCamposForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCamposForm1ActionPerformed
   // TODO add your handling code here:
                // TODO add your handling code here:
         System.out.println("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID+" nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
@@ -338,17 +391,22 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
         javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
         modelo2.removeAllElements();
-        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
 
-        //formularioActual = new Formulario();
+        /***********Se llena la lista de los campos disponibles****************/
 
         modeloForm1CamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm1.getSelectedItem()).ID);
-
-
-        //comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
         listaCamposForm1Disponibles.setListData(modeloForm1CamposDisponibles);
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+        /***********Se llena el combo de campos llave****************/
+
+        javax.swing.DefaultComboBoxModel modeloCamposForm1 = new javax.swing.DefaultComboBoxModel();
+
+        Vector vectorCampos = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm1.getSelectedItem()).ID);
+
+        for (int i = 0; i < vectorCampos.size(); i++) {
+            modeloCamposForm1.addElement(vectorCampos.get(i)/*.toString()*/);
+        }
+        comboCampoLlaveForm1.setModel(modeloCamposForm1);
+    }//GEN-LAST:event_btnCargarCamposForm1ActionPerformed
 
     private void comboForm1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboForm1MouseReleased
 
@@ -383,31 +441,32 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         simetria.formulario2= new Formulario(((MiDato)this.comboForm2.getSelectedItem()).ID,((MiDato)this.comboForm2.getSelectedItem()).nombre);
         simetria.vectorCamposForm1Seleccionados = this.modeloForm1Seleccionados;
         simetria.vectorCamposForm2Seleccionados = this.modeloForm2Seleccionados;
+        simetria.setIDCampoLlaveForm1((TipoCampo)this.comboCampoLlaveForm1.getSelectedItem());
+        simetria.setIDCampoLlaveForm2((TipoCampo)this.comboCampoLlaveForm2.getSelectedItem());
         simetria.agregarSimetria();
         this.dispose();
     }//GEN-LAST:event_btnAceptarMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnCargarCamposForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCamposForm2ActionPerformed
         // TODO add your handling code here:
                 // TODO add your handling code here:
         System.out.print("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
 
-       /* javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
-        modelo.removeAllElements();*/
-
         javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
         modelo2.removeAllElements();
-        //comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz
-
-        //formularioActual = new Formulario();
-
         modeloForm2CamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm2.getSelectedItem()).ID);
-
-
-        //comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
         listaCampoForm2Disponibles.setListData(modeloForm2CamposDisponibles);
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+        /***********Se llena el combo de campos llave****************/
+
+        javax.swing.DefaultComboBoxModel modeloCamposForm2 = new javax.swing.DefaultComboBoxModel();
+        Vector vectorCampos = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm2.getSelectedItem()).ID);
+
+        for (int i = 0; i < vectorCampos.size(); i++) {
+            modeloCamposForm2.addElement(vectorCampos.get(i)/*.toString()*/);
+        }
+        comboCampoLlaveForm2.setModel(modeloCamposForm2);
+    }//GEN-LAST:event_btnCargarCamposForm2ActionPerformed
 
     private void listaCampoForm2DisponiblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaCampoForm2DisponiblesMouseClicked
         // TODO add your handling code here:
@@ -426,6 +485,30 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         //listaCamposMaestroDisponibles.ABORT
     }//GEN-LAST:event_listaCampoForm2DisponiblesMouseClicked
 
+    private void comboCampoLlaveForm1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm1MouseReleased
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm1MouseReleased
+
+    private void comboCampoLlaveForm1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm1ItemStateChanged
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm1ItemStateChanged
+
+    private void comboCampoLlaveForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm1ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm1ActionPerformed
+
+    private void comboCampoLlaveForm2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm2MouseReleased
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm2MouseReleased
+
+    private void comboCampoLlaveForm2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm2ItemStateChanged
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm2ItemStateChanged
+
+    private void comboCampoLlaveForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCampoLlaveForm2ActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_comboCampoLlaveForm2ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -440,16 +523,20 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnCargarCamposForm1;
+    private javax.swing.JButton btnCargarCamposForm2;
+    private javax.swing.JComboBox comboCampoLlaveForm1;
+    private javax.swing.JComboBox comboCampoLlaveForm2;
     private javax.swing.JComboBox comboForm1;
     private javax.swing.JComboBox comboForm2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

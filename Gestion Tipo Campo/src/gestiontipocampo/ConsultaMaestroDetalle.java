@@ -19,18 +19,21 @@ public class ConsultaMaestroDetalle extends ControladorBD{
 
     }
 
-    public void agregarMaestroDetalle(int IDFormularioMaestro, String nombreFormularioMaestro, int IDFormularioDetalle, String nombreFormularioDetalle){
-
+    public int agregarMaestroDetalle(int IDFormularioMaestro, String nombreFormularioMaestro, int IDFormularioDetalle, String nombreFormularioDetalle){
+        int id = -1;
+        String[] incremental = new String[1];
+        incremental[0] = "ID";
         try { //Se busca el ID de los datos que acaba de insertar
 
-            this.doUpdate("INSERT INTO MAESTRODETALLE (IDFormularioMaestro,nombreFormularioMaestro,IDFormularioDetalle,nombreFormularioDetalle) VALUES ("+IDFormularioMaestro+",'"+nombreFormularioMaestro+"',"+IDFormularioDetalle+",'"+nombreFormularioDetalle+"');");
+            resultado =this.doUpdate("INSERT INTO MAESTRODETALLE (IDFormularioMaestro,nombreFormularioMaestro,IDFormularioDetalle,nombreFormularioDetalle) VALUES ("+IDFormularioMaestro+",'"+nombreFormularioMaestro+"',"+IDFormularioDetalle+",'"+nombreFormularioDetalle+"');", incremental);
             System.out.println("* agregado MaestroDetalle: " +nombreFormularioMaestro+" ."+nombreFormularioDetalle );
-
-
+            while (resultado.next()) {
+                id = resultado.getInt(1);
+            }
         } catch (Exception e) {
             System.out.println("* Exception: *" + e.toString());
         }
-
+        return id;
     }
 
     public Vector obtenerTodosLosMaestroDetalle() {
@@ -70,6 +73,36 @@ public class ConsultaMaestroDetalle extends ControladorBD{
             System.out.println("*SQL Exception: *" + e.toString());
         }
         return hijas;
+    }
+
+    void agregarCamposEnRelacionMaestroDetalle(int IDMaestroDetalle, Vector vectorCamposDetalleSeleccionados, Vector vectorCamposMaestroSeleccionados) {
+        /*int id = -1;
+        String[] incremental = new String[1];
+        incremental[0] = "ID";*/
+        try { //Se busca el ID de los datos que acaba de insertar
+            String consulta = "";
+
+            TipoCampo dato;
+            for(int i = 0; i < vectorCamposDetalleSeleccionados.size();i++){
+                dato = (TipoCampo)vectorCamposDetalleSeleccionados.get(i);
+                consulta += "INSERT INTO CAMPOSDETALLE (IDMaestroDetalle, IDCampo, nombreCampo) VALUES ("+IDMaestroDetalle+
+                            ","+dato.correlativo+",'"+dato.nombre+"');"+'\n';
+            }
+
+            for(int i = 0; i < vectorCamposMaestroSeleccionados.size();i++){
+                dato = (TipoCampo)vectorCamposMaestroSeleccionados.get(i);
+                consulta += "INSERT INTO CAMPOSMAESTRO (IDMaestroDetalle, IDCampo, nombreCampo) VALUES ("+IDMaestroDetalle+
+                            ","+dato.correlativo+",'"+dato.nombre+"');"+'\n';
+            }
+            this.doUpdate(consulta);
+            /*System.out.println("* agregado MaestroDetalle: " +nombreFormularioMaestro+" ."+nombreFormularioDetalle );
+            while (resultado.next()) {
+                id = resultado.getInt(1);
+            }*/
+        } catch (Exception e) {
+            System.out.println("* Exception: *" + e.toString());
+        }
+        //return id;
     }
 
 

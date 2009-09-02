@@ -12,6 +12,8 @@ public class Simetria extends TipoCampo{//puse tipo campo porque ocupe buscador,
     public String nombreForm1;
     public String nombreForm2;
 
+    private int IDCampoLlaveForm1;
+    private int IDCampoLlaveForm2;
     Vector vectorCamposForm1Seleccionados;
     Vector vectorCamposForm2Seleccionados;
     ConsultaSimetria consultaSimetria;
@@ -39,7 +41,7 @@ public class Simetria extends TipoCampo{//puse tipo campo porque ocupe buscador,
             System.out.println(((TipoCampo)vectorCamposForm2Seleccionados.get(i)).correlativo + ","+((TipoCampo)vectorCamposForm2Seleccionados.get(i)).nombre);
         }
         camposForm2 = camposForm2.substring(0, camposForm2.length()-1);
-        consultaSimetria.agregarSimetria(formulario1.correlativo, formulario2.correlativo, camposForm1, camposForm2);
+        consultaSimetria.agregarSimetria(formulario1.correlativo, formulario2.correlativo, camposForm1, camposForm2,this.IDCampoLlaveForm1,this.IDCampoLlaveForm2);
 
         
         //consultaMaestroDetalle.agregarMaestroDetalle(0, "", 0, " ");
@@ -60,4 +62,13 @@ public class Simetria extends TipoCampo{//puse tipo campo porque ocupe buscador,
         cadena="["+this.nombreForm1+"]-["+this.nombreForm2+"]";
         return cadena;
     }
+
+    void setIDCampoLlaveForm1(TipoCampo campoLlaveForm1) {
+        this.IDCampoLlaveForm1 = campoLlaveForm1.correlativo;
+    }
+    void setIDCampoLlaveForm2(TipoCampo campoLlaveForm2) {
+        this.IDCampoLlaveForm2 = campoLlaveForm2.correlativo;
+    }
+
+
 }

@@ -19,18 +19,22 @@ public class MaestroDetalle extends TipoCampo{//puse tipo campo porque ocupe bus
     Vector vectorCamposMaestroSeleccionados;
     Vector vectorCamposDetalleSeleccionados;
     ConsultaMaestroDetalle consultaMaestroDetalle;
+
     public MaestroDetalle(){
         consultaMaestroDetalle = buscador.getConsultaMaestroDetalle();
     }
+
     public MaestroDetalle(String nombreMaestro,String nombreDetalle){
         this.nombreMaestro=nombreMaestro;
         this.nombreDetalle=nombreDetalle;
     }
+
     public void agregarNuevoMaestroDetalle(){
         try{
-        consultaMaestroDetalle=new ConsultaMaestroDetalle();
-        consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre);      
-        //consultaMaestroDetalle.agregarMaestroDetalle(0, "", 0, " ");
+            consultaMaestroDetalle=new ConsultaMaestroDetalle();
+            int idMaestroDetalle = consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre);
+            consultaMaestroDetalle.agregarCamposEnRelacionMaestroDetalle(idMaestroDetalle,vectorCamposDetalleSeleccionados,vectorCamposMaestroSeleccionados);
+
         }
         catch(Exception e){
             System.out.print("error: "+e.toString());

@@ -16,11 +16,12 @@ public class ConsultaSimetria extends ControladorBD{
 
     }
 
-    public void agregarSimetria(int IDForm1,  int IDForm2,String elementosForm1, String elementosForm2){
+    public void agregarSimetria(int IDForm1,  int IDForm2,String elementosForm1, String elementosForm2,int IDCampoLlaveForm1,int IDCampoLlaveForm2){
 
         try { //Se busca el ID de los datos que acaba de insertar
 
-            this.doUpdate("INSERT INTO SIMETRICOS (IDForm1,IDForm2,ElementosForm1,ElementosForm2) VALUES ("+IDForm1+","+IDForm2+",'"+elementosForm1+"','"+elementosForm2+"');");
+            this.doUpdate("INSERT INTO SIMETRICOS (IDForm1,IDForm2,ElementosForm1,ElementosForm2,IDTipoCampoLlavePrimariaForm1,IDTipoCampoLlavePrimariaForm2) VALUES ("+
+                    IDForm1+","+IDForm2+",'"+elementosForm1+"','"+elementosForm2+"',"+IDCampoLlaveForm1+","+IDCampoLlaveForm2+");");
             System.out.println("* agregada Relación Simetria: " +IDForm1+" - "+ IDForm2 );
 
 

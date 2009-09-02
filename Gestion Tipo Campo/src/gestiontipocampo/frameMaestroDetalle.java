@@ -83,7 +83,7 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         listaCamposDetalleSeleccionados = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
+        btnAceptar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -104,6 +104,9 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         comboFormularioMaestro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboFormularioMaestro.setName("comboFormularioMaestro"); // NOI18N
         comboFormularioMaestro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboFormularioMaestroMouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 comboFormularioMaestroMouseReleased(evt);
             }
@@ -164,11 +167,11 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
         listaCamposDetalleSeleccionados.setName("listaCamposDetalleSeleccionados"); // NOI18N
         jScrollPane4.setViewportView(listaCamposDetalleSeleccionados);
 
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAceptar.setText(resourceMap.getString("btnAceptar.text")); // NOI18N
+        btnAceptar.setName("btnAceptar"); // NOI18N
+        btnAceptar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btnAceptarMouseClicked(evt);
             }
         });
 
@@ -242,25 +245,23 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
                 .addContainerGap(437, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnAceptar)
                 .addGap(194, 194, 194))
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7))
-                        .addGap(88, 88, 88))
+                        .addComponent(comboFormularioMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
                     .addComponent(comboCampoLlaveMaestro, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(jLabel6)
@@ -319,7 +320,7 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(btnAceptar))
                 .addContainerGap())
         );
 
@@ -327,7 +328,9 @@ public class frameMaestroDetalle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboFormularioMaestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFormularioMaestroActionPerformed
-         /*    System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
+
+
+        /*    System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo.removeAllElements();
@@ -414,7 +417,7 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         // TODO add your handling code here:
 
 
-        modeloMaestroSeleccionados.add(listaCamposMaestroDisponibles.getSelectedValue().toString());
+        modeloMaestroSeleccionados.add(listaCamposMaestroDisponibles.getSelectedValue()/*.toString()*/);
 
         //listaCamposMaestroDisponibles.remove(0);
         listaCamposMaestroSeleccionados.setListData(modeloMaestroSeleccionados);
@@ -428,7 +431,7 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
     }//GEN-LAST:event_listaCamposMaestroDisponiblesMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btnAceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAceptarMouseClicked
         // TODO add your handling code here:
         //maestroDetalle.formularioMaestro=(Formulario)this.comboFormularioMaestro.getSelectedItem();
         //maestroDetalle.formularioDetalle=(Formulario)this.comboFormularioDetalle.getSelectedItem();
@@ -437,9 +440,11 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         //maestroDetalle.formularioDetalle
 
         maestroDetalle.formularioDetalle=new Formulario(((MiDato)this.comboFormularioMaestro.getSelectedItem()).ID,((MiDato)this.comboFormularioDetalle.getSelectedItem()).nombre);
+        maestroDetalle.vectorCamposDetalleSeleccionados = this.modeloDetalleSeleccionados;
+        maestroDetalle.vectorCamposMaestroSeleccionados = this.modeloMaestroSeleccionados;
         maestroDetalle.agregarNuevoMaestroDetalle();
         this.dispose();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        // TODO add your handling code here:
@@ -475,7 +480,7 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         // TODO add your handling code here:
 
 
-        modeloDetalleSeleccionados.add(listaCampoDetalleDisponibles.getSelectedValue().toString());
+        modeloDetalleSeleccionados.add(listaCampoDetalleDisponibles.getSelectedValue()/*.toString()*/);
 
         //listaCamposMaestroDisponibles.remove(0);
         listaCamposDetalleSeleccionados.setListData(modeloDetalleSeleccionados);
@@ -512,6 +517,10 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCampoLLaveDetalleActionPerformed
 
+    private void comboFormularioMaestroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboFormularioMaestroMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFormularioMaestroMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -524,11 +533,11 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JComboBox comboCampoLLaveDetalle;
     private javax.swing.JComboBox comboCampoLlaveMaestro;
     private javax.swing.JComboBox comboFormularioDetalle;
     private javax.swing.JComboBox comboFormularioMaestro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
