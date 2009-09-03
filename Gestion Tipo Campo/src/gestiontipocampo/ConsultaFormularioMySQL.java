@@ -148,6 +148,8 @@ public class ConsultaFormularioMySQL extends ConsultaFormulario {
                 miembros.add(resultado.getObject("estiloLetra"));
 
 
+
+
             /*for (int i = 0; i < campos.size(); i++) {
             miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
             }*/
