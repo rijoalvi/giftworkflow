@@ -18,6 +18,7 @@ public class ControladorBD {
     private String conexionString1 = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
     private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
 
+    
     private String conexionStringConfiguradorSQLServerEEUU= "jdbc:sqlserver://GiftConfigurador.db.3946477.hostedresource.com;databaseName=GiftConfigurador;user=GiftConfigurador;password=Qwerty123";
 
 //"jdbc:sqlserver://localhost:1433;" +	"databaseName=AdventureWorks;integratedSecurity=true;";
