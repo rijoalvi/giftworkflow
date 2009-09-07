@@ -1,0 +1,197 @@
+--tabla: "BINARIO"
+drop table BINARIO;
+CREATE TABLE BINARIO(
+  correlativo   int NOT NULL,
+  nombre1       varchar(20) NOT NULL,
+  valor1        varchar(20) NOT NULL,
+  nombre2       varchar(20) NOT NULL,
+  valor2        varchar(20) NOT NULL,
+  valorDefecto  varchar(20) NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla "FECHAHORA"
+drop table FECHAHORA;
+CREATE TABLE FECHAHORA(
+  correlativo int NOT NULL,
+  despliegue varchar(20) NOT NULL,
+  fechaDefecto datetime,
+  vencimiento varchar(10),
+  preaviso int,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "INCREMENTAL"
+
+drop table INCREMENTAL;
+CREATE TABLE INCREMENTAL(
+  correlativo int NOT NULL,
+  valInicial int NOT NULL,
+  incremento int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "NUMERO"
+drop table NUMERO;
+CREATE TABLE NUMERO(
+  correlativo int NOT NULL,
+  numeroDecimales int NOT NULL DEFAULT 0,
+  mascara varchar(10) NOT NULL,
+  valorDefecto int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+-- Tabla: "TEXTO"
+drop table TEXTO;
+CREATE TABLE TEXTO(
+  correlativo int NOT NULL,
+  textoDefecto varchar(20) NOT NULL,
+  tamano int NOT NULL,
+  PRIMARY KEY (correlativo)
+);
+
+
+
+-- Tabla: "TIPOCAMPO"
+drop table TIPOCAMPO;
+CREATE TABLE TIPOCAMPO(
+  correlativo int identity (1,1) NOT NULL,
+  nombre varchar(20) NOT NULL,
+  descripcion varchar(150),
+  ultimaActualizacion SMALLDATETIME DEFAULT GetDATE(),
+  tipo int NOT NULL,
+  PRIMARY KEY (correlativo)
+
+);
+
+drop table LISTA
+create table LISTA(
+    correlativo int not null,
+    IDMiembroPorDefecto int,
+    conOrden varchar(6) NOT NULL DEFAULT 'False',
+    primary key(correlativo)
+);
+
+drop table MIEMBROLISTA
+create table MIEMBROLISTA(
+    correlativo int identity (1,1) NOT NULL,
+    valor char(50),
+    IDLista int not null,
+    numeroElemento int NOT NULL,
+    primary key(correlativo)
+);
+
+drop table MIEMBROFORMULARIO;
+create table MIEMBROFORMULARIO(
+    correlativo int identity (1,1) NOT NULL,
+    IDFormulario int NOT NULL,
+    nombre varchar(50),
+    valX int,
+    valY int,
+    ancho int,
+    alto int,
+    tipoLetra varchar(20),
+    color varchar(10),
+    tamanoLetra int,
+    IDTipoCampo int,
+    IDCampo int,
+    tabIndex int,
+    estiloLetra varchar(10),
+    esEtiqueta varchar(6),
+    primary key(correlativo)
+);
+
+drop table FORMULARIO;
+create table FORMULARIO(
+    correlativo int identity (1,1) NOT NULL,
+    nombre varchar(20) NOT NULL,
+    descripcion varchar(150),
+    ultimaActualizacion SMALLDATETIME DEFAULT GetDATE(),
+    primary key(correlativo)
+);
+
+drop table COMANDO
+CREATE TABLE COMANDO(
+  ID					int  identity (1,1) NOT NULL,
+  IDFormulario			int NOT NULL,
+  Nombre				varchar(50) NOT NULL,
+  Descripcion			varchar(50) NOT NULL,
+  Tipo					int NOT NULL,
+  IDFormularioATrabajar int,
+  FechaActualizacion	SMALLDATETIME DEFAULT GetDATE(),
+  PRIMARY KEY (ID)
+);
+
+drop table	COMANDOMASCARA
+CREATE TABLE COMANDOMASCARA(
+  ID						int  identity (1,1) NOT NULL,
+  IDComando					int NOT NULL,
+  TipoCampoInicial			varchar(50) NOT NULL,
+  CondicionInicial			varchar(50) NOT NULL,
+  TipoCampoFinal			varchar(50) NOT NULL,
+  EstadoFinal				varchar(50) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+drop table ACTIVIDAD;
+CREATE TABLE ACTIVIDAD(
+    correlativo        int  identity (1,1) NOT NULL,
+    correlativoFlujo   int,  --Es el id del flujo al que pertenece, esta en la especificacion
+    nombre             varchar(30),
+    descripcion        varchar(30),--En la especificacion dice proposito, no se si lo dejamos asi
+    tipo               int,
+    fechaActualizacion SMALLDATETIME DEFAULT GetDATE(),
+    estadoInicial      varchar(30),
+    estadoFinal        varchar(30),
+    esSimple           varchar(6),
+    repetible          varchar(6),
+    masiva             varchar(6),
+    requiereRevision   varchar(6),
+    hitoDeControl       varchar(6),
+    paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
+    exclusivo                  varchar(6),          --que puede ejecutarse solo uno, solamente en caso de que son paralelos
+    ordenEjecucion      int, --indica dentro de un flujo en q orden se deben ejecutar las actvs
+    PRIMARY KEY (correlativo)
+);/**/
+
+drop table MIEMBROACTIVIDADSIMPLE;
+CREATE TABLE MIEMBROACTIVIDADSIMPLE(
+    correlativo                int  identity (1,1) NOT NULL,
+    correlativoMadre           int,     --Apunta a la actividad madre
+    correlativoComando         int, --Apunta al comando ya que es simple
+    orden                      int, --Guarda la posicion en que est� el elemento en la actividad (si es el primero o segundo elemento etc)
+    obligatorio                varchar(6),          --si el comando es obligatorio
+    PRIMARY KEY (correlativo)
+);/**/
+
+
+drop table MIEMBROACTIVIDADCOMPUESTA;
+CREATE TABLE MIEMBROACTIVIDADCOMPUESTA(
+    correlativo             int  identity (1,1) NOT NULL,
+    correlativoMadre        int,      --Apunta a la actividad madre
+    correlativoHija         int,         --Apunta a la actividad hija
+    orden                      int, --Guarda la posicion en que est� el elemento en la actividad (si es el primero o segundo elemento etc)
+    obligatorio                varchar(6),          --si el comando es obligatorio
+    PRIMARY KEY (correlativo)
+);
+
+drop table FLUJO;
+CREATE TABLE FLUJO(
+    correlativo        int identity (1,1) NOT NULL,
+    nombre             varchar(30),
+    descripcion        varchar(150),--En la especificacion dice proposito, no se si lo dejamos asi
+    actividadRaiz      int,  --Es el correlativo de la actividad que esta en la raiz
+    fechaActualizacion SMALLDATETIME DEFAULT GetDATE(),
+
+    PRIMARY KEY (correlativo)
+);/**/
+
+--para guardar los distintos comandos que tiene una actividad
+CREATE TABLE ACTIVIDADCOMANDO(
+    ID                          int identity (1,1) NOT NULL,
+    nombre                      varchar(30),
+    descripcion                 varchar(150),
+    IDActividad                 int,
+    IDComando                   int,
+    PRIMARY KEY (ID)
+);/**/
