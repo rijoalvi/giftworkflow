@@ -186,3 +186,14 @@ CREATE TABLE FLUJO(
     PRIMARY KEY (correlativo)
 );/**/
 
+CREATE TABLE MAESTRODETALLE(
+	ID	int identity (1,1) NOT NULL,
+	IDFormularioMaestro	int,
+	NombreFormularioMaestro	varchar(30),
+	IDFormularioDetalle	int,
+	NombreFormularioDetalle	int,
+	descripcion		varchar(100),
+	IDCampoLlaveMaestro	int,
+	IDCampoLlaveDetalle	int,
+	PRIMARY KEY(ID)
+);

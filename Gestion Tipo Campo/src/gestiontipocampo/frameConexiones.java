@@ -21,6 +21,7 @@ public class frameConexiones extends javax.swing.JFrame {
         initComponents();
         grupo.add(MySqlEEUU);
         grupo.add(SQLServerECCI);
+        grupo.add(SQLServerEEUU);
     }
 
     public frameConexiones(GestionTipoCampoView mama) {
@@ -28,7 +29,7 @@ public class frameConexiones extends javax.swing.JFrame {
         initComponents();
         grupo.add(MySqlEEUU);
         grupo.add(SQLServerECCI);
-
+        grupo.add(SQLServerEEUU);
     }
 
     /** This method is called from within the constructor to
@@ -46,7 +47,7 @@ public class frameConexiones extends javax.swing.JFrame {
         btnEstablecerConexion = new javax.swing.JButton();
         btnRefrescar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        SQLServerEEUU = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameConexiones.class);
@@ -99,11 +100,11 @@ public class frameConexiones extends javax.swing.JFrame {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jRadioButton3.setText(resourceMap.getString("jRadioButton3.text")); // NOI18N
-        jRadioButton3.setName("jRadioButton3"); // NOI18N
-        jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        SQLServerEEUU.setText(resourceMap.getString("SQLServerEEUU.text")); // NOI18N
+        SQLServerEEUU.setName("SQLServerEEUU"); // NOI18N
+        SQLServerEEUU.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jRadioButton3MouseClicked(evt);
+                SQLServerEEUUMouseClicked(evt);
             }
         });
 
@@ -126,7 +127,7 @@ public class frameConexiones extends javax.swing.JFrame {
                         .addComponent(MySqlEEUU)
                         .addGap(81, 81, 81)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton3)
+                            .addComponent(SQLServerEEUU)
                             .addComponent(SQLServerECCI))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,7 +141,7 @@ public class frameConexiones extends javax.swing.JFrame {
                     .addComponent(MySqlEEUU)
                     .addComponent(SQLServerECCI))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
+                .addComponent(SQLServerEEUU)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEstablecerConexion)
@@ -150,7 +151,7 @@ public class frameConexiones extends javax.swing.JFrame {
 
         MySqlEEUU.getAccessibleContext().setAccessibleName(resourceMap.getString("opt1.AccessibleContext.accessibleName")); // NOI18N
         SQLServerECCI.getAccessibleContext().setAccessibleName(resourceMap.getString("opt2.AccessibleContext.accessibleName")); // NOI18N
-        jRadioButton3.getAccessibleContext().setAccessibleName(resourceMap.getString("jRadioButton3.AccessibleContext.accessibleName")); // NOI18N
+        SQLServerEEUU.getAccessibleContext().setAccessibleName(resourceMap.getString("jRadioButton3.AccessibleContext.accessibleName")); // NOI18N
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -252,9 +253,9 @@ public class frameConexiones extends javax.swing.JFrame {
 
 }//GEN-LAST:event_btnRefrescarMouseClicked
 
-    private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
+    private void SQLServerEEUUMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SQLServerEEUUMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3MouseClicked
+}//GEN-LAST:event_SQLServerEEUUMouseClicked
 
     /**
      * @param args the command line arguments
@@ -271,11 +272,11 @@ public class frameConexiones extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton MySqlEEUU;
     private javax.swing.JRadioButton SQLServerECCI;
+    private javax.swing.JRadioButton SQLServerEEUU;
     private javax.swing.JButton btnEstablecerConexion;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.ButtonGroup grupo;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton3;
     // End of variables declaration//GEN-END:variables
     private GestionTipoCampoView madre = null;
 }
