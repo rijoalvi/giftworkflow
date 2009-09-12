@@ -72,6 +72,7 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
      */
     public void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio) {
 
+        
         //Casting a String
         String strSimple = new Boolean(simple).toString();
         String strRepetible = new Boolean(repetible).toString();
