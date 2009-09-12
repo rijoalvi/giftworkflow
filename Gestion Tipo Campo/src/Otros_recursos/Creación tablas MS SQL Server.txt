@@ -110,7 +110,7 @@ create table FORMULARIO(
     primary key(correlativo)
 );
 
-drop table COMANDO
+drop table COMANDO;
 CREATE TABLE COMANDO(
   ID					int  identity (1,1) NOT NULL,
   IDFormulario			int NOT NULL,
@@ -184,6 +184,16 @@ CREATE TABLE FLUJO(
     fechaActualizacion SMALLDATETIME DEFAULT GetDATE(),
 
     PRIMARY KEY (correlativo)
+);/**/
+
+--para guardar los distintos comandos que tiene una actividad
+CREATE TABLE ACTIVIDADCOMANDO(
+    ID                          int identity (1,1) NOT NULL,
+    nombre                      varchar(30),
+    descripcion                 varchar(150),
+    IDActividad                 int,
+    IDComando                   int,
+    PRIMARY KEY (ID)
 );/**/
 
 CREATE TABLE MAESTRODETALLE(

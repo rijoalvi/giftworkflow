@@ -24,12 +24,16 @@ public class frameActividad extends javax.swing.JFrame {
 
     //Formulario a partir del cual se crea la actividad
     Formulario formularioActual;
+    //Se usa para el orden de ejecuccion de los comandos o las actividades
+    int orden;
 
     /** 
      * Constructor
      */
     public frameActividad() {
         initComponents();
+
+        orden = 0;
 
         miActividad = new Actividad();
         todasActividades = new TreeSet();
@@ -510,7 +514,7 @@ public class frameActividad extends javax.swing.JFrame {
         int size = listaComponentes.getModel().getSize();
         if (size > 0) {
             miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(0).toString());
-            miActividad.setEstadoInicial(listaComponentes.getModel().getElementAt(size - 1).toString());
+            miActividad.setEstadoFinal(listaComponentes.getModel().getElementAt(size - 1).toString());
         }
         miActividad.actualizar();
 
@@ -545,7 +549,8 @@ public class frameActividad extends javax.swing.JFrame {
             Comando tmp = new Comando(id);
             //creo q hace falta un get miembro en la clase actividad...
             //y seria mejor tamb un get num Miembros...
-            miActividad.agregarComando(tmp, 0, radioObligatorio.isSelected());
+            miActividad.agregarComando(tmp, orden, radioObligatorio.isSelected());
+            orden++;
         } else {
             if (comboTipo.getSelectedItem().toString().equalsIgnoreCase("Compuesta")) {
                 int id = ((MiDato) (comboComponenteAAgregar.getSelectedItem())).ID;
@@ -554,7 +559,8 @@ public class frameActividad extends javax.swing.JFrame {
                 //Igual que arriba :p
                 //creo q hace falta un get miembro en la clase actividad...
                 //y seria mejor tamb un get num Miembros...
-                miActividad.agregarActividadHija(tmp, 0, radioObligatorio.isSelected());
+                miActividad.agregarActividadHija(tmp, orden, radioObligatorio.isSelected());
+                orden++;
             }
         }
         //Cambia los valores de la lista
