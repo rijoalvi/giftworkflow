@@ -88,12 +88,13 @@ public class Comando  {
     public void setTipoComando(int tipo){
         /*OJO: Orden de los comandos:
          1 - Comando de Crear
-         2 - Comando de borrar
-         3 - COmando de Modificar
-         4 - Comando con Máscara
+         2 - Comando de Modificar
+         3 - Comando de visualizar
+         4 - Comando de borrar
+         5 - Comando con Máscara
          */
         this.tipoComando = tipo;
-        if(tipoComando!=4){
+        if(tipoComando!=5){
             facil=true;
         }
         else{

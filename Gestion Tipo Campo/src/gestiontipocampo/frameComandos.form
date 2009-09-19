@@ -185,7 +185,7 @@
     <Component class="javax.swing.JComboBox" name="comboTipo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Crear&quot;, &quot;Eliminar&quot;, &quot;Modificar&quot;, &quot;Comando con M&#xe1;scara&quot; })" type="code"/>
+          <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Crear&quot;, &quot;Modificar&quot;, &quot;Visualizar&quot;, &quot;Eliminar&quot;, &quot;Comando con M&#xe1;scara&quot; })" type="code"/>
         </Property>
         <Property name="name" type="java.lang.String" value="comboTipo" noResource="true"/>
       </Properties>

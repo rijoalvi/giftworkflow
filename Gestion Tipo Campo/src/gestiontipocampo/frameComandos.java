@@ -110,7 +110,7 @@ public class frameComandos extends javax.swing.JFrame {
         labelTipo.setText(resourceMap.getString("labelTipo.text")); // NOI18N
         labelTipo.setName("labelTipo"); // NOI18N
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crear", "Eliminar", "Modificar", "Comando con Máscara" }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Crear", "Modificar", "Visualizar", "Eliminar", "Comando con Máscara" }));
         comboTipo.setName("comboTipo"); // NOI18N
         comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -383,7 +383,6 @@ public class frameComandos extends javax.swing.JFrame {
         //if(ConMascara==0){
         if (!comboTipo.getSelectedItem().toString().equalsIgnoreCase("Comando con Máscara")) {
             ocultarCamposConMascara();
-
             ConMascara = 0;
         } else {
             aparecerCamposConMascara();
