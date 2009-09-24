@@ -75,7 +75,10 @@ public class ConsultaActividadSQLServer extends ConsultaActividad {
         
         //Casting a String
         String strSimple = new Boolean(simple).toString();
+      
         String strRepetible = new Boolean(repetible).toString();
+
+          System.out.println("simple: "+ repetible + " " + strRepetible);
         String strMasiva = new Boolean(masiva).toString();
         String strRequiereRevision = new Boolean(requiereRevision).toString();
         String strHitoDeControl = new Boolean(hitoDeControl).toString();

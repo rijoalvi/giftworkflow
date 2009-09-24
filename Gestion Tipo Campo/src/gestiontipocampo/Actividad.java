@@ -62,8 +62,8 @@ public class Actividad implements Comparable{
         paralelo = false;
         exclusivo = false;
         obligatorio = false;
-        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
-        
+        //this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
+        this.correlativo = -1;
     }
 
     /**
@@ -126,6 +126,10 @@ public class Actividad implements Comparable{
         this.paralelo = paralelo;
         this.exclusivo = exclusivo;
         this.fechaActualizacion = new Date();
+    }
+
+    public void crearActividad(){
+        this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
     }
 
     /**
