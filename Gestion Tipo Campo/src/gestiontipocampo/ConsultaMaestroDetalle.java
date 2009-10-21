@@ -19,13 +19,13 @@ public class ConsultaMaestroDetalle extends ControladorBD{
 
     }
 
-    public int agregarMaestroDetalle(int IDFormularioMaestro, String nombreFormularioMaestro, int IDFormularioDetalle, String nombreFormularioDetalle){
+    public int agregarMaestroDetalle(int IDFormularioMaestro, String nombreFormularioMaestro, int IDFormularioDetalle, String nombreFormularioDetalle, String detalleObligatorio){
         int id = -1;
         String[] incremental = new String[1];
         incremental[0] = "ID";
         try { //Se busca el ID de los datos que acaba de insertar
 
-            resultado =this.doUpdate("INSERT INTO MAESTRODETALLE (IDFormularioMaestro,nombreFormularioMaestro,IDFormularioDetalle,nombreFormularioDetalle) VALUES ("+IDFormularioMaestro+",'"+nombreFormularioMaestro+"',"+IDFormularioDetalle+",'"+nombreFormularioDetalle+"');", incremental);
+            resultado =this.doUpdate("INSERT INTO MAESTRODETALLE (IDFormularioMaestro,nombreFormularioMaestro,IDFormularioDetalle,nombreFormularioDetalle, detalleObligatorio) VALUES ("+IDFormularioMaestro+",'"+nombreFormularioMaestro+"',"+IDFormularioDetalle+",'"+nombreFormularioDetalle+"','"+detalleObligatorio+"' );", incremental);
             System.out.println("* agregado MaestroDetalle: " +nombreFormularioMaestro+" ."+nombreFormularioDetalle );
             while (resultado.next()) {
                 id = resultado.getInt(1);
@@ -105,6 +105,34 @@ public class ConsultaMaestroDetalle extends ControladorBD{
         //return id;
     }
 
+    int IDDetalleDelMaestro(int IDFormulario) {
+        int correlativo = -1;
+        ResultSet result = null;
+        try {
+            result = this.getResultSet("select IDFormularioDetalle from MAESTRODETALLE where IDFormularioMaestro = " + IDFormulario + ";");
+            //hijas = new int[resultado.getFetchSize()];
+            while (result.next()) {
+                correlativo = result.getInt("IDFormularioDetalle");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return correlativo;
+    }
 
+    int IDMaestroDelDetalle(int IDFormulario) {
+        int correlativo = -1;
+        ResultSet result = null;
+        try {
+            result = this.getResultSet("select IDFormularioMaestro from MAESTRODETALLE where IDFormularioDetalle = " + IDFormulario + ";");
+            //hijas = new int[resultado.getFetchSize()];
+            while (result.next()) {
+                correlativo = result.getInt("IDFormularioMaestro");
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception: *" + e.toString());
+        }
+        return correlativo;
+    }
 
 }

@@ -15,6 +15,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  * Frame Actividad
@@ -552,6 +553,27 @@ public class frameActividad extends javax.swing.JFrame {
             Comando tmp = new Comando(id);
             //creo q hace falta un get miembro en la clase actividad...
             //y seria mejor tamb un get num Miembros...
+
+            if(tmp.tipoComando == 1){ //si es comando de creacion
+                MaestroDetalle md = new MaestroDetalle();
+                int formularioACrear = md.IDDetalleDelMaestro(tmp.IDFormulario);// averiguar si el formulario es maestro
+                if(formularioACrear != -1){//si el formulario era un maestro
+
+                    //Agregar comando creacion del detalle
+                    JOptionPane.showMessageDialog(null, "Debe agregar un comando de creacion del formulario detalle");
+                    frameComandos comando = new frameComandos("Creacion",formularioACrear);
+                    comando.setVisible(true);
+                }else {
+                    formularioACrear = md.IDMaestroDelDetalle(tmp.IDFormulario);// averiguar si el formulario es detalle
+                    if(formularioACrear!=-1){
+                        //agregar comando creacion del maestro
+                        JOptionPane.showMessageDialog(null, "Debe agregar un comando de creacion del formulario Maestro");
+                    }
+                }
+
+
+            }
+
             miActividad.agregarComando(tmp, orden, radioObligatorio.isSelected());
             orden++;
         } else {

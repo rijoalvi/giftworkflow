@@ -19,6 +19,7 @@ public class MaestroDetalle extends TipoCampo{//puse tipo campo porque ocupe bus
     Vector vectorCamposMaestroSeleccionados;
     Vector vectorCamposDetalleSeleccionados;
     ConsultaMaestroDetalle consultaMaestroDetalle;
+    String detalleObligatorio;
 
     public MaestroDetalle(){
         consultaMaestroDetalle = buscador.getConsultaMaestroDetalle();
@@ -32,7 +33,7 @@ public class MaestroDetalle extends TipoCampo{//puse tipo campo porque ocupe bus
     public void agregarNuevoMaestroDetalle(){
         try{
             consultaMaestroDetalle=new ConsultaMaestroDetalle();
-            int idMaestroDetalle = consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre);
+            int idMaestroDetalle = consultaMaestroDetalle.agregarMaestroDetalle(formularioMaestro.correlativo, formularioMaestro.nombre, formularioDetalle.correlativo, formularioDetalle.nombre,this.detalleObligatorio);
             consultaMaestroDetalle.agregarCamposEnRelacionMaestroDetalle(idMaestroDetalle,vectorCamposDetalleSeleccionados,vectorCamposMaestroSeleccionados);
 
         }
@@ -51,5 +52,15 @@ public class MaestroDetalle extends TipoCampo{//puse tipo campo porque ocupe bus
         //cadena=this.formularioMaestro.toString()+"-"+this.formularioDetalle.toString();
         cadena="["+this.nombreMaestro+"]-["+this.nombreDetalle+"]";
         return cadena;
+    }
+
+    int IDDetalleDelMaestro(int IDFormulario) {
+        consultaMaestroDetalle = new ConsultaMaestroDetalle();
+        return consultaMaestroDetalle.IDDetalleDelMaestro(IDFormulario);
+    }
+
+    int IDMaestroDelDetalle(int IDFormulario) {
+        consultaMaestroDetalle = new ConsultaMaestroDetalle();
+        return consultaMaestroDetalle.IDMaestroDelDetalle(IDFormulario);
     }
 }

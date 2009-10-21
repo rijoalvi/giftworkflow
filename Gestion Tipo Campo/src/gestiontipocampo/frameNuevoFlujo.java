@@ -15,6 +15,7 @@ import java.util.TreeSet;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  * Frame Actividad
@@ -64,9 +65,10 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameNuevoFlujo.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(gestiontipocampo.GestionTipoCampoApp.class).getContext().getResourceMap(frameNuevoFlujo.class);
         labelNombre.setText(resourceMap.getString("labelNombre.text")); // NOI18N
         labelNombre.setMaximumSize(new java.awt.Dimension(10, 10));
         labelNombre.setMinimumSize(new java.awt.Dimension(10, 10));
@@ -278,25 +280,29 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
         //Si se agregan Comandos
         int id = ((MiDato) (comboComponenteAAgregar.getSelectedItem())).ID;
         System.out.println("id: " + id);
-        //Crea un objeto Actividada a partir d la actividad ya creada anterirmente
+        //Crea un objeto Actividad a partir d la actividad ya creada anterirmente
         Actividad tmp = new Actividad(id);
         
         //Se actualiza a cual flujo pertenece?¿ creo q no, hasta el final
         //tmp.setCorrelativoFlujo(id);
         //Agrega la actividad agregada a la lista de actividades, para q al final se relacionen con el flujo
-        todasActividades.add(tmp);
+        if(!(todasActividades.isEmpty())||(todasActividades.isEmpty() && !(tmp.isRepetible()))){
+            todasActividades.add(tmp);
 
-        //miActividad.agregarActividadHija(tmp, 0, true /*TEMP*/);
-        
-        //Cambia los valores de la lista
-        DefaultListModel modelo = new DefaultListModel();
-        modelo.removeAllElements();
-        int size = listaComponentes.getModel().getSize();
-        for (int i = 0; i < size; ++i) {
-            modelo.addElement(listaComponentes.getModel().getElementAt(i));
+            //miActividad.agregarActividadHija(tmp, 0, true /*TEMP*/);
+
+            //Cambia los valores de la lista
+            DefaultListModel modelo = new DefaultListModel();
+            modelo.removeAllElements();
+            int size = listaComponentes.getModel().getSize();
+            for (int i = 0; i < size; ++i) {
+                modelo.addElement(listaComponentes.getModel().getElementAt(i));
+            }
+            modelo.addElement(comboComponenteAAgregar.getSelectedItem());
+            listaComponentes.setModel(modelo);
+        }else{
+            JOptionPane.showMessageDialog(null, "La actividad inicial del Flujo de Trabajo no puede ser repetible","Error - Creación Flujo de Trabajo",3);
         }
-        modelo.addElement(comboComponenteAAgregar.getSelectedItem());
-        listaComponentes.setModel(modelo);
 }//GEN-LAST:event_botonAgregarComponenteActionPerformed
 
     private void botonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExcluirActionPerformed

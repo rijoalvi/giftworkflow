@@ -65,6 +65,29 @@ public class frameComandos extends javax.swing.JFrame {
     /*------------------------------------------------------------------*/
     }
 
+    frameComandos(String tipo,int formACrear) {
+        if(tipo.equalsIgnoreCase("creacion")){
+            initComponents();
+            comboListaCondicion.setVisible(false);
+            comboListaEfecto.setVisible(false);
+            ocultarCamposConMascara();
+            comandoActual = new Comando(); // Clase comando con la que trabajara la interfaz!
+            llenarComboFormularios();
+            fieldFormReadOnly.setVisible(false);
+            modoEdicion = 1;
+            comboTipo.setSelectedIndex(0);
+            int encontrado = 0;
+            for(int i =1; encontrado == 0 && i < this.comboSeleccionFormulario.getModel().getSize();i++){
+                if(((MiDato)(comboSeleccionFormulario.getModel().getElementAt(i))).ID == formACrear){
+                    encontrado = 1;
+                    this.comboSeleccionFormulario.setSelectedIndex(i);
+                }
+            }
+            comboSeleccionFormulario.setEnabled(false);
+            comboTipo.setEnabled(false);
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
