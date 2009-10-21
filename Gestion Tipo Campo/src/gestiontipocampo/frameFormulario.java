@@ -1536,7 +1536,7 @@ public class frameFormulario extends javax.swing.JFrame {
         //Esta era la original
         //IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
         //la nueva:
-        IDEnUso = miFormulario.agregarEtiq(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
+        IDEnUso = miFormulario.agregarEtiq(texto, 1, 1, 60, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
         agregarEtiqueta(texto, IDEnUso);
         llenarDatosMiembro(IDEnUso);
     }
