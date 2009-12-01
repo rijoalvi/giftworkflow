@@ -287,8 +287,7 @@ public class frameTermino extends javax.swing.JFrame {
                 }
             } catch (SQLException e) {
                 System.out.println("*SQL Exception:12345 *" + e.toString());
-            }
-
+            }            
         } else {
             try {
                 String [] generado = {"ID"};
@@ -304,8 +303,26 @@ public class frameTermino extends javax.swing.JFrame {
             framePadre.setIDRaiz(nuevoID);
             System.out.println("entro con: "+ nuevoID);
         }
+        actualizarNumNivelJerarquia();
         framePadre.cambiarNumTerminos(1);
         framePadre.llenarTreeViewJerarquia(nombreJer);
+    }
+
+    private void actualizarNumNivelJerarquia() {
+        int numNivelJera = -1;
+        try {
+            ResultSet resultado = buscador.getResultSet("select numeroDeNiveles from JERARQUIA where correlativo = " + this.IDJerarquia + ";");
+            if (resultado.next()) {
+                numNivelJera = resultado.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("*SQL Exception:54321 *" + e.toString());
+        }
+        if(numNivelJera < this.numNivel){
+            String consulta = "UPDATE JERARQUIA SET numeroDeNiveles = " + this.numNivel + " WHERE correlativo = '" + this.IDJerarquia + "'";
+            System.out.println(consulta);
+            buscador.doUpdate(consulta);
+        }
     }
 
     private void modificarNodo() {

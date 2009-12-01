@@ -593,24 +593,30 @@ public class frameEditarTerminos extends javax.swing.JFrame {
     private void botonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExcluirActionPerformed
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolJerarquia.getLastSelectedPathComponent();
         if (node != null) {
-            String[] opciones = {"Si", "No"};
-            int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este termino y todos los subterminos?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
-
-            switch (respuesta) {
-                case 0:
-                    /*Si esta seguro de borrar*/
-                    String nombreNodo = node.toString();
-                    int IDNodo = getIDNodo(nombreNodo);
-                    borrarHijo(IDNodo);
-                    buscador.doUpdate("delete from NODO where ID = " + IDNodo);
-                    break;
-                case 1:
-                    /*No quiso borrar*/
-                    break;
+            if(node.isRoot()){
+                JOptionPane.showMessageDialog(this, "¡No se permite eliminar el nodo raíz!");
             }
-            cambiarNumTerminos(-1); //disminuye el num de terminos
-            llenarTreeViewJerarquia(nombreJerarquia); //actualiza los datos
-        } else {
+            else{
+                String[] opciones = {"Si", "No"};
+                int respuesta = JOptionPane.showOptionDialog(null, "¿Seguro que desea eliminar este termino y todos los subterminos?", "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, opciones, "No");
+
+                switch (respuesta) {
+                    case 0:
+                        /*Si esta seguro de borrar*/
+                        String nombreNodo = node.toString();
+                        int IDNodo = getIDNodo(nombreNodo);
+                        borrarHijo(IDNodo);
+                        buscador.doUpdate("delete from NODO where ID = " + IDNodo);
+                        break;
+                    case 1:
+                        /*No quiso borrar*/
+                        break;
+                }
+                cambiarNumTerminos(-1); //disminuye el num de terminos
+                llenarTreeViewJerarquia(nombreJerarquia); //actualiza los datos
+            }
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Ningún elemento seleccionado para borrar!");
         }
     }//GEN-LAST:event_botonExcluirActionPerformed

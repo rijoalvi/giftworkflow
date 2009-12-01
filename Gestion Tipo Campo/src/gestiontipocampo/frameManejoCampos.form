@@ -250,6 +250,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioNivelesNo">
               <Properties>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="radioNivelesNo.text"/>
                 <Property name="name" type="java.lang.String" value="radioNivelesNo" noResource="true"/>
               </Properties>
@@ -289,6 +290,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioCategoriasNo">
               <Properties>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="radioCategoriasNo.text"/>
                 <Property name="name" type="java.lang.String" value="radioCategoriasNo" noResource="true"/>
               </Properties>
@@ -314,6 +316,7 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioNomUnicoSi">
               <Properties>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" resourceKey="radioNomUnicoSi.text"/>
                 <Property name="name" type="java.lang.String" value="radioNomUnicoSi" noResource="true"/>
               </Properties>

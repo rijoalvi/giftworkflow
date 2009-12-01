@@ -340,6 +340,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         radioNivelesSi.setBounds(10, 30, -1, -1);
         paneJerarquia.add(radioNivelesSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        radioNivelesNo.setSelected(true);
         radioNivelesNo.setText(resourceMap.getString("radioNivelesNo.text")); // NOI18N
         radioNivelesNo.setName("radioNivelesNo"); // NOI18N
         radioNivelesNo.addActionListener(new java.awt.event.ActionListener() {
@@ -365,6 +366,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         radioCategoriasSi.setBounds(10, 80, -1, -1);
         paneJerarquia.add(radioCategoriasSi, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        radioCategoriasNo.setSelected(true);
         radioCategoriasNo.setText(resourceMap.getString("radioCategoriasNo.text")); // NOI18N
         radioCategoriasNo.setName("radioCategoriasNo"); // NOI18N
         radioCategoriasNo.addActionListener(new java.awt.event.ActionListener() {
@@ -380,6 +382,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel22.setBounds(10, 60, 80, -1);
         paneJerarquia.add(jLabel22, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        radioNomUnicoSi.setSelected(true);
         radioNomUnicoSi.setText(resourceMap.getString("radioNomUnicoSi.text")); // NOI18N
         radioNomUnicoSi.setName("radioNomUnicoSi"); // NOI18N
         radioNomUnicoSi.addActionListener(new java.awt.event.ActionListener() {
@@ -1157,23 +1160,29 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
                     }
+                    //datos generales
+                    java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                    int idCategorias = -1;
+                    int idNiveles = -1;
+                    int idNodoRaiz = -1;
+                    if(this.radioCategoriasSi.isSelected())
+                        idCategorias = ((MiDato) comboCategorias.getSelectedItem()).ID;
+                    if(this.radioNivelesSi.isSelected())
+                        idNiveles = ((MiDato) comboNiveles.getSelectedItem()).ID;
+                    try {
+                        ResultSet resultado = conexionBD.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + idCategorias + ", '" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', " + -1 + ", "+ 0 + ", '"+sqlDate+"' )", generados);
+                        if (resultado.next()) {
+                            idNodoRaiz = resultado.getInt(1);
+                        }
+                    } catch (SQLException e) {
+                        System.out.println("*SQL Exception: *" + e.toString());
+                    }
                     //Agrega la jerarquia y un nodo raiz por defecto con el nombre de la jera
                     try {
-                        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-                        //la raiz se guarada cmo -1 dado q no existe! NO CAMBIAR---> xq no simplemente null?--> Xq al leerlo cree q no existen datos dl todo y se cae
-                        conexionBD.doUpdate("Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, numeroDeTerminos, numeroDeNiveles, fechaCreacion, conCategorias, conNombreNiveles, IDTIpoCategoria, IDNombresNiveles) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + -1 + ", '" + this.radioNomUnicoNo.isSelected() +"', '0', '0', '"+ sqlDate + "', '"+ this.radioCategoriasSi.isSelected() + "' , '"+ this.radioNivelesSi.isSelected() +"', '" +((MiDato) comboCategorias.getSelectedItem()).ID + "', '" + ((MiDato) comboNiveles.getSelectedItem()).ID +"')");
-                       /*
-                        int IDJera = -1;
-                        try { //Se busca el ID de los datos que acaba de insertar
-                            ResultSet resultado = conexionBD.getResultSet("select correlativo from JERARQUIA where nomreJerarquia = '"+ this.valorNombreGeneral.getText() + "'");
-                            if (resultado.next()) {
-                                IDJera = resultado.getInt("correlativo");
-                            }
-                        } catch (SQLException e) {
-                            System.out.println("*SQL Exception: *" + e.toString());
-                        }
-                        conexionBD.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + categoria + ", '" + nombre + "', '" + descripcion + "', " + IDNodoPadre + ", "+ numNivel + ", '"+sqlDate+"' )", generado);
-                        */
+                        
+                        String consulta = "Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, numeroDeTerminos, numeroDeNiveles, fechaCreacion, conCategorias, conNombreNiveles, IDTIpoCategoria, IDNombresNiveles) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + idNodoRaiz + ", '" + this.radioNomUnicoNo.isSelected() +"', '0', '0', '"+ sqlDate + "', '"+ this.radioCategoriasSi.isSelected() + "' , '"+ this.radioNivelesSi.isSelected() +"', '" + idCategorias + "', '" + idNiveles +"')";
+                        System.out.println(consulta);
+                        conexionBD.doUpdate(consulta);                       
                     } catch (Exception ex) {
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
                     }
