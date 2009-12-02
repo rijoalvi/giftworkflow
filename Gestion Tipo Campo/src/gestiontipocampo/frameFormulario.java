@@ -1437,7 +1437,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
         frameVistaPrevia.add(jtf);
-        jtf.setBounds(100, 1, 100, 20);
+        jtf.setBounds(100, 1, 110, 160);
         jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
 
