@@ -1275,7 +1275,8 @@ public class frameFormulario extends javax.swing.JFrame {
                 //Jerarquia
                 //Agrega todos los otros datos por defecto
                 IDEnUso = miFormulario.agregarMiembro(nombre, 10, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 6, IDcampoConcreto, tabIndex++, "Plain");
-                JTextField jerar = agregarTipoJerarquia(nombre, IDEnUso);
+                JTree jerar = agregarTipoJerarquia(nombre, IDEnUso);
+                //JTextField jerar = agregarTipoJerarquia(nombre, IDEnUso);
                 componentes[tabIndex - 1] = jerar;
                 idsComponentes[tabIndex - 1] = IDEnUso;
                 break;
@@ -1430,9 +1431,8 @@ public class frameFormulario extends javax.swing.JFrame {
      * Agrega al formulario un campo nuevo tipo Jerarquia
      * @param nombre
      */
-    private JTextField agregarTipoJerarquia(String nombre, int ID) {
-        //Esto es temporal!! se debe crear un objeto de Jerarquia...
-        JTextField jtf = new JTextField(15);
+    private JTree agregarTipoJerarquia(String nombre, int ID) {
+        JTree jtf = new JTree();
         jtf.setName("" + ID);
         jtf.addMouseListener(listener);
         jtf.addMouseMotionListener(motionListener);
@@ -1440,6 +1440,17 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.setBounds(100, 1, 100, 20);
         jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
+
+        //Esto es temporal!! se debe crear un objeto de Jerarquia...
+        /*JTextField jtf = new JTextField(15);
+        jtf.setName("" + ID);
+        jtf.addMouseListener(listener);
+        jtf.addMouseMotionListener(motionListener);
+        frameVistaPrevia.add(jtf);
+        jtf.setBounds(100, 1, 100, 20);
+        jtf.setFont(Font.decode("Arial-Plain-12"));
+        compEnUso = jtf;
+        */
         return jtf;
     }
 
@@ -1468,7 +1479,7 @@ public class frameFormulario extends javax.swing.JFrame {
         String texto = textoDato.getText();
         //Si no es etiqueta, ni binario
         if (tmp.getIDTipoCampo() != 0 && tmp.getIDTipoCampo() != 2) {
-            texto = "";
+            texto = tmp.getNombre();
         }
         //Se guardan los datos en la instancia del Formulario, al igual que en la BD
         miFormulario.upDateValoresMiembro(IDEnUso, texto, Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), comboEstiloLetra.getSelectedItem().toString());
