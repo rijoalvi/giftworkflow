@@ -823,6 +823,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="valorNumeroMascara">
               <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="valorNumeroMascara.text"/>
                 <Property name="name" type="java.lang.String" value="valorNumeroMascara" noResource="true"/>
               </Properties>
               <Constraints>

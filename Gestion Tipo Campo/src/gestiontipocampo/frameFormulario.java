@@ -1219,6 +1219,7 @@ public class frameFormulario extends javax.swing.JFrame {
     private void agregarCampo() {
         //Se agrega el valor al formulario
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del campo a agregar", "", JOptionPane.QUESTION_MESSAGE);
+        nombre.replaceAll(" ", "_");
         agregarRotulo("et. "+ nombre,IDcampoConcreto);
         //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
         switch (comboTipos.getSelectedIndex()) {

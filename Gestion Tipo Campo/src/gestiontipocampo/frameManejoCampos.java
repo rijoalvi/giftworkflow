@@ -631,6 +631,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
         jLabel5.setBounds(140, 10, 50, 20);
         paneNumero.add(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        valorNumeroMascara.setText(resourceMap.getString("valorNumeroMascara.text")); // NOI18N
         valorNumeroMascara.setName("valorNumeroMascara"); // NOI18N
         valorNumeroMascara.setBounds(140, 30, 80, 20);
         paneNumero.add(valorNumeroMascara, javax.swing.JLayeredPane.DEFAULT_LAYER);
