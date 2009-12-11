@@ -2,116 +2,115 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestiontipocampo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-/**
- *
- * @author admin
- */
-public abstract class ConsultaActividad extends ControladorBD{
+/// <summary>
+/// Clase que se encarga de realizar las consultas para el formulario actividad
+/// </summary>
+public abstract class ConsultaActividad extends ControladorBD {
 
-    public ConsultaActividad(){
-
+    /// <summary>
+    /// Constructor por omisión
+    /// </summary>
+    public ConsultaActividad() {
     }
 
-    /**
-     * Crea nueva Actividad en la base de datos y devuelve el correlativo de la Actividad recien creada.
-     * @param correlativoFlujo
-     * @param nombre
-     * @param descripcion
-     * @param tipo
-     * @param estadoInicial
-     * @param estadoFinal
-     * @param simple
-     * @param repetible
-     * @param masiva
-     * @param requiereRevision
-     * @param hitoDeControl
-     * @return correlativo de la Actividad
-     */
+    /// <summary>
+    /// Crea nueva Actividad en la base de datos y devuelve el correlativo de la Actividad recien creada.
+    /// </summary>
+    /// <param name="correlativoFlujo"></param>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
+    /// <param name="tipo"></param>
+    /// <param name="estadoInicial"></param>
+    /// <param name="estadoFinal"></param>
+    /// <param name="simple"></param>
+    /// <param name="repetible"></param>
+    /// <param name="masiva"></param>
+    /// <param name="requiereRevision"></param>
+    /// <param name="hitoDeControl"></param>
+    /// <returns></returns>
     public abstract int nuevaActividad(int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio);
 
-    /**
-     * Actualiza los datos de la Actividad existente en la base de datos.
-     * @param correlativo
-     * @param correlativoFlujo
-     * @param nombre
-     * @param descripcion
-     * @param tipo
-     * @param estadoInicial
-     * @param estadoFinal
-     * @param simple
-     * @param repetible
-     * @param masiva
-     * @param requiereRevision
-     * @param hitoDeControl
-     */
+    /// <summary>
+    /// Actualiza los datos de la Actividad existente en la base de datos.
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <param name="correlativoFlujo"></param>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
+    /// <param name="tipo"></param>
+    /// <param name="estadoInicial"></param>
+    /// <param name="estadoFinal"></param>
+    /// <param name="simple"></param>
+    /// <param name="repetible"></param>
+    /// <param name="masiva"></param>
+    /// <param name="requiereRevision"></param>
+    /// <param name="hitoDeControl"></param>
     public abstract void actualizarActividad(int correlativo, int correlativoFlujo, String nombre, String descripcion, int tipo, String estadoInicial, String estadoFinal, boolean simple, boolean repetible, boolean masiva, boolean requiereRevision, boolean hitoDeControl, boolean paralelo, boolean exclusivo, boolean obligatorio);
 
-    /**
-     * Devuelve los datos de la actividad segun el correlativo
-     * @param correlativo
-     * @return String[] en este orden: correlativo, correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, fechaActualizacion, simple, repetible, masiva, requiereRevision, hitoDeControl.
-     */
+    /// <summary>
+    /// Devuelve los datos de la actividad segun el correlativo
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
     public abstract String[] getActividad(int correlativo);
 
-    /**
-     * Devuelve todas las actividades que esten creadas en la BD
-     */
+    /// <summary>
+    /// Devuelve todas las actividades que esten creadas en la Base de Datos
+    /// </summary>
+    /// <returns></returns>
     public abstract Vector obtenerTodasLasActividades();
 
-    /**
-     * Elimina la actividad de la base de datos.
-     * @param correlativo de la actividad a eliminar
-     * @return 0 - Se elimino correctamente, 1 - Ya existe una instancia de actividad,
-     */
+    /// <summary>
+    /// Elimina la actividad de la base de datos.
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
     public abstract int eliminar(int correlativo);
 
-    /**
-     * Agrega comando a la base de datos como parte de la Actividad (se supone que esta actividad es simple). 
-     * Si ya existe un comando en esta posicion (orden) se corre una posicion adelante (Tambien todos los comandos con la posicion posterior).
-     * @param correlativoActividad - correlativo de la actividad
-     * @param IDComando - correlativo del comando
-     * @param orden - posicion en la que se inserta comando, 0 - primera posicion
-     * @param esObligatorio - si es obligatorio
-     */
+    /// <summary>
+    /// Agrega comando a la base de datos como parte de la Actividad (se supone que esta actividad es simple). Si ya existe un comando en esta posicion (orden) se corre una posicion adelante (Tambien todos los comandos con la posicion posterior).
+    /// </summary>
+    /// <param name="correlativoActividad"></param>
+    /// <param name="IDComando"></param>
+    /// <param name="orden"></param>
+    /// <param name="esObligatorio"></param>
     public abstract void agregarComando(int correlativoActividad, int IDComando, int orden, boolean esObligatorio);
 
-    /**
-     * Desvincula comando de la actividad (se supone que actividad es simple).
-     * Hay que correr otros comandos para conservar el orden
-     * @param correlativo
-     * @param IDComando
-     */
+    /// <summary>
+    /// Desvincula comando de la actividad (se supone que actividad es simple). Hay que correr otros comandos para conservar el orden
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <param name="IDComando"></param>
     public abstract void desvincularComando(int correlativo, int IDComando);
 
-    /**
-     * Desvincula dos actividades
-     * @param correlativoMadre
-     * @param correlativoHija
-     */
+    /// <summary>
+    /// Desvincula dos actividades
+    /// </summary>
+    /// <param name="correlativoMadre"></param>
+    /// <param name="correlativoHija"></param>
     public abstract void desvincularActividad(int correlativoMadre, int correlativoHija);
 
-    /**
-     * crea vinculo entre dos actividades madre e hija, pone las hijas en orden
-     * @param correlativoMadre
-     * @param correlativoHija
-     * @param orden
-     * @param esObligatorio
-     */
+    /// <summary>
+    /// Desvincula dos actividades
+    /// </summary>
+    /// <param name="correlativoMadre"></param>
+    /// <param name="correlativoHija"></param>
+    /// <param name="orden"></param>
+    /// <param name="esObligatorio"></param>
     public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
 
-    /**
-     * Devuelve los correlativos de las hijas de cierta actividad madre
-     * @param correlativo de la madre
-     * @return int[] correlativos de las hijas (si no hay devuelve null)
-     */
-    public int[] getHijasActividades(int correlativo){
+    /// <summary>
+    /// Devuelve los correlativos de las hijas de cierta actividad madre
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
+    public int[] getHijasActividades(int correlativo) {
         int[] hijas = null;
         int i = 0;
         ResultSet resultado = null;
@@ -127,12 +126,12 @@ public abstract class ConsultaActividad extends ControladorBD{
         return hijas;
     }
 
-    /**
-     * Devuelve los correlativos de las hijas de cierta actividad madre
-     * @param correlativo de la madre
-     * @return int[] correlativos de las hijas (si no hay devuelve null)
-     */
-    public int[] getHijosComandos(int correlativo){
+    /// <summary>
+    /// Devuelve los correlativos de los comandos de las hijas de cierta actividad madre
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
+    public int[] getHijosComandos(int correlativo) {
         int[] hijos = null;
         int i = 0;
         ResultSet resultado = null;

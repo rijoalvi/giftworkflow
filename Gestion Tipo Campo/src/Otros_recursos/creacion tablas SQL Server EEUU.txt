@@ -147,10 +147,11 @@ CREATE TABLE ACTIVIDAD(
     repetible          varchar(6),
     masiva             varchar(6),
     requiereRevision   varchar(6),
-    hitoDeControl       varchar(6),
+    hitoDeControl      varchar(6),
     paralelo                   varchar(6),          --si los comandos se ejecutan en paralelo o en secuencia
     exclusivo                  varchar(6),          --que puede ejecutarse solo uno, solamente en caso de que son paralelos
-    ordenEjecucion      int, --indica dentro de un flujo en q orden se deben ejecutar las actvs
+    ordenEjecucion     int, --indica dentro de un flujo en q orden se deben ejecutar las actvs
+    AsignacionManual   varchar(5), --indica si las tablas se asignarán de forma manual o de forma automática
     PRIMARY KEY (correlativo)
 );/**/
 

@@ -12,14 +12,17 @@ import java.util.Vector;
  *
  * @author Alberto
  */
+/// <summary>
+/// Clase que contiene las consultas de la implementación SQL Server de la tercera capa de la clase formulario
+/// </summary>
 public class ConsultaFormularioSQLServer extends ConsultaFormulario {
 
-    /**
-     * Guarda un nuevo formulario en la BD
-     * @param nombre
-     * @param descripcion
-     * @return el ID del formulario creado
-     */
+    /// <summary>
+    /// Guarda un nuevo formulario en la BD
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
+    /// <returns></returns>
     public int guardaFormulario(String nombre, String descripcion) {
         int ID = -1;
         //Guarda en FORMULARIO
@@ -36,71 +39,70 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario {
         return ID;
     }
 
-    /**
-     * Borra un miembro formulario en la BD
-     * @param ID
-     */
+    /// <summary>
+    /// Borra un miembro formulario en la BD
+    /// </summary>
+    /// <param name="ID"></param>
     public void borrarMiembro(int ID) {
         this.doUpdate("delete from MIEMBROFORMULARIO where correlativo = " + ID + ";");
     }
 
-    /**
-     * Modifica los datos del miembro
-     * @param ID ID del miembro a modificar
-     * @param nombre
-     * @param valX
-     * @param valY
-     * @param tipoLetra
-     * @param color
-     * @param tamanoLetra
-     * @param IDTP
-     */
+    /// <summary>
+    /// Modifica los datos del miembroFormulario indicado en el ID
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="nombre"></param>
+    /// <param name="valX"></param>
+    /// <param name="valY"></param>
+    /// <param name="tipoLetra"></param>
+    /// <param name="color"></param>
+    /// <param name="tamanoLetra"></param>
+    /// <param name="IDTP"></param>
     public void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra) {
         this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '" + nombre + "', valX = " + valX + ", valY = " + valY + ", ancho = " + ancho + ", alto = " + alto + ", tipoLetra = '" + tipoLetra + "', color = " + color + ", tamanoLetra = " + tamanoLetra + ", IDTipoCampo = " + IDTP + ", tabIndex = " + tabIndex + ", estiloLetra = '" + estiloLetra + "' WHERE correlativo = " + ID + ";");
     }
 
-    /**
-     * Actualiza la posicion del componente
-     * @param ID
-     * @param valX
-     * @param valY
-     */
+    /// <summary>
+    /// Actualiza la posicion del componente dentro del formulario
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="valX"></param>
+    /// <param name="valY"></param>
     public void updatePosicion(int ID, int valX, int valY) {
         this.doUpdate("UPDATE MIEMBROFORMULARIO set valX = " + valX + ", valY = " + valY + " WHERE correlativo = " + ID + ";");
     }
 
-    /**
-     * Actualiza el tab index
-     * @param ID
-     * @param tab
-     */
+    /// <summary>
+    /// Actualiza el tab index
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="tab"></param>
     public void updateTabIndex(int ID, int tab) {
         this.doUpdate("UPDATE MIEMBROFORMULARIO set tabIndex = " + tab + " WHERE correlativo = " + ID + ";");
     }
 
-    /**
-     * Modifica el nombre del formulario
-     * @param nombre
-     * @param ID
-     */
+    /// <summary>
+    /// Modifica el nombre del formulario indicado mediante el ID
+    /// </summary>
+    /// <param name="ID"></param>
     public void modificarNombre(String nombre, int ID) {
         this.doUpdate("UPDATE MIEMBROFORMULARIO set nombre = '" + nombre + " WHERE correlativo = " + ID + ";");
     }
 
-    /**
-     * Modifica la descripcion del formulario
-     * @param descp
-     * @param ID
-     */
+    /// <summary>
+    /// Modifica la descripcion del formulario
+    /// </summary>
+    /// <param name="descp"></param>
+    /// <param name="ID"></param>
     public void modificarDescripcion(String descp, int ID) {
         this.doUpdate("UPDATE MIEMBROFORMULARIO set descripcion = '" + descp + " WHERE correlativo = " + ID + ";");
     }
 
-    /**
-     * Obtiene los datos del formulario
-     * @param correlativo
-     * @return Vector con los datos del formulario en este orden: nombre, descripcion, ultimaActualizacion
-     */
+    /// <summary>
+    /// Obtiene los datos del formulario indicado en el correlativo
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
     public Vector obtenerDatosFormulario(int correlativo) {
         String consulta = "Select nombre, descripcion, ultimaActualizacion From FORMULARIO Where correlativo = " + correlativo;
         Vector campos = new Vector();
@@ -115,12 +117,11 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario {
         return campos;
     }
 
-
-    /**
-     * Obtiene todos los miembros del formulario y los retorna dentro de un vector
-     * @param correlativoFormulario
-     * @return
-     */
+    /// <summary>
+    /// Obtiene todos los miembros del formulario y los retorna dentro de un vector
+    /// </summary>
+    /// <param name="correlativoFormulario"></param>
+    /// <returns></returns>
     public Vector obtenerMiembros(int correlativoFormulario) {
         Vector miembros = new Vector();
         //ID, this.correlativo, nombre, valX, valY, tipoLetra, color, tamanoLetra, IDTP
@@ -145,13 +146,13 @@ public class ConsultaFormularioSQLServer extends ConsultaFormulario {
                 miembros.add(resultado.getObject("estiloLetra").toString().trim());
 
 
-            /*for (int i = 0; i < campos.size(); i++) {
-            miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
-            }*/
-            /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
-            miMapa.put("nombre",resultado.getObject("nombre").toString());
-            miMapa.put("descripcion",resultado.getObject("descripcion").toString());
-            miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
+                /*for (int i = 0; i < campos.size(); i++) {
+                miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
+                }*/
+                /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
+                miMapa.put("nombre",resultado.getObject("nombre").toString());
+                miMapa.put("descripcion",resultado.getObject("descripcion").toString());
+                miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: aca?*" + e.toString());

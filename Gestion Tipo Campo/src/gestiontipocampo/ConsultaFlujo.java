@@ -7,22 +7,24 @@ package gestiontipocampo;
 import java.sql.SQLException;
 import java.util.Vector;
 
-/**
- *
- * @author admin
- */
+/// <summary>
+/// Clase que contiene las consultas de la 3 capa de la clase flujo
+/// </summary>
 public class ConsultaFlujo extends ControladorBD {
 
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public ConsultaFlujo() {
     }
 
-    /**
-     * Crea nuevo flujo en la BD y devuelve el correlativo del flujo recien creado.
-     * @param nombre
-     * @param descripcion
-     * @param correlativoRaiz - correlativo de la actividad en la raiz del flujo
-     * @return correlativo del flujo recien creado.
-     */
+    /// <summary>
+    /// Crea nuevo flujo en la BD y devuelve el correlativo del flujo recien creado.
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
+    /// <param name="correlativoRaiz"></param>
+    /// <returns></returns>
     public int nuevoFlujo(String nombre, String descripcion, int correlativoRaiz) {
         int correlativo = -1;
         String[] incremental = new String[1];
@@ -38,15 +40,19 @@ public class ConsultaFlujo extends ControladorBD {
         return correlativo;
     }
 
+    /// <summary>
+    /// Actualiza una actividaden la base de datos
+    /// </summary>
+    /// <param name="consulta"></param>
     public void actualizarActividad(String consulta) {
         this.doUpdate(consulta);
     }
 
-    /**
-     * Metodo que recupera datos de un flujo ya creado y devuelve los datos en un vector
-     * @param correlativo
-     * @return //Los datos tienen que ir en el siguiente orden: nombre, descripcion, raiz
-     */
+    /// <summary>
+    /// Recupera los datos de un flujo ya creado y devuelve los datos en un vector
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <returns></returns>
     public Vector<String> getFlujo(int correlativo) {
         Vector<String> retorno = new Vector<String>();
         try {
@@ -62,30 +68,31 @@ public class ConsultaFlujo extends ControladorBD {
         return retorno;
     }
 
-    /**
-     * Metodo para actualizar los datos de un flujo ya creado en la BD
-     * @param correlativo
-     * @param nombre
-     * @param descripcion
-     * @param raiz
-     */
+    /// <summary>
+    /// actualizar los datos de un flujo ya creado en la Base de Datos
+    /// </summary>
+    /// <param name="correlativo"></param>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
+    /// <param name="raiz"></param>
     public void actualizar(int correlativo, String nombre, String descripcion, int raiz) {
         this.doUpdate("UPDATE FLUJO set nombre = '" + nombre + "', descripcion= '" + descripcion + "', actividadRaiz = '" + raiz + "' WHERE correlativo = " + correlativo + ";");
     }
 
-    /**
-     * Metodo para borrar flujo
-     * @param correlativo - correlativo del flujo a borrar
-     */
+    /// <summary>
+    /// Metodo para borrar un flujo de trabajo de la base de datos
+    /// </summary>
+    /// <param name="correlativo"></param>
     public void borrarFlujo(int correlativo) {
         this.doUpdate("delete from FLUJO where correlativo = " + correlativo + ";");
     }
 
-    /**
-     * Metodo para probar en la BD si ya existe un flujo con el nombre dado
-     * @param nombre - nombre de flujo a probar
-     * @return true - ya existe, false - no existe
-     */
+
+    /// <summary>
+    /// Metodo para probar en la BD si ya existe un flujo con el nombre dado
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <returns></returns>
     public boolean yaExiste(String nombre) {
         boolean retorno = false;
         try {

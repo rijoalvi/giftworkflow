@@ -1,20 +1,27 @@
 /*
  * GestionTipoCampoAboutBox.java
  */
-
 package gestiontipocampo;
 
 import org.jdesktop.application.Action;
 
 public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
 
+    /// <summary>
+    /// Constructor por defecto del frame
+    /// </summary>
+    /// <param name="parent"></param>
     public GestionTipoCampoAboutBox(java.awt.Frame parent) {
         super(parent);
         initComponents();
         getRootPane().setDefaultButton(closeButton);
     }
 
-    @Action public void closeAboutBox() {
+    /// <summary>
+    /// Cierra el frame de acerca de
+    /// </summary>
+    @Action
+    public void closeAboutBox() {
         dispose();
     }
 
@@ -81,10 +88,8 @@ public class GestionTipoCampoAboutBox extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-    
 }
