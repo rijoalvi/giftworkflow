@@ -20,7 +20,11 @@ public class Modelo {
         buscador = new ControladorBD();
     }
 
-    //comboNiveles.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "prueba", "asfdsd", "asfdasdf", "asdf" }));
+    /**
+     * Hace un modelo de Formularios
+     * @param consulta
+     * @return
+     */
     public Vector getModeloDeCombo(String consulta) {
         //  MiDato d= new MiDato("increible",2);
         Vector vectorValores = new Vector();
@@ -36,7 +40,13 @@ public class Modelo {
         }
         return vectorValores;
     }
-
+    /**
+     * Hace un modelo de tipo campos
+     * @param consulta
+     * @param campoTexto
+     * @param campoNumero
+     * @return
+     */
     public Vector getModeloEnVector(String consulta, String campoTexto, String campoNumero) {
         //  MiDato d= new MiDato("increible",2);
         Vector vectorValores = new Vector();
@@ -52,7 +62,14 @@ public class Modelo {
         }
         return vectorValores;
     }
-
+/**
+ * LLena un modelo para combo
+ * @param consulta
+ * @param campoTexto
+ * @param campoNumero
+ * @param campoNumero2
+ * @return
+ */
     public Vector getModeloEnVector(String consulta, String campoTexto, String campoNumero, String campoNumero2) {
         Vector vectorValores = new Vector();
         try {

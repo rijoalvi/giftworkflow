@@ -10,11 +10,20 @@ import java.util.*;
  * @author luiscarlosch
  */
 public class ConsultaListaMySQL extends ConsultaLista {
-
+    /**
+     * Agrega un miembro a la lista
+     * @param nombreMiembro
+     * @param correlativo
+     * @param posicion
+     */
     public void agregarMiembro(String nombreMiembro, int correlativo , int posicion ) {//agregar elemento a la lista
         this.doUpdate("insert into MIEMBROLISTA (valor,IDLista, numeroElemento) values ('" + nombreMiembro + "'," + correlativo + ", " + posicion + ");");
     }
-
+    /**
+     * Get los datos de una lista
+     * @param correlativo
+     * @return
+     */
     public Map<String, String> getInfoLista(int correlativo){
         Vector campos = new Vector();
         campos.add("t.correlativo");

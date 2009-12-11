@@ -12,7 +12,7 @@
 package gestiontipocampo;
 
 /**
- *
+ * Frame que le permite al usuario configurar los maestro detalles
  * @author ea61521
  */
 import java.util.Vector;

@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * Permite al usuario dar mantenimiento a los nodos de un árbol
  * @author Ricardo
  */
 public class frameTermino extends javax.swing.JFrame {
@@ -204,7 +204,9 @@ public class frameTermino extends javax.swing.JFrame {
             }
         };
     }
-
+    /**
+     * llena los atributos del nodo
+     */
     public void llenarDatos() {
         String nombre = "";
         String descripcion = "";
@@ -227,7 +229,9 @@ public class frameTermino extends javax.swing.JFrame {
             labelCategoria.setVisible(false);
         }
     }
-
+    /**
+     * Llena al combo con los datos
+     */
     public void llenarComboCategoria() {
         comboCategoria.removeAllItems();
         getIDCategoria();
@@ -270,7 +274,9 @@ public class frameTermino extends javax.swing.JFrame {
             return true;
         return false;
     }
-
+    /**
+     * agrega un nodo a la jerarquía
+     */
     private void agregarNodo() {        
         System.out.println("entre a agregar");
         String nombre = campoNombre.getText();
@@ -307,7 +313,9 @@ public class frameTermino extends javax.swing.JFrame {
         framePadre.cambiarNumTerminos(1);
         framePadre.llenarTreeViewJerarquia(nombreJer);
     }
-
+    /**
+     * actualiza númmero de nivel de la Jerarquia
+     */
     private void actualizarNumNivelJerarquia() {
         int numNivelJera = -1;
         try {

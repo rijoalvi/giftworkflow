@@ -7,7 +7,7 @@ package gestiontipocampo;
 
 /**
  * La capa de la base de datos de tipoCampo
- * 
+ *  
  * @author admin
  */
 public class TipoCampoBD {

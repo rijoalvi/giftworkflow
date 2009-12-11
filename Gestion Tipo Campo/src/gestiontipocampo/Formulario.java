@@ -22,7 +22,7 @@ public class Formulario {
     public ConsultaFormulario formBD;
 
     /**
-     *
+     * Constructor
      * @param nombre
      * @param desc
      */
@@ -34,12 +34,17 @@ public class Formulario {
         this.correlativo = formBD.guardaFormulario(nombre, descripcion);
         miembrosFormulario = new TreeSet();
     }
+    /**
+     * Constructor
+     * @param correlativo
+     * @param nombre
+     */
     public Formulario(int correlativo, String nombre) {
         this.correlativo =correlativo;
         this.nombre=nombre;
     }
     /**
-     *
+     * Constructor por defecto
      * @param nombre
      * @param desc
      */
@@ -67,18 +72,27 @@ public class Formulario {
     }
 
     /**
-     *
+     * Devuelve todos los formularios
      */
     public Vector getTodosLosFormulario() {
         Vector datos = this.formBD.obtenerTodosLosFormularios();
         return datos;
     }
 
-
+/**
+ * Devulve un único formulario
+ * @param idFormulario
+ * @return
+ */
     public Vector getMiembrosFormularioPorID(int idFormulario) {
         Vector datos = this.formBD.obtenerMiembrosFormularios(idFormulario);
         return datos;
     }
+    /**
+     * Devuelve el nombre de un formulario
+     * @param idFormulario
+     * @return
+     */
     public Vector getMiembrosFormularioPorIDSoloNombre(int idFormulario) {
         Vector datos = this.formBD.obtenerMiembrosFormulariosSoloNombres(idFormulario);
         return datos;
@@ -228,7 +242,11 @@ public class Formulario {
         //agrega el nuevo con los valores nuevos
         miembrosFormulario.add(datoNuevo);
     }
-
+    /**
+     * Devuelve todos los IDs de los formularios
+     * @param ID
+     * @return
+     */
     private int[] getIDTipoCampo(int ID) {
         int[] result = new int[2];
         result[0] = -1;

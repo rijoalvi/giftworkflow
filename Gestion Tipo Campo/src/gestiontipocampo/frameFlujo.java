@@ -15,7 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Frame que permite al usuario crear los flujos de trababjo
  * @author admin
  */
 public class frameFlujo extends javax.swing.JFrame {

@@ -18,7 +18,15 @@ public class ConsultaSimetria extends ControladorBD{
     public ConsultaSimetria(){
 
     }
-
+/**
+ * Agrega una simetría a la Base de datos
+ * @param IDForm1
+ * @param IDForm2
+ * @param elementosForm1
+ * @param elementosForm2
+ * @param IDCampoLlaveForm1
+ * @param IDCampoLlaveForm2
+ */
     public void agregarSimetria(int IDForm1,  int IDForm2,String elementosForm1, String elementosForm2,int IDCampoLlaveForm1,int IDCampoLlaveForm2){
 
         try { //Se busca el ID de los datos que acaba de insertar
@@ -33,7 +41,10 @@ public class ConsultaSimetria extends ControladorBD{
         }
 
     }
-
+/**
+ * Devuelve todas las simetrías
+ * @return
+ */
     public Vector obtenerTodasLasSimetrias() {
 
         Vector campos = new Vector();
@@ -52,10 +63,11 @@ public class ConsultaSimetria extends ControladorBD{
         return campos;
     }
 
-
-
-    //public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
-
+    /**
+     * Devulve todas las actividades
+     * @param correlativo
+     * @return
+     */
 
     public int[] getHijasActividades(int correlativo){
         int[] hijas = null;

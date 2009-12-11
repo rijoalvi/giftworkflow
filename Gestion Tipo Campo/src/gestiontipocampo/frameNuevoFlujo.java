@@ -18,7 +18,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
- * Frame Actividad
+ * Frame Actividad que permite configurar con un nuevo flujo de dato con sus actividades
  * @author Alberto
  */
 public class frameNuevoFlujo extends javax.swing.JFrame {
@@ -208,7 +208,9 @@ public class frameNuevoFlujo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Llena un combo con todas las actividades
+     */
     private void llenarComboAAgregarActv() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo = (DefaultComboBoxModel) comboComponenteAAgregar.getModel();

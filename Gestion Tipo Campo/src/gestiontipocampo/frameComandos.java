@@ -31,8 +31,10 @@ public class frameComandos extends javax.swing.JFrame {
     Vector correlativo;
     Vector IDEtiquetaCampo;//tipoCapo de las etiquetas que tienen campos asociados en el mismo orden en el que se encuentran cargadas las  etiquetas  en el comboBox
 
+    /**
+     * Constructor con el que inicia todo en blanco
+    */
 
-    /*Constructro con el que inicia todo en blanco*/
     public frameComandos() {
         initComponents();
         comboListaCondicion.setVisible(false);
@@ -46,7 +48,12 @@ public class frameComandos extends javax.swing.JFrame {
     /*comboSeleccionFormulario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " " }));*/
     }
 
-    /*Constructor que recive el correlativo del formulario con el que iniciara*/
+/**
+ * Constructor que recive un comando
+ * @param correlativoComando
+ */
+
+
     public frameComandos(int correlativoComando) {
         initComponents();
         comboListaCondicion.setVisible(false);

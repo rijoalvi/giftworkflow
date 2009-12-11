@@ -15,7 +15,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
- * Frame Actividad
+ * Frame Actividad que permite al usuario dar mantenimiento a una actividad
  * @author Alberto
  */
 public class frameActividad extends javax.swing.JFrame {
@@ -25,9 +25,9 @@ public class frameActividad extends javax.swing.JFrame {
     //Se usa para el orden de ejecuccion de los comandos o las actividades
     int orden;
 
-    /** 
-     * Constructor
-     */
+/**
+ * Constructor por defecto
+ */
     public frameActividad() {
         initComponents();
 

@@ -24,11 +24,17 @@ public class SeleccionFormulario extends javax.swing.JFrame {
 
     frameFormulario madre;
 
-    /** Creates new form SeleccionFormulario */
+/**
+ * Constructor por defecto
+ */
     public SeleccionFormulario() {
         initComponents();
     }
-
+/**
+ * Constructo que recive una ventana madre
+ * @param frameMadre
+ * @param arbolPrincipal
+ */
     public SeleccionFormulario(frameFormulario frameMadre, JTree arbolPrincipal) {
         initComponents();
         madre = frameMadre;
@@ -160,7 +166,10 @@ public class SeleccionFormulario extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_tablaBusquedaKeyPressed
-
+/**
+ * LLena un grid con todos los formularios buscados
+ * @param argumentoBusqueda
+ */
     public void llenarTabla(String argumentoBusqueda) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -182,7 +191,9 @@ public class SeleccionFormulario extends javax.swing.JFrame {
             System.out.println("*SQL Exception: *" + e.toString());
         }
     }
-
+/**
+ * Inicia la búsqueda de formularios
+ */
     public void realizarBusqueda() {
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
 
