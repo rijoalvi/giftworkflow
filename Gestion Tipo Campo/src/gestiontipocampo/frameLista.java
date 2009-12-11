@@ -26,12 +26,19 @@ public class frameLista extends javax.swing.JFrame {
     //  private int IDTipoCampo;
     public boolean modificando;
 
+    /**
+     * Constructor por defecto de la clase FrameLista
+     */
     public frameLista() {
         initComponents();
         SidePanel.setVisible(false);
         miLista = new Lista();
     }
 
+    /**
+     * Constructor sobrecargado que recibe una Lista por parámetro para que sea mostrada
+     * @param int IDLista de la lista a mostrar
+     */
     public frameLista(int IDLista) {
         initComponents();
         miLista = new Lista();
@@ -47,7 +54,7 @@ public class frameLista extends javax.swing.JFrame {
         nombreMiembroPorDefecto.setText(miLista.nombreMiembroPorDefecto);
     }
 
-    public void actualizarLista() {
+    private void actualizarLista() {
         if (miLista.ordenPersonalizado == true) {
             SidePanel.setVisible(true);
         } else {
@@ -568,7 +575,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     @org.jdesktop.application.Action
-    public void botonOrdenPersonalizado() {
+    private void botonOrdenPersonalizado() {
         if (botonPersonalizado.isSelected()) {
             miLista.setConOrdenPersonalizado(true);
         } else {
@@ -578,7 +585,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     @org.jdesktop.application.Action
-    public void botonPrimeroAccion() {
+    private void botonPrimeroAccion() {
         int posicion = lista.getSelectedIndex();
         int ID = 0;
         ListModel otraLista = lista.getModel();
@@ -596,7 +603,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     @org.jdesktop.application.Action
-    public void botonSubirAccion() {
+    private void botonSubirAccion() {
         int posicion = lista.getSelectedIndex();
         int ID = 0;
         ListModel otraLista = lista.getModel();
@@ -613,7 +620,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     @org.jdesktop.application.Action
-    public void botonBajarAccion() {
+    private void botonBajarAccion() {
         int posicion = lista.getSelectedIndex();
         int ID = 0;
         ListModel otraLista = lista.getModel();
@@ -630,7 +637,7 @@ public class frameLista extends javax.swing.JFrame {
     }
 
     @org.jdesktop.application.Action
-    public void botonUltimoAccion() {
+    private void botonUltimoAccion() {
         int posicion = lista.getSelectedIndex();
         int posFinal;
         int ID = 0;

@@ -64,6 +64,12 @@ public class Flujo {
         this.actividadRaiz = Integer.parseInt(datos.get(2));
     }
 
+    /**
+     * Actualiza la información del al actividad indicada por el parámetro IDActividad
+     * @param int IDActividad indica la actividad a actualizar
+     * @param int IDFlujo indica el nuevo id del flujo de trabajo al que pertenece la Actividad
+     * @param int ordenEjecucion indica el número de la Actividad dentro del flujo de trabajo
+     */
     public void actualizarActividad(int IDActividad, int IDFlujo, int ordenEjecucion){
         String consulta = "UPDATE ACTIVIDAD set correlativoFlujo = '" + IDFlujo + "', ordenEjecucion = '"+ ordenEjecucion +"' WHERE correlativo = " + IDActividad + ";";
         consultaFlujo.actualizarActividad(consulta);
@@ -99,31 +105,59 @@ public class Flujo {
         return resultado;
     }
 
-    //Sets y gets
+    /**
+     * obtiene el correlativo del Flujo de trabajo
+     * @return int correlativo
+     */
     public int getCorrelativo() {
         return correlativo;
     }
 
+    /**
+     * Obtiene la descripcion del flujo de trabajo
+     * @return String descripción
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Establece la descripcion del Flujo de trabajo
+     * @param String descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Obtiene el nombre del flujo de trabajo
+     * @return String nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Establece el nombre del flujo de trabajo
+     * @param String nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+
+    /**
+     * Obtiene el ID de la actividad raíz de la base de datos
+     * @return int id de la actidada raíz
+     */
     public int getRaiz() {
         return actividadRaiz;
     }
 
+    /**
+     * Establece la actividad raíz del flujo de trabajo
+     * @param int actividadRaiz Correlativo de la actividad que será la actividad raíz del flujo de trabajo
+     */
     public void setRaiz(int actividadRaiz) {
         this.actividadRaiz = actividadRaiz;
     }

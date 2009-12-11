@@ -29,7 +29,9 @@ public class frameTabIndex extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form frameTabIndex
+     * Constructor sobrecargado que recibe que inicializa los valores de la lista de miembros del formulario
+     * @param parent
+     * @param valores
      */
     public frameTabIndex(frameFormulario parent, String [] valores) {
         initComponents();

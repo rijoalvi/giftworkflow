@@ -28,7 +28,8 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
     /**
      * Creates new form frameManejoCategorias
-     * El boolean indica si son de niveles o categorias
+     * @param boolean nombNibeles indica si son de niveles o categorias
+     * @param String nombre
      */
     public frameManejoCategorias(boolean NombNiveles, String nombre) {
         initComponents();
@@ -251,7 +252,7 @@ public class frameManejoCategorias extends javax.swing.JFrame {
 
 
 
-    public void refrescarLista(){
+    private void refrescarLista(){
         /*Vector listaInstancias = new Vector();
         listaInstancias.add("uno");
         listaInstancias.add("dos");

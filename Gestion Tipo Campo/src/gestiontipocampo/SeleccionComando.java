@@ -27,7 +27,7 @@ public class SeleccionComando extends javax.swing.JFrame {
     /** Creates new form SeleccionFormulario */
     public SeleccionComando() {
         initComponents();
-        llenarTabla("");
+        llenarTabla();
     }
 
     /*public SeleccionComando(frameFormulario frameMadre, JTree arbolPrincipal) {
@@ -161,7 +161,10 @@ public class SeleccionComando extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaBusquedaKeyPressed
 
-    public void llenarTabla(String argumentoBusqueda) {
+    /**
+     * Llena la el data grid con los comandos que se encuentren la base de datos
+     */
+    public void llenarTabla() {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tablaBusqueda.getModel();
@@ -183,6 +186,9 @@ public class SeleccionComando extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Abre un formulario de FrameComandos con el valor seleccionado en el dataGrid
+     */
     public void realizarBusqueda() {
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
 

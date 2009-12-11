@@ -15,10 +15,22 @@ import java.util.Vector;
  */
 public class ConsultaMaestroDetalle extends ControladorBD{
 
+    /**
+     * Constructor por defecto
+     */
     public ConsultaMaestroDetalle(){
 
     }
 
+    /**
+     * Agrega una nueva relación de tipo Maestro Detalle en la base de datos
+     * @param IDFormularioMaestro
+     * @param nombreFormularioMaestro
+     * @param IDFormularioDetalle
+     * @param nombreFormularioDetalle
+     * @param detalleObligatorio
+     * @return int correlativo que identifica la relación maestro-detalle recien ingresada en la base de datos
+     */
     public int agregarMaestroDetalle(int IDFormularioMaestro, String nombreFormularioMaestro, int IDFormularioDetalle, String nombreFormularioDetalle, String detalleObligatorio){
         int id = -1;
         String[] incremental = new String[1];
@@ -36,6 +48,10 @@ public class ConsultaMaestroDetalle extends ControladorBD{
         return id;
     }
 
+    /**
+     * Obtiene todas las relaciones de tipo maestro detalle que se encuentran en la base de datos de configuración
+     * @return Vector con el nombre del maestro en indices pares y el del detalle en los indices impares.
+     */
     public Vector obtenerTodosLosMaestroDetalle() {
 
         Vector campos = new Vector();
@@ -59,6 +75,11 @@ public class ConsultaMaestroDetalle extends ControladorBD{
     //public abstract void vincularActividad(int correlativoMadre, int correlativoHija, int orden, boolean esObligatorio);
 
 
+    /**
+     * Método que obtiene las actividades hijas de la actividad compuesta identificada por el parámetro enviado
+     * @param correlativo de la actividad compuesta de la que se desean obtener las actividades hijas
+     * @return int[] vector con los indices de las actividades miembro que conforman la actividad copuesta
+     */
     public int[] getHijasActividades(int correlativo){
         int[] hijas = null;
         int i = 0;
@@ -74,6 +95,13 @@ public class ConsultaMaestroDetalle extends ControladorBD{
         }
         return hijas;
     }
+
+    /**
+     * Método que agrega campos que serán visibles en las relaciones Maestro-Detalle
+     * @param int IDMaestroDetalle al que se le desean agregar los campos
+     * @param Vector de tipoCampo vectorCamposDetalleSeleccionados
+     * @param Vector de tipoCampo vectorCamposMaestroSeleccionados
+     */
 
     void agregarCamposEnRelacionMaestroDetalle(int IDMaestroDetalle, Vector vectorCamposDetalleSeleccionados, Vector vectorCamposMaestroSeleccionados) {
         /*int id = -1;
@@ -105,6 +133,12 @@ public class ConsultaMaestroDetalle extends ControladorBD{
         //return id;
     }
 
+
+    /**
+     * Método que recupera el id del formulario detalle al que hace referencia el formulario Maestro dueño del id enviado por parámetro
+     * @param IDFormulario del maestro del detalle buscado
+     * @return int id del Formulario Detalle del formulario indicado por parámetro
+     */
     int IDDetalleDelMaestro(int IDFormulario) {
         int correlativo = -1;
         ResultSet result = null;
@@ -120,6 +154,11 @@ public class ConsultaMaestroDetalle extends ControladorBD{
         return correlativo;
     }
 
+    /**
+     * Método que recupera el id del formulario Maestro del formulario indicado por el parámetro
+     * @param int IDFormulario detalle del que se quiere conocer el maestro
+     * @return int IDFormulario Maestro del formulario indicado en el parámetro
+     */
     int IDMaestroDelDetalle(int IDFormulario) {
         int correlativo = -1;
         ResultSet result = null;

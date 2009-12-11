@@ -25,16 +25,36 @@ public class MiembroFormulario implements Comparable {
     private int tabIndex;
     private String estiloLetra;
 
-    ///Constructor por omision
+    /**
+     * Constructor por omision
+     */
     public MiembroFormulario() {
     }
 
-    ///Constructor que recibe nada mas el ID
+    /**
+     * Constructor que recibe nada mas el ID
+     */
     public MiembroFormulario(int ID) {
         this.correlativo = ID;
     }
 
-    ///Constructor que recibe parametros de inicialización
+    /**
+     * Constructor que recibe parametros de inicialización
+     * @param int ID
+     * @param int IDForm
+     * @param String nombre
+     * @param int valX
+     * @param int valY
+     * @param int ancho
+     * @param int alto
+     * @param String tipoLetra
+     * @param int color
+     * @param int tamanoLetra
+     * @param int IDTipoC
+     * @param int IDCC
+     * @param int tabIndex
+     * @param String estiloLetra
+     */
     public MiembroFormulario(int ID, int IDForm, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTipoC, int IDCC, int tabIndex, String estiloLetra) {
         this.correlativo = ID;
         this.IDFormulario = IDForm;
@@ -99,6 +119,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el correlativo(ID) del miembro
+     * @return int corelativo del maestro detalle
      */
     public int getID() {
         return correlativo;
@@ -106,24 +127,31 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el ID del tipo campo del miembro
+     * @return int Id del tipo de campo miembro de la actividad
      */
     public int getIDTipoCampo() {
         return IDTipoCampo;
     }
 
+    /**
+     * Indica el ID de del campo que forma parte del formulario
+     * @return int tipoCampo
+     */
     public int getIDCampo(){
         return IDCampo;
     }
 
     /**
      * Indica la posicion en X del miembro
+     * @return int valor de x
      */
     public int getValX() {
         return valX;
     }
 
     /**
-     * Indica la posicion en X del miembro
+     * Indica la posicion en y del miembro
+     * @return valor de Y
      */
     public int getValY() {
         return valY;
@@ -131,6 +159,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el ancho del miembro
+     * int ancho
      */
     public int getAncho() {
         return ancho;
@@ -138,6 +167,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el alto del miembro
+     * @return int alto
      */
     public int getAlto() {
         return alto;
@@ -145,6 +175,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Devuelve el valor del nombre
+     * @return String nombre
      */
     public String getNombre() {
         return nombre;
@@ -152,6 +183,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el ID del formulario al cual pertenece el miembro
+     * @return int idFormulario
      */
     public int getIDFormulario() {
         return IDFormulario;
@@ -159,6 +191,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el tamaño de letra del miembro
+     * @return int tamanoLetra
      */
     public int getTamanoLetra() {
         return tamanoLetra;
@@ -166,6 +199,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Indica el color del miembro
+     * @return int color
      */
     public int getColor() {
         return color;
@@ -173,13 +207,15 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Devuelve el tipo de Letra
+     * @return String Tipo de letra del miembro
      */
     public String getTipoLetra() {
         return tipoLetra;
     }
 
     /**
-     * Devuelve tab index
+     * Devuelve tab index que indica el orden en que es selecconado el miembro dentro del formulario
+     *  @return int tab index
      */
     public int getTabIndex() {
         return tabIndex;
@@ -187,7 +223,7 @@ public class MiembroFormulario implements Comparable {
 
     /**
      * Devuelve estilo de letra
-     * @return
+     * @return String
      */
     public String getEstiloLetra(){
         return estiloLetra;

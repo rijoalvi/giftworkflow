@@ -28,6 +28,10 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     * Constructor sobrecargado que recibe como parámetro el frame que lo invocó
+     * @param frameMadre
+     */
     public frameBusquedaNodos(frameEditarTerminos frameMadre) {
         initComponents();
         madre = frameMadre;
@@ -159,6 +163,11 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
+    /**
+     * Método que se encarga de llenar el dataGrid con los ids,nombres y descripciones de los nodos cuyos ids son enviados por parámetro
+     * @param String[] ids
+     * @param int cantElementos
+     */
     public void llenarTabla(String[] ids, int cantElementos) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -184,6 +193,11 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Método que se encarga de llenar el dataGrid con los ids,nombres y descripciones de los nodos cuyos ids son enviados por parámetro y con un argumento de busqueda para filtrar los resultados
+     * @param String[] ids
+     * @param int cantElementos
+     */
     public void llenarTablaBusqueda(String[] ids, String palabraClave, int cantElem) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -211,7 +225,10 @@ public class frameBusquedaNodos extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
-    public void realizarBusqueda() {
+    /**
+     *
+     */
+    private void realizarBusqueda() {
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
 
         //JOptionPane.showMessageDialog(null, filaSeleccionada);

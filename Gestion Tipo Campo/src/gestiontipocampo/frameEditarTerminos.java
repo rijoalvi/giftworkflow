@@ -22,7 +22,7 @@ import javax.swing.JTree;
  */
 public class frameEditarTerminos extends javax.swing.JFrame {
 
-    /** Creates new form frameEditarTerminos */
+    /** Constructor por defecto */
     public frameEditarTerminos() {
         initComponents();
         conCategorias = false;
@@ -35,6 +35,11 @@ public class frameEditarTerminos extends javax.swing.JFrame {
         panelBotones.setVisible(true);
         buscador = new ControladorBD();
     }
+
+    /**
+     * Constructor sobrecargado que no muestra los botones ni la lista si I es igual a 1
+     * @param i
+     */
 
     public frameEditarTerminos(int i) {
         initComponents();
@@ -51,7 +56,9 @@ public class frameEditarTerminos extends javax.swing.JFrame {
         buscador = new ControladorBD();
     }
 
-    //Constructor de vista por niveles
+    /**
+     * Constructor de vista por niveles
+     */
     public frameEditarTerminos(String nombreJer) {
         initComponents();
         paneTree.setVisible(true);
@@ -773,7 +780,7 @@ public class frameEditarTerminos extends javax.swing.JFrame {
         }
     }
 
-    public DefaultMutableTreeNode llenarSubArbol(int ID) {
+    private DefaultMutableTreeNode llenarSubArbol(int ID) {
         String IDsHijos;
         String trimIDsHijos[];
         DefaultMutableTreeNode nodoActual;
@@ -791,6 +798,10 @@ public class frameEditarTerminos extends javax.swing.JFrame {
         return nodoActual;
     }
 
+    /**
+     * Averigua si la jerarquia se encuentra vacía
+     * @return true si se encuentra vacia
+     */
     public boolean isJerarquiaVacia() {
         String valor = "";
         try {
@@ -838,7 +849,7 @@ public class frameEditarTerminos extends javax.swing.JFrame {
      * @param IDnodo
      * @return
      */
-    public String buscarIDHijos(int IDnodo) {
+    private String buscarIDHijos(int IDnodo) {
         String valores = "";
         try {
             ResultSet resultado = buscador.getResultSet("select ID from NODO where IDNodoPadre = '" + IDnodo + "';");
@@ -852,9 +863,9 @@ public class frameEditarTerminos extends javax.swing.JFrame {
     }
 
     /**
-     * 
-     * @param num
-     * @return
+     * Busca el nombre del nodo dueño del id enviado por parámetro
+     * @param int ID del nodo
+     * @return String nombre del nodo encontrado
      */
     public String buscarNombreNodo(int ID) {
         String valores = "";
@@ -871,11 +882,19 @@ public class frameEditarTerminos extends javax.swing.JFrame {
         return valores;
     }
 
+    /**
+     * Guarda en la base de datos el valor enviado por parámetro, correspondiente al numero de términos de la jerarquia
+     * @param cant
+     */
     public void cambiarNumTerminos(int cant) {
         //System.out.println("suma/resta: "+ cant + " nombre: "+ nombreJerarquia);
         buscador.doUpdate("UPDATE JERARQUIA SET numeroDeTerminos = (numeroDeTerminos +" + cant + ") WHERE (nombreJerarquia = '" + nombreJerarquia + "')");
     }
 
+    /**
+     * Establece la raìz para el flujo de trabajo
+     * @param ID
+     */
     public void setIDRaiz(int ID) {
         buscador.doUpdate("UPDATE JERARQUIA SET IDNodoRaiz = " + ID + " WHERE nombreJerarquia = '" + nombreJerarquia + "'");
     }

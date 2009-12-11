@@ -21,6 +21,9 @@ public class frameAbriMaestroDetalle extends javax.swing.JFrame {
     /** Creates new form frameAbriMaestroDetalle */
     public MaestroDetalle maestroDetalle;
 
+    /**
+     * Constructor por defecto, inicializa el atributo un nuevo maestro detalle
+     */
     public frameAbriMaestroDetalle() {
         initComponents();
         maestroDetalle = new MaestroDetalle();
