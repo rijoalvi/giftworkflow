@@ -7,7 +7,7 @@
  * frameAbriMaestroDetalle.java
  *
  * Created on 09/07/2009, 03:06:48 AM
- */
+ *
 
 package gestiontipocampo;
 

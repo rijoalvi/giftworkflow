@@ -1,9 +1,15 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ *
+
 package gestiontipocampo;
 
 import java.util.*;
+*/
 
 /// <summary>
-/// Clase que trabaja las relaciónes simétricas entre formularios
+/// Clase que trabaja las relaci�nes sim�tricas entre formularios
 /// </summary>
 public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador, tons mas rapido, es tarde, luisk
 
@@ -25,7 +31,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// Constructor que realiza una simetría en el momento que se instancia
+    /// Constructor que realiza una simetr�a en el momento que se instancia
     /// </summary>
     /// <param name="nombreForm1"></param>
     /// <param name="nombreForm2"></param>
@@ -36,7 +42,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// Crea una relación simétrica entre 2 formularios
+    /// Crea una relaci�n sim�trica entre 2 formularios
     /// </summary>
     public void agregarSimetria() {
         try {
@@ -64,7 +70,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// Devuelve una lista con todas las relaciones simétricas
+    /// Devuelve una lista con todas las relaciones sim�tricas
     /// </summary>
     /// <returns></returns>
     public Vector obtenerTodasLasSimetricas() {
@@ -73,7 +79,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// Sobrecarga del operador toString, para que retorne los nombres de los dos elementos de la relación
+    /// Sobrecarga del operador toString, para que retorne los nombres de los dos elementos de la relaci�n
     /// </summary>
     /// <returns></returns>
     @Override
@@ -85,7 +91,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// guarda el correlativo de la que será la llve primaria del formulario 1
+    /// guarda el correlativo de la que ser� la llve primaria del formulario 1
     /// </summary>
     /// <param name="campoLlaveForm1"></param>
     void setIDCampoLlaveForm1(TipoCampo campoLlaveForm1) {
@@ -93,7 +99,7 @@ public class Simetria extends TipoCampo {//puse tipo campo porque ocupe buscador
     }
 
     /// <summary>
-    /// guarda el correlativo de la que será la llve primaria del formulario 2
+    /// guarda el correlativo de la que ser� la llve primaria del formulario 2
     /// </summary>
     /// <param name="campoLlaveForm2"></param>
     void setIDCampoLlaveForm2(TipoCampo campoLlaveForm2) {

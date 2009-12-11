@@ -7,7 +7,7 @@
  * frameMaestroDetalle.java
  *
  * Created on 01/07/2009, 09:28:50 AM
- */
+ *
 
 package gestiontipocampo;
 

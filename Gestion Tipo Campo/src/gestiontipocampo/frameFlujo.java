@@ -7,7 +7,7 @@
  * frameFlujo.java
  *
  * Created on 28.06.2009, 17:40:04
- */
+ *
 package gestiontipocampo;
 
 import java.util.Vector;

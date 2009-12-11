@@ -7,7 +7,7 @@
  * frameTermino.java
  *
  * Created on 01/04/2009, 01:29:25 AM
- */
+ *
 package gestiontipocampo;
 
 import java.sql.ResultSet;

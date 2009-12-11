@@ -7,7 +7,7 @@
  * frameBusqueda.java
  *
  * Created on 13-mar-2009, 19:45:31
- */
+ *
 package gestiontipocampo;
 
 import javax.swing.*;

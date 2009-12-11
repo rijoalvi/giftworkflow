@@ -7,7 +7,7 @@
  * frameManejoCategorias.java
  *
  * Created on 13/04/2009, 11:06:34 PM
- */
+ *
 
 package gestiontipocampo;
 

@@ -7,7 +7,7 @@
  * frameComandos.java
  *
  * Created on 24/05/2009, 10:19:33 PM
- */
+ *
 package gestiontipocampo;
 
 import java.sql.ResultSet;

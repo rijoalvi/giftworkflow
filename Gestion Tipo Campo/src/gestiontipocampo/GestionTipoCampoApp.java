@@ -1,6 +1,6 @@
 /*
  * GestionTipoCampoApp.java
- */
+ *
 package gestiontipocampo;
 
 import java.util.logging.Level;

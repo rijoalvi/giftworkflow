@@ -2,7 +2,7 @@
  * frameManejoCampos.java
  *
  * Created on March 17, 2009, 9:39 AM
- */
+ *
 package gestiontipocampo;
 
 import java.sql.*;

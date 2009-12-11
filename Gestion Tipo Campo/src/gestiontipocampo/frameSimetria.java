@@ -7,14 +7,15 @@
  * frameMaestroDetalle.java
  *
  * Created on 01/07/2009, 09:28:50 AM
- */
+ *
 package gestiontipocampo;
 
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+*/
 
 /// <summary>
-/// Clase que contiene la interfaz de las relaciones simÃ©tricas
+/// Clase que contiene la interfaz de las relaciones simétricas
 /// </summary>
 public class frameSimetria extends javax.swing.JFrame {
 

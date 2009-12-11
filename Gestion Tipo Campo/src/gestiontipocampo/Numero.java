@@ -1,4 +1,4 @@
-package gestiontipocampo;
+//package gestiontipocampo;
 
 /// <summary>
 /// Clase para el Tipo Campo Numero

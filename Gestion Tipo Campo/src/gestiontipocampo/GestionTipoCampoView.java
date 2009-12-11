@@ -1,6 +1,6 @@
 /*
  * GestionTipoCampoView.java
- */
+ *
 package gestiontipocampo;
 
 import java.awt.event.FocusEvent;

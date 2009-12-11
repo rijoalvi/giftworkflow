@@ -2,7 +2,7 @@
  * frameFormulario.java
  *
  * Created on 30-abr-2009, 18:16:02
- */
+ *
 package gestiontipocampo;
 
 import java.sql.*;
