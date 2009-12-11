@@ -8,32 +8,37 @@
  *
  * Created on 01/07/2009, 09:28:50 AM
  */
-
 package gestiontipocampo;
 
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
+
+/// <summary>
+/// Clase que contiene la interfaz de las relaciones simétricas
+/// </summary>
 public class frameSimetria extends javax.swing.JFrame {
 
     /** Creates new form frameMaestroDetalle */
     Vector modeloForm1Seleccionados;
     Vector modeloForm1CamposDisponibles;
-
     Vector modeloForm2Seleccionados;
     Vector modeloForm2CamposDisponibles;
-
     Simetria simetria;
     public Formulario formulario;
 
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public frameSimetria() {
         initComponents();
-        formulario= new Formulario();
+        formulario = new Formulario();
         llenarComboFormularios();
         simetria = new Simetria();
-        modeloForm1Seleccionados= new Vector();
-        modeloForm2Seleccionados= new Vector();
+        modeloForm1Seleccionados = new Vector();
+        modeloForm2Seleccionados = new Vector();
 
     }
+
     private void llenarComboFormularios() {
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
@@ -55,6 +60,7 @@ public class frameSimetria extends javax.swing.JFrame {
         comboForm1.setModel(modelo);
         comboForm2.setModel(modelo2);
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -327,7 +333,7 @@ public class frameSimetria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboForm1ActionPerformed
-         /*    System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
+        /*    System.out.print("ID" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).nombre);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo.removeAllElements();
@@ -344,8 +350,8 @@ public class frameSimetria extends javax.swing.JFrame {
         comboFormularioDetalle.setModel(modelo);        // TODO add your handling code here:
         listaCamposMaestroDisponibles.setListData(modeloMaestroCamposDisponibles);
         
-      /*
-System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID);        // TODO add your handling code here:
+        /*
+        System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelectedItem()).ID);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo.removeAllElements();
@@ -361,30 +367,28 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         String tipoCampo;
         int tipoDeTipoCampo;
         for (int i = 0; i < forms.size(); i++) {
-            id = Integer.parseInt(forms.get(i).toString());
-            i++;
-            tipoCampo = forms.get(i).toString();
-            i++;
-            tipoDeTipoCampo = Integer.parseInt(forms.get(i).toString());
-            modelo.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
-            modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+        id = Integer.parseInt(forms.get(i).toString());
+        i++;
+        tipoCampo = forms.get(i).toString();
+        i++;
+        tipoDeTipoCampo = Integer.parseInt(forms.get(i).toString());
+        modelo.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
+        modelo2.addElement(new TipoCampo(tipoDeTipoCampo, tipoCampo, id));
         }
 
         //comboCampoInicial.setModel(modelo);
-       // comboCampoFinal.setModel(modelo2);
+        // comboCampoFinal.setModel(modelo2);
 
         comboFormularioDetalle.setModel(modelo);*/
-
 }//GEN-LAST:event_comboForm1ActionPerformed
 
     private void comboForm1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboForm1ItemStateChanged
-      
     }//GEN-LAST:event_comboForm1ItemStateChanged
 
     private void btnCargarCamposForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCamposForm1ActionPerformed
-  // TODO add your handling code here:
-               // TODO add your handling code here:
-        System.out.println("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID+" nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        System.out.println("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID + " nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo = new javax.swing.DefaultComboBoxModel();
         modelo.removeAllElements();
@@ -393,11 +397,9 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         modelo2.removeAllElements();
 
         /***********Se llena la lista de los campos disponibles****************/
-
         modeloForm1CamposDisponibles = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm1.getSelectedItem()).ID);
         listaCamposForm1Disponibles.setListData(modeloForm1CamposDisponibles);
         /***********Se llena el combo de campos llave****************/
-
         javax.swing.DefaultComboBoxModel modeloCamposForm1 = new javax.swing.DefaultComboBoxModel();
 
         Vector vectorCampos = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm1.getSelectedItem()).ID);
@@ -409,7 +411,6 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
     }//GEN-LAST:event_btnCargarCamposForm1ActionPerformed
 
     private void comboForm1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboForm1MouseReleased
-
     }//GEN-LAST:event_comboForm1MouseReleased
 
     private void listaCamposForm1DisponiblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaCamposForm1DisponiblesMouseClicked
@@ -420,8 +421,8 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
         //listaCamposMaestroDisponibles.remove(0);
         listaCamposForm1Seleccionados.setListData(modeloForm1Seleccionados);
-        int a=listaCamposForm1Disponibles.getSelectedIndex();
-        System.out.print("aa: "+a);
+        int a = listaCamposForm1Disponibles.getSelectedIndex();
+        System.out.print("aa: " + a);
         //modeloMaestroSeleccionados.remove(a);
         modeloForm1CamposDisponibles.remove(a);
         //listaCamposMaestroDisponibles.remo
@@ -435,22 +436,22 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         //maestroDetalle.formularioMaestro=(Formulario)this.comboFormularioMaestro.getSelectedItem();
         //maestroDetalle.formularioDetalle=(Formulario)this.comboFormularioDetalle.getSelectedItem();
 
-        simetria.formulario1= new Formulario(((MiDato)this.comboForm1.getSelectedItem()).ID,((MiDato)this.comboForm1.getSelectedItem()).nombre);
+        simetria.formulario1 = new Formulario(((MiDato) this.comboForm1.getSelectedItem()).ID, ((MiDato) this.comboForm1.getSelectedItem()).nombre);
         //maestroDetalle.formularioDetalle
 
-        simetria.formulario2= new Formulario(((MiDato)this.comboForm2.getSelectedItem()).ID,((MiDato)this.comboForm2.getSelectedItem()).nombre);
+        simetria.formulario2 = new Formulario(((MiDato) this.comboForm2.getSelectedItem()).ID, ((MiDato) this.comboForm2.getSelectedItem()).nombre);
         simetria.vectorCamposForm1Seleccionados = this.modeloForm1Seleccionados;
         simetria.vectorCamposForm2Seleccionados = this.modeloForm2Seleccionados;
-        simetria.setIDCampoLlaveForm1((TipoCampo)this.comboCampoLlaveForm1.getSelectedItem());
-        simetria.setIDCampoLlaveForm2((TipoCampo)this.comboCampoLlaveForm2.getSelectedItem());
+        simetria.setIDCampoLlaveForm1((TipoCampo) this.comboCampoLlaveForm1.getSelectedItem());
+        simetria.setIDCampoLlaveForm2((TipoCampo) this.comboCampoLlaveForm2.getSelectedItem());
         simetria.agregarSimetria();
         this.dispose();
     }//GEN-LAST:event_btnAceptarMouseClicked
 
     private void btnCargarCamposForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarCamposForm2ActionPerformed
         // TODO add your handling code here:
-                // TODO add your handling code here:
-        System.out.print("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID+"nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
+        // TODO add your handling code here:
+        System.out.print("ID" + "  " + ((MiDato) comboForm1.getSelectedItem()).ID + "nombre" + "  " + ((MiDato) comboForm1.getSelectedItem()).nombre);        // TODO add your handling code here:
 
         javax.swing.DefaultComboBoxModel modelo2 = new javax.swing.DefaultComboBoxModel();
         modelo2.removeAllElements();
@@ -458,7 +459,6 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         listaCampoForm2Disponibles.setListData(modeloForm2CamposDisponibles);
 
         /***********Se llena el combo de campos llave****************/
-
         javax.swing.DefaultComboBoxModel modeloCamposForm2 = new javax.swing.DefaultComboBoxModel();
         Vector vectorCampos = formulario.getMiembrosFormularioPorIDSoloNombre(((MiDato) comboForm2.getSelectedItem()).ID);
 
@@ -476,8 +476,8 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
 
         //listaCamposMaestroDisponibles.remove(0);
         listaCamposForm2Seleccionados.setListData(modeloForm2Seleccionados);
-        int a=listaCampoForm2Disponibles.getSelectedIndex();
-        System.out.print("aa: "+a);
+        int a = listaCampoForm2Disponibles.getSelectedIndex();
+        System.out.print("aa: " + a);
         //modeloMaestroSeleccionados.remove(a);
         modeloForm2CamposDisponibles.remove(a);
         //listaCamposMaestroDisponibles.remo
@@ -509,17 +509,17 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
         // TODO add your handling code here:
 }//GEN-LAST:event_comboCampoLlaveForm2ActionPerformed
 
-    /**
-    * @param args the command line arguments
-    */
+    /// <summary>
+    /// main que crea un nuevo frameSimetria
+    /// </summary>
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
                 new frameSimetria().setVisible(true);
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
@@ -546,5 +546,4 @@ System.out.print("asdfasdf" + "  " + ((MiDato) comboFormularioMaestro.getSelecte
     private javax.swing.JList listaCamposForm1Seleccionados;
     private javax.swing.JList listaCamposForm2Seleccionados;
     // End of variables declaration//GEN-END:variables
-
 }

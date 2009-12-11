@@ -19,13 +19,24 @@ import java.sql.*;
  *
  * @author Alberto
  */
+/// <summary>
+/// La interfaz de búsqueda del subsistema Ejecutor
+/// </summary>
 public class frameBusqueda extends javax.swing.JFrame {
+
     private frameManejoCampos madre;
-    /** Creates new form frameBusqueda */
+
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public frameBusqueda() {
         initComponents();
     }
 
+    /// <summary>
+    /// Construye una nueva instancia del frameBusqueda, con la diferencia de que se le señala un frame madre
+    /// </summary>
+    /// <param name="frameMadre"></param>
     public frameBusqueda(frameManejoCampos frameMadre) {
         initComponents();
         madre = frameMadre;
@@ -145,11 +156,10 @@ public class frameBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_botonOKActionPerformed
 
     private void tablaBusquedaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseEntered
-
 }//GEN-LAST:event_tablaBusquedaMouseEntered
 
     private void tablaBusquedaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaBusquedaMouseClicked
-        if(evt.getClickCount()==2){
+        if (evt.getClickCount() == 2) {
             realizarBusqueda();
             this.dispose();
         }
@@ -160,6 +170,10 @@ public class frameBusqueda extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formMouseClicked
 
+    /// <summary>
+    /// este es el método que realiza la búsqueda dentro de la base de datos.
+    /// </summary>
+    /// <param name="campo"></param>
     public void llenarTabla(JTextField campo) {
         ControladorBD miPrueba = new ControladorBD();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -168,35 +182,38 @@ public class frameBusqueda extends javax.swing.JFrame {
         Object[] fila = new Object[4];
         madre.setVisible(false);
         try {
-            ResultSet resultado = miPrueba.getResultSet("select correlativo,nombre,descripcion,ultimaActualizacion from TIPOCAMPO where nombre like '%"+campo.getText()+"%' or descripcion like '%"+campo.getText()+"%';");
+            ResultSet resultado = miPrueba.getResultSet("select correlativo,nombre,descripcion,ultimaActualizacion from TIPOCAMPO where nombre like '%" + campo.getText() + "%' or descripcion like '%" + campo.getText() + "%';");
             while (resultado.next()) {
-                    for(int i=0;i<4;i++){
-                        fila[i] = resultado.getObject(i+1).toString();
-                    }
-                    modelo.addRow(fila);
+                for (int i = 0; i < 4; i++) {
+                    fila[i] = resultado.getObject(i + 1).toString();
+                }
+                modelo.addRow(fila);
 
             }
             tablaBusqueda.setModel(modelo);
-            
+
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
     }
 
-    public void realizarBusqueda(){
+    /// <summary>
+    /// Realiza la búsqueda, y muestra los resultados en la tabla de resultados de la búsqueda
+    /// </summary>
+    public void realizarBusqueda() {
         int filaSeleccionada = tablaBusqueda.getSelectedRow();
-        
+
         //JOptionPane.showMessageDialog(null, filaSeleccionada);
-        if(filaSeleccionada != -1){
+        if (filaSeleccionada != -1) {
             madre.setVisible(true);
             String llave = tablaBusqueda.getModel().getValueAt(filaSeleccionada, 0).toString();
             madre.llenarFormularioCampos(llave);
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    /// <summary>
+    /// main que crea un nuevo frame de búsqueda
+    /// </summary>
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -205,7 +222,6 @@ public class frameBusqueda extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonOK;

@@ -14,10 +14,9 @@ import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-/**
- *
- * @author  ea60289
- */
+/// <summary>
+/// Clase donde el usuario manipula la creación de nuevos tipos de campo
+/// </summary>
 public class frameManejoCampos extends javax.swing.JFrame {
 
     //Son los macros que se usan para seleccion del combo box.//CAMBIE EL HASH CODE POR LOS NUMEROS ESTABLECIDOS
@@ -30,14 +29,18 @@ public class frameManejoCampos extends javax.swing.JFrame {
     static final int LISTA = 7;
     ControladorBD conexionBD = new ControladorBD();
 
-    /** Creates new form frameManejoCampos */
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public frameManejoCampos() {
         initComponents();
         postInitComponents();
         ocultarPanes();
     }
 
-    /** Creates new form frameManejoCampos */
+    /// <summary>
+    /// constructor utilizado para editar los tipos de campo
+    /// </summary>
     public frameManejoCampos(String tipo) {
         initComponents();
         postInitComponents();
@@ -61,6 +64,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
     }
 
+    /// <summary>
+    /// Constructor utilizado para editar los tipos de campo, que recibe un form padre
+    /// </summary>
     public frameManejoCampos(String tipo, GestionTipoCampoView padre) {
         initComponents();
         postInitComponents();
@@ -85,9 +91,9 @@ public class frameManejoCampos extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Constructor que viene de abrir un dato en el tree view
-     */
+    /// <summary>
+    /// Constructor que viene de abrir un dato en el tree view
+    /// </summary>
     public frameManejoCampos(String[] valGenerales, String[] valEspecificos) {
         initComponents();
         postInitComponents();
@@ -147,10 +153,10 @@ public class frameManejoCampos extends javax.swing.JFrame {
         activarPaneEspecifico(tipo);
     }
 
-    /**
-     * Activa un Pane en especifico
-     * @param tipo El num de pane que va a activar
-     */
+    /// <summary>
+    /// Función que activa un Pane en especifico dependiendo del tipo de campo seleccionado
+    /// </summary>
+    /// <param name="tipo"></param>
     public void activarPaneEspecifico(int tipo) {
         switch (tipo) {
             case 1:
@@ -980,7 +986,7 @@ public class frameManejoCampos extends javax.swing.JFrame {
                 }
             }
             resultado = control.getResultSet("Select * from " + tipo + " where correlativo = " + llave);
-        //resultado = consulta.seleccionarTodoGenerico(tipo, "correlativo, llave); // para modelo 3 capas
+            //resultado = consulta.seleccionarTodoGenerico(tipo, "correlativo, llave); // para modelo 3 capas
         } catch (SQLException e) {
             System.out.println("*SQL Exception: *" + e.toString());
         }
@@ -1006,13 +1012,12 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 }//GEN-LAST:event_botonGuardarActionPerformed
 
-    private String quitarEspacios(String conEspacios){
+    private String quitarEspacios(String conEspacios) {
         //toma el nombre, pero puede q venga con espacios
         conEspacios = conEspacios.trim();
         String[] tmp = conEspacios.split(" ");
         String sinEspacios = "";
-        for (int k = 0; k < tmp.length; ++k)
-        {
+        for (int k = 0; k < tmp.length; ++k) {
             sinEspacios += tmp[k];
         }
         return sinEspacios;
@@ -1026,7 +1031,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         boolean existe = false;
         int ID = 0;
         String[] generados = {"correlativo"};
-        
+
         this.valorNombreGeneral.setText(quitarEspacios(this.valorNombreGeneral.getText()));
         try { //Primero se busca en la base de datos si ya existe este campo
             ResultSet resultado = conexionBD.getResultSet("select correlativo from TIPOCAMPO where nombre = '" + this.valorNombreGeneral.getText() + "'");
@@ -1156,7 +1161,7 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     try {
                         ResultSet resultado = conexionBD.doUpdate("Insert Into TIPOCAMPO (nombre, descripcion, tipo) VALUES ('" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', 6)", generados);
                         if (resultado.next()) {
-                            ID = resultado.getInt(1);                            
+                            ID = resultado.getInt(1);
                         }
                     } catch (SQLException e) {
                         System.out.println("*SQL Exception: *" + e.toString());
@@ -1166,12 +1171,14 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     int idCategorias = -1;
                     int idNiveles = -1;
                     int idNodoRaiz = -1;
-                    if(this.radioCategoriasSi.isSelected())
+                    if (this.radioCategoriasSi.isSelected()) {
                         idCategorias = ((MiDato) comboCategorias.getSelectedItem()).ID;
-                    if(this.radioNivelesSi.isSelected())
+                    }
+                    if (this.radioNivelesSi.isSelected()) {
                         idNiveles = ((MiDato) comboNiveles.getSelectedItem()).ID;
+                    }
                     try {
-                        ResultSet resultado = conexionBD.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + idCategorias + ", '" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', " + -1 + ", "+ 0 + ", '"+sqlDate+"' )", generados);
+                        ResultSet resultado = conexionBD.doUpdate("insert into NODO (IDInstanciaCategoria, nombre, descripcion, IDNodoPadre, numNivel,fechaCreacion) values (" + idCategorias + ", '" + this.valorNombreGeneral.getText() + "', '" + this.valorNota.getText() + "', " + -1 + ", " + 0 + ", '" + sqlDate + "' )", generados);
                         if (resultado.next()) {
                             idNodoRaiz = resultado.getInt(1);
                         }
@@ -1180,10 +1187,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     }
                     //Agrega la jerarquia y un nodo raiz por defecto con el nombre de la jera
                     try {
-                        
-                        String consulta = "Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, numeroDeTerminos, numeroDeNiveles, fechaCreacion, conCategorias, conNombreNiveles, IDTIpoCategoria, IDNombresNiveles) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + idNodoRaiz + ", '" + this.radioNomUnicoNo.isSelected() +"', '0', '0', '"+ sqlDate + "', '"+ this.radioCategoriasSi.isSelected() + "' , '"+ this.radioNivelesSi.isSelected() +"', '" + idCategorias + "', '" + idNiveles +"')";
+
+                        String consulta = "Insert Into JERARQUIA ( correlativo,nombreJerarquia, IDNodoRaiz, repeticionNombreNodo, numeroDeTerminos, numeroDeNiveles, fechaCreacion, conCategorias, conNombreNiveles, IDTIpoCategoria, IDNombresNiveles) VALUES (" + ID + ", '" + this.valorNombreGeneral.getText() + "', " + idNodoRaiz + ", '" + this.radioNomUnicoNo.isSelected() + "', '0', '0', '" + sqlDate + "', '" + this.radioCategoriasSi.isSelected() + "' , '" + this.radioNivelesSi.isSelected() + "', '" + idCategorias + "', '" + idNiveles + "')";
                         System.out.println(consulta);
-                        conexionBD.doUpdate(consulta);                       
+                        conexionBD.doUpdate(consulta);
                     } catch (Exception ex) {
                         Logger.getLogger(frameManejoCampos.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -1234,10 +1241,10 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         if (padre != null) {
             padre.llenarTreeView();
         }
-    //this.dispose();
+        //this.dispose();
     }
 
-    private java.sql.Date getTipoFecha(String fecha, String formato){
+    private java.sql.Date getTipoFecha(String fecha, String formato) {
         int dia = 31;
         int mes = 1;
         int anno = 2009;
@@ -1245,22 +1252,19 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             dia = Integer.parseInt(fecha.substring(0, 2));
             mes = Integer.parseInt(fecha.substring(3, 5));
             anno = Integer.parseInt(fecha.substring(6, 10));
-        }
-        else {
+        } else {
             if (formato.equalsIgnoreCase("mm/dd/aaaa")) {
                 dia = Integer.parseInt(fecha.substring(3, 5));
                 mes = Integer.parseInt(fecha.substring(0, 2));
-                anno = Integer.parseInt(fecha.substring(6,10));
-            }
-            else {
+                anno = Integer.parseInt(fecha.substring(6, 10));
+            } else {
                 if (formato.equalsIgnoreCase("aaaa/dd/mm")) {
                     dia = Integer.parseInt(fecha.substring(5, 7));
-                    mes = Integer.parseInt(fecha.substring(8,10));
+                    mes = Integer.parseInt(fecha.substring(8, 10));
                     anno = Integer.parseInt(fecha.substring(0, 4));
-                }
-                else {
+                } else {
                     if (formato.equalsIgnoreCase("aaaa/mm/dd")) {
-                        dia = Integer.parseInt(fecha.substring(8,10));
+                        dia = Integer.parseInt(fecha.substring(8, 10));
                         mes = Integer.parseInt(fecha.substring(5, 7));
                         anno = Integer.parseInt(fecha.substring(0, 4));
                     }
@@ -1268,10 +1272,13 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }
         }
         //Dado el formato se deben hacer estas restas...
-        java.sql.Date miFecha = new java.sql.Date(anno-1900, mes-1, dia);
+        java.sql.Date miFecha = new java.sql.Date(anno - 1900, mes - 1, dia);
         return miFecha;
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo número en la interfaz
+    /// </summary>
     public void limpiarValoresNumero() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1280,6 +1287,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.valorValorDefectoNumero.setText("");
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo binarios en la interfaz
+    /// </summary>
     public void limpiarValoresBinario() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1291,6 +1301,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.radioOpcionBinaria2.setSelected(false);
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo fechaHora en la interfaz
+    /// </summary>
     public void limpiarValoresFechaHora() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1300,6 +1313,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.radioFechaHoraNo.setSelected(false);
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo texto en la interfaz
+    /// </summary>
     public void limpiarValoresTexto() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1307,6 +1323,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.valorTextoDefecto.setText("");
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo incremental en la interfaz
+    /// </summary>
     public void limpiarValoresIncremental() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1314,6 +1333,9 @@ private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.valorIncremento.setText("");
     }
 
+    /// <summary>
+    /// Función que limpia los elementos del tipo de campo jerarquía en la interfaz
+    /// </summary>
     public void limpiarValoresJerarquia() {
         this.valorNombreGeneral.setText("");
         this.valorNota.setText("");
@@ -1502,10 +1524,11 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
     niveles.setVisible(true);
 }//GEN-LAST:event_botonAgregarNivelActionPerformed
 
-    /**
-     * Cambia la mascara del valorFechaDefecto
-     * @param formato String que indica el formato de la máscara. I.E. ##/##/####
-     */
+    /// <summary>
+    /// Cambia la mascara del valorFechaDefecto
+    /// </summary>
+    /// <param name="valorDefecto"></param>
+    /// <param name="valorDefecto"></param>
     public void formatoFecha(String formato, String valorDefecto) {
         MaskFormatter mascara;
         try {
@@ -1520,6 +1543,10 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
         }
     }
 
+    /// <summary>
+    /// coloca los campos en el panel de creación de campos según el campo seleccionado
+    /// </summary>
+    /// <param name="llave"></param>
     public void llenarFormularioCampos(String llave) {
         Object tipoEncontrado[] = buscarTipoCampo(llave);
         int tipoCampo = Integer.parseInt(tipoEncontrado[0].toString());
@@ -1586,9 +1613,11 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    /// <summary>
+    /// main que crea un nuevo frameManejoCampos
+    /// </summary>
+    /// <param name="llave"></param>
+    /// <returns></returns>
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1597,7 +1626,6 @@ private void botonAgregarNivelActionPerformed(java.awt.event.ActionEvent evt) {/
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarCategoria;
     private javax.swing.JButton botonAgregarNivel;

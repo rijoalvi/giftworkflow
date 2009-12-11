@@ -9,18 +9,14 @@ import java.util.Vector;
 import java.util.Map;
 import java.util.HashMap;
 
-/**
- *
- * @author Luis Carlos Chavarría
- */
+/// <summary>
+/// clase que contrla la conexión con las bases de datos
+/// </summary>
 public class ControladorBD {
 
     private String conexionString1 = "jdbc:mysql://grupoingegift5.bluechiphosting.com/grupoin2_GiftBD?user=grupoin2_user&password=Qwerty123";
     private String conexionString2 = "jdbc:sqlserver://bd;databaseName=bdInge1g2_g2;user=usuarioInge1_g2;password=ui1_g2";
-
-    
-    private String conexionStringConfiguradorSQLServerEEUU= "jdbc:sqlserver://GiftConfigurador.db.3946477.hostedresource.com;databaseName=GiftConfigurador;user=GiftConfigurador;password=Qwerty123";
-
+    private String conexionStringConfiguradorSQLServerEEUU = "jdbc:sqlserver://GiftConfigurador.db.3946477.hostedresource.com;databaseName=GiftConfigurador;user=GiftConfigurador;password=Qwerty123";
 //"jdbc:sqlserver://localhost:1433;" +	"databaseName=AdventureWorks;integratedSecurity=true;";
     protected static int conexionSeleccionada = -1;
     private Connection conexion = null;
@@ -28,6 +24,11 @@ public class ControladorBD {
     protected final int CONEXION_MYSQL = 1;
     protected final int CONEXION_SQLSERVER = 2;
 
+    /// <summary>
+    /// función que prueba cuál de las dos conexiones (web o red ECCI) está activa)
+    /// </summary>
+    /// <param name="numeroConexion"></param>
+    /// <returns></returns>
     public int probarConexion(int numeroConexion) {
 
         String conexionStringAProbar = "";
@@ -73,9 +74,9 @@ public class ControladorBD {
 
     }
 
-    /**
-     * Constructor por omisión
-     */
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public ControladorBD() {
     }
 
@@ -98,6 +99,11 @@ public class ControladorBD {
         return conexionEstablecida;
     }
 
+    /// <summary>
+    /// Realiza una consulta enviada como parámetro y devuelve el resultSet
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <returns></returns>
     public ResultSet getResultSet(String consulta) {
         String conexionAUtilizar = getConexionEstablecida();
         if (conexionSeleccionada != -1) {
@@ -126,6 +132,11 @@ public class ControladorBD {
         return resultado;
     }
 
+    /// <summary>
+    /// actualiza la conexión establecida
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <returns></returns>
     public int doUpdate(String consulta) {
         String conexionAUtilizar = getConexionEstablecida();
         int result = -1;
@@ -149,12 +160,12 @@ public class ControladorBD {
         return result;
     }
 
-    /**
-     * Realiza la consulta de actualizacion y devuelve los campos autogenerados
-     * @param consulta
-     * @param incrementales - la lista de columnas autogeneradas
-     * @return - ResultSet con los resultados
-     */
+    /// <summary>
+    /// Realiza la consulta de actualizacion y devuelve los campos autogenerados
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <param name="incrementales"></param>
+    /// <returns></returns>
     public ResultSet doUpdate(String consulta, String[] incrementales) {
         String conexionAUtilizar = getConexionEstablecida();
         ResultSet result = null;
@@ -191,6 +202,13 @@ public class ControladorBD {
     }
     return miVector;
     }*/
+
+    /// <summary>
+    /// crea un mapa con el resultSet y la consulta
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <param name="campos"></param>
+    /// <returns></returns>
     public Map getResultSetMap(String consulta, Vector campos) {
         Map<String, String> miMapa = new HashMap<String, String>();
 
@@ -202,10 +220,10 @@ public class ControladorBD {
                 for (int i = 0; i < campos.size(); i++) {
                     miMapa.put(campos.get(i).toString(), result.getObject(campos.get(i).toString()).toString());
                 }
-            /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
-            miMapa.put("nombre",resultado.getObject("nombre").toString());
-            miMapa.put("descripcion",resultado.getObject("descripcion").toString());
-            miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
+                /*  miMapa.put("correlativo",resultado.getObject("correlativo").toString());
+                miMapa.put("nombre",resultado.getObject("nombre").toString());
+                miMapa.put("descripcion",resultado.getObject("descripcion").toString());
+                miMapa.put("ultimaActualizacion",resultado.getObject("ultimaActualizacion").toString());*/
             }
         } catch (SQLException e) {
             System.out.println("*SQL Exception: aca?*" + e.toString());
@@ -223,6 +241,10 @@ public class ControladorBD {
         return consulta;
     }
 
+    /// <summary>
+    /// retorna una consulta en la tabla formulario
+    /// </summary>
+    /// <returns></returns>
     public ConsultaFormulario getConsultaFormulario() {
         ConsultaFormulario consulta;
         if (CONEXION_MYSQL == conexionSeleccionada) {
@@ -233,6 +255,10 @@ public class ControladorBD {
         return consulta;
     }
 
+    /// <summary>
+    /// retorna una consulta en la tabla comando
+    /// </summary>
+    /// <returns></returns>
     public ConsultaComando getConsultaComando() {
         ConsultaComando consulta;
         if (CONEXION_MYSQL == conexionSeleccionada) {
@@ -243,6 +269,10 @@ public class ControladorBD {
         return consulta;
     }
 
+    /// <summary>
+    /// retorna una consulta en la tabla actividad
+    /// </summary>
+    /// <returns></returns>
     public ConsultaActividad getConsultaActividad() {
         ConsultaActividad consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
@@ -253,7 +283,11 @@ public class ControladorBD {
         return consulta;
     }
 
-        public ConsultaMaestroDetalle getConsultaMaestroDetalle() {
+    /// <summary>
+    /// retorna una consulta en la tabla maestroDetalle
+    /// </summary>
+    /// <returns></returns>
+    public ConsultaMaestroDetalle getConsultaMaestroDetalle() {
         ConsultaMaestroDetalle consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
             consulta = new ConsultaMaestroDetalle();
@@ -263,21 +297,25 @@ public class ControladorBD {
         return consulta;
     }
 
+    /// <summary>
+    /// retorna una consulta en la tabla Flujo
+    /// </summary>
+    /// <returns></returns>
     public ConsultaFlujo getConsultaFlujo() {
         ConsultaFlujo consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {
-           consulta = new ConsultaFlujo();
+            consulta = new ConsultaFlujo();
         } else {
-           consulta = new ConsultaFlujo();
+            consulta = new ConsultaFlujo();
         }
         return consulta;
     }
 
-    /**
-     * Metodo que devuelve todos los flujos en un vector de MiDatos
-     * @return Vector de MiDato
-     */
-    public Vector<MiDato> getFlujos(){
+    /// <summary>
+    /// Metodo que devuelve todos los flujos en un vector de MiDatos
+    /// </summary>
+    /// <returns></returns>
+    public Vector<MiDato> getFlujos() {
         Vector<MiDato> datos = new Vector<MiDato>();
         try {
             resultado = this.getResultSet("select correlativo, nombre, descripcion from FLUJO;");
@@ -291,11 +329,11 @@ public class ControladorBD {
         return datos;
     }
 
-    /**
-     * Metodo que devuelve todas las Actividades en un vector de MiDato
-     * @return Vector de miDato
-     */
-    public Vector<MiDato> getActividades(){
+    /// <summary>
+    /// Metodo que devuelve todas las Actividades en un vector de MiDato
+    /// </summary>
+    /// <returns></returns>
+    public Vector<MiDato> getActividades() {
         Vector<MiDato> datos = new Vector<MiDato>();
         try {
             resultado = this.getResultSet("select correlativo, nombre, descripcion from ACTIVIDAD;");
@@ -309,6 +347,11 @@ public class ControladorBD {
         return datos;
     }
 
+
+    /// <summary>
+    /// Metodo que devuelve todas las relaciones simétricas
+    /// </summary>
+    /// <returns></returns>
     public ConsultaSimetria getConsultaSimetria() {
         ConsultaSimetria consulta = null;
         if (CONEXION_MYSQL == conexionSeleccionada) {

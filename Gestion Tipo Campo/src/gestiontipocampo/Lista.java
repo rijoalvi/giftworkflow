@@ -10,6 +10,9 @@ import java.util.*;
  *
  * @author luiscarlosch@gmail.com
  */
+/// <summary>
+/// Clase que maneja los tipos de campo Lista
+/// </summary>
 public class Lista extends TipoCampo {
 
     private SortedSet miembroLista;
@@ -19,6 +22,9 @@ public class Lista extends TipoCampo {
     public boolean ordenPersonalizado;
     public ConsultaLista consultaLista;
 
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public Lista() {
         consultaLista = buscador.getConsultaLista();
         buscador = new ControladorBD();
@@ -27,53 +33,74 @@ public class Lista extends TipoCampo {
         ordenPersonalizado = false;
     }
 
+    /// <summary>
+    /// Retorna un miembroLista
+    /// </summary>
+    /// <returns></returns>
     public SortedSet getMiembroListaSet() {
         return this.miembroLista;
     }
 
-    /**
-     * Cargo los miembros de la lista a partir de un vector
-     * @param vector
-     */
+    /// <summary>
+    /// Metodo que carga los miembros de la lista a partir de un vector
+    /// </summary>
+    /// <param name="vector"></param>
     public void setMiembrosLista(Vector vector) {
         miembroLista.clear();
         for (int i = 0; i < vector.size(); i++) {
             miembroLista.add(vector.get(i));
         }
     }
-    /**
-     * Retorna todos los miembros de la lista, según el ID de ésta
-     */
-  
-     
+
+    /// <summary>
+    /// Metodo que retorna todos los miembros de la lista, según el ID de ésta
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <param name="campoTexto"></param>
+    /// <param name="campoNumero"></param>
+    /// <returns></returns>
     public Vector getModeloVector(String consulta, String campoTexto, String campoNumero) {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero);
     }
 
+    /// <summary>
+    /// Metodo que retorna todos los miembros de la lista, según el ID de ésta
+    /// </summary>
+    /// <param name="consulta"></param>
+    /// <param name="campoTexto"></param>
+    /// <param name="campoNumero"></param>
+    /// <param name="campoNumero2"></param>
+    /// <returns></returns>
     public Vector getModeloVector(String consulta, String campoTexto, String campoNumero, String campoNumero2) {
         return miModelo.getModeloEnVector(consulta, campoTexto, campoNumero, campoNumero2);
     }
 
-    public Vector getMiembrosListaPorIDLista(int ID){
+    /// <summary>
+    /// Metodo que retorna todos los miembros de la lista, según el ID de ésta
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <returns></returns>
+    public Vector getMiembrosListaPorIDLista(int ID) {
         return consultaLista.getMiembrosListaPorIDLista(ID);
     }
-    /**
-     * Cargo en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
-     */
+
+    /// <summary>
+    /// Metodo que carga en la clase Lista los datos respectivos de ésta, como nombre, descripcion y valor por defecto
+    /// </summary>
+    /// <returns></returns>
     public void setLista() {
         Map<String, String> miMapa;
-        miMapa=consultaLista.getInfoLista(this.correlativo);
+        miMapa = consultaLista.getInfoLista(this.correlativo);
 
         this.nombre = miMapa.get("nombre");
         this.descripcion = miMapa.get("descripcion");
         this.IDMiembroPorDefecto = miMapa.get("IDMiembroPorDefecto");
 
-        if(miMapa.get("conOrden").trim().equalsIgnoreCase("True")){
+        if (miMapa.get("conOrden").trim().equalsIgnoreCase("True")) {
             System.out.println(miMapa.get("conOrden"));
             this.ordenPersonalizado = true;
-        }
-        else{
-            System.out.println(miMapa.get("conOrden")+"cogio false");
+        } else {
+            System.out.println(miMapa.get("conOrden") + "cogio false");
             this.ordenPersonalizado = false;
         }
 
@@ -96,35 +123,41 @@ public class Lista extends TipoCampo {
         }
         return ID;
     }
-    /**
-     * agrega elemento a la lista
-     * @param nombreMiembro Nombre del item de la lista a agregar
-     * @param posicion
-     */
+
+    /// <summary>
+    /// Metodo que agrega un elemento a la lista
+    /// </summary>
+    /// <param name="nombreMiembro"></param>
+    /// <param name="posicion"></param>
     public void agregarMiembro(String nombreMiembro, int posicion) {
-       this.consultaLista.agregarMiembro(nombreMiembro, posicion, this.correlativo);
+        this.consultaLista.agregarMiembro(nombreMiembro, posicion, this.correlativo);
 
     }
 
+    /// <summary>
+    /// Metodo que borra un elemento de la lista
+    /// </summary>
+    /// <param name="miembro"></param>
     public void borrarMiembro(Object miembro) {
         buscador.doUpdate("delete from MIEMBROLISTA where correlativo = " + getID(miembro) + " and IDLista=" + this.correlativo + ";");
         this.miembroLista.remove(miembro);
     }
 
-    /**
-     * Actualiza en la lista, el ID del miembro lista que ahora será el valor por defecto
-     * @param IDMiembroPorDefecto
-     */
+    /// <summary>
+    /// Actualiza en la lista, el ID del miembro lista que ahora será el valor por defecto
+    /// </summary>
+    /// <param name="nombreMiembro"></param>
+    /// <param name="IDMiembroPorDefecto"></param>
     public void upDateIDMiembroPorDefecto(String IDMiembroPorDefecto) {
         buscador.doUpdate("UPDATE LISTA  SET IDMiembroPorDefecto=" + IDMiembroPorDefecto + " where correlativo=" + this.correlativo + ";");
-    //this.miembroLista.remove(miembro);
+        //this.miembroLista.remove(miembro);
     }
 
-    /**
-     *
-     * @param miembroAActualizar Objeto que contiene el MiDato (MiembroLista) a actualizar, a este se se castea para conseguir el ID y el nombre
-     * @param valorNuevo Nombre nuevo a asignar al elemento seleccionado
-     */
+    /// <summary>
+    /// Actualiza en la lista el valor de un miembro de la lista
+    /// </summary>
+    /// <param name="miembroAActualizar"></param>
+    /// <param name="valorNuevo"></param>
     public void upDateValorMiembro(Object miembroAActualizar, String valorNuevo) {
         int IDMiembroAActualizar = ((MiDato) (miembroAActualizar)).ID;
         buscador.doUpdate("Update MIEMBROLISTA set valor='" + valorNuevo + "' where Correlativo=" + IDMiembroAActualizar + ";");
@@ -136,15 +169,14 @@ public class Lista extends TipoCampo {
         }
     }
 
-    /**
-     * Se llama despues de agregar o modificar un elemento de la lista. Sí agregé un elemento al control lista, este lo tengo que agregar a la base de datos y volver a hacer la consulta para ver en que orden quedó, para actualizar el control lista
-     * @return Vector con el modelo para el control de la lista ya actualizado por hago consulta a la BD para ver el orden
-     */
+    /// <summary>
+    /// Actualiza en la base de datos el valor del miembro de la lista que se modificó
+    /// </summary>
+    /// <returns></returns>
     public Vector setAndGetMiembrosVectorActualizados() {
-        if(this.ordenPersonalizado){
+        if (this.ordenPersonalizado) {
             this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo, ml.numeroElemento from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo", "numeroElemento"));
-        }
-        else{
+        } else {
             this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo=" + this.correlativo + "", "valor", "correlativo"));
         }
 
@@ -162,10 +194,10 @@ public class Lista extends TipoCampo {
         return miembrosListaVector;
     }
 
-    /**
-     * Se llama despues de borrar un miembro de la lista, Aquí es diferente a setAndGet, se usa en un caso como el de borrar, que no tengo que actualizar el modelo ya que con solo eliminarlo del control lista, ya es sufuciente
-     * @return Un vector con con el modelo actual.
-     */
+    /// <summary>
+    /// obtiene el modelo de los miembros de la lista
+    /// </summary>
+    /// <returns></returns>
     public Vector getModeloMiembrosVector() {
         //  this.setMiembrosLista(this.getModeloVector("select valor, ml.correlativo from MIEMBROLISTA ml, LISTA l where ml.IDLista=l.correlativo and l.correlativo="+this.correlativo+"", "valor", "correlativo"));
         MiDato.valorDefecto = this.IDMiembroPorDefecto;
@@ -183,32 +215,30 @@ public class Lista extends TipoCampo {
         return miembrosListaVector;
     }
 
-    public void setConOrdenPersonalizado(boolean conOrden){
+    public void setConOrdenPersonalizado(boolean conOrden) {
         String orden;
         this.ordenPersonalizado = conOrden;
-        if(conOrden){
+        if (conOrden) {
             orden = "True";
-        }
-        else{
+        } else {
             orden = "False";
         }
         buscador.doUpdate("UPDATE LISTA  SET conOrden = '" + orden + "' where correlativo = " + this.correlativo + ";");
     }
 
-    /**
-     * Cambia la posicion del elemento de la lista
-     * @param ID - correlativo del elemento
-     * @param posicion - nueva posicion
-     */
-    public void setOrdenDeElemento(int ID, int posicion){
+    /// <summary>
+    /// Cambia la posicion del elemento de la lista
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="posicion"></param>
+    public void setOrdenDeElemento(int ID, int posicion) {
         buscador.doUpdate("UPDATE MIEMBROLISTA  SET numeroElemento = " + posicion + " where correlativo = " + ID + ";");
     }
 
-
-    /**
-     * Sobre escribe el toString del padre
-     * @return
-     */
+    /// <summary>
+    /// sobreescribe el método toString
+    /// </summary>
+    /// <returns></returns>
     @Override
     public String toString() {
         return super.toString();

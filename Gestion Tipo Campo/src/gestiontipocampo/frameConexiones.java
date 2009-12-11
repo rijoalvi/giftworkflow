@@ -16,7 +16,9 @@ package gestiontipocampo;
  */
 public class frameConexiones extends javax.swing.JFrame {
 
-    /** Creates new form frameConexiones */
+    /// <summary>
+    /// Constructor por defecto
+    /// </summary>
     public frameConexiones() {
         initComponents();
         grupo.add(MySqlEEUU);
@@ -24,6 +26,9 @@ public class frameConexiones extends javax.swing.JFrame {
         grupo.add(SQLServerEEUU);
     }
 
+    /// <summary>
+    /// Constructor de la clase recibe un frame como madre
+    /// </summary>
     public frameConexiones(GestionTipoCampoView mama) {
         this.madre = mama;
         initComponents();
@@ -166,23 +171,23 @@ public class frameConexiones extends javax.swing.JFrame {
         //ATENCION: YA NO HAY QUE COMENTAR NADA AQUÍ*********************************
         System.out.println("Conexiones no probadas, decida ud cual podría estar disponible");
         /*if (1 == probadorConexiones.probarConexion(2)) {
-            jRadioButton2.setText("Disponible");
-            jRadioButton2.setEnabled(true);
+        jRadioButton2.setText("Disponible");
+        jRadioButton2.setEnabled(true);
 
-            jRadioButton1.setText("No disponible");
-            jRadioButton1.setSelected(false);
-            jRadioButton1.setEnabled(false);
+        jRadioButton1.setText("No disponible");
+        jRadioButton1.setSelected(false);
+        jRadioButton1.setEnabled(false);
         } else {
-            System.out.println("Probando 1");
-            jRadioButton2.setText("No disponible");
-            jRadioButton2.setSelected(false);
-            jRadioButton2.setEnabled(false);
+        System.out.println("Probando 1");
+        jRadioButton2.setText("No disponible");
+        jRadioButton2.setSelected(false);
+        jRadioButton2.setEnabled(false);
 
-            if (1 == probadorConexiones.probarConexion(1)) {
-                jRadioButton1.setEnabled(true);
-                jRadioButton1.setText("Disponible");
-            //  jRadioButton1.setBackground(Color.green);
-            }
+        if (1 == probadorConexiones.probarConexion(1)) {
+        jRadioButton1.setEnabled(true);
+        jRadioButton1.setText("Disponible");
+        //  jRadioButton1.setBackground(Color.green);
+        }
         }*/
 
         jLabel1.setText("Por favor elija la Base de Datos a la que desea conectarse.");
@@ -197,9 +202,9 @@ public class frameConexiones extends javax.swing.JFrame {
         if (false == MySqlEEUU.isSelected() && false == SQLServerECCI.isSelected()) {
             btnEstablecerConexion.setEnabled(false);
         }
-    /*  else{
-    btnEstablecerConexion.setEnabled(false);
-    }*/
+        /*  else{
+        btnEstablecerConexion.setEnabled(false);
+        }*/
     }//GEN-LAST:event_MySqlEEUUMouseClicked
 
     private void MySqlEEUUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MySqlEEUUActionPerformed
@@ -211,10 +216,9 @@ public class frameConexiones extends javax.swing.JFrame {
         if (MySqlEEUU.isSelected()) {
             ControladorBD.conexionSeleccionada = 1;
         } else {
-            if(this.SQLServerECCI.isSelected()){
+            if (this.SQLServerECCI.isSelected()) {
                 ControladorBD.conexionSeleccionada = 2;
-            }
-            else{
+            } else {
                 ControladorBD.conexionSeleccionada = 3;
             }
         }
@@ -267,7 +271,6 @@ public class frameConexiones extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton MySqlEEUU;
     private javax.swing.JRadioButton SQLServerECCI;

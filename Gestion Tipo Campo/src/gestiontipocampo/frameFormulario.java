@@ -22,16 +22,19 @@ import java.awt.GraphicsEnvironment;
 import java.awt.event.FocusEvent;
 import java.util.*;
 
-/**
- *
- * @author Alberto
- */
+/// <summary>
+/// Frame que muesta los elementos del formulario, el preview, y el árbol de tipos de campo
+/// </summary>
 public class frameFormulario extends javax.swing.JFrame {
 
-    /** Creates new form frameFormulario */
+    /// <summary>
+    /// Constructor del frameFormulario utilizado al construir un nuevo formulario
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
     public frameFormulario(String nombre, String descripcion) {
         this.setTitle("GIFT Configurador - Edición de Formularios");
-        
+
         initComponents();
         postInitComponents();
         miFormulario = new Formulario(nombre, descripcion);
@@ -55,7 +58,12 @@ public class frameFormulario extends javax.swing.JFrame {
         ocultarPanes();
     }
 
-    /** Creates new form frameFormulario */
+    /// <summary>
+    /// Constructor del frameFormulario utilizado para la edición del formulario
+    /// </summary>
+    /// <param name="arbolHeredado"></param>
+    /// <param name="nombre"></param>
+    /// <param name="descripcion"></param>
     public frameFormulario(TreeModel arbolHeredado, String nombre, String descripcion) {
         this.setTitle("GIFT Configurador - Edición de Formularios2");
         initComponents();
@@ -82,9 +90,11 @@ public class frameFormulario extends javax.swing.JFrame {
         ocultarPanes();
     }
 
-    /**
-     * Creates new form frameFormulario
-     */
+    /// <summary>
+    /// Constructor del frameFormulario utilizado para la edición del formulario
+    /// </summary>
+    /// <param name="arbolHeredado"></param>
+    /// <param name="correlativo"></param>
     public frameFormulario(TreeModel arbolHeredado, int correlativo) {
         this.setTitle("GIFT Configurador - Edición de Formularios con correlativo");
         initComponents();
@@ -115,6 +125,10 @@ public class frameFormulario extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /// <summary>
+    /// Carga los elementos del formulario desde la base de datos
+    /// </summary>
+    /// <param name="correlativo"></param>
     void cargarFormulario(int correlativo) {
         miFormulario = new Formulario(correlativo);
         String nombre = miFormulario.getNombre();
@@ -122,7 +136,7 @@ public class frameFormulario extends javax.swing.JFrame {
         frameVistaPrevia.setResizable(false);
         frameVistaPrevia.setTitle(nombre);
         cargarMiembros();
-    //FALTA ACTUALIZAR TAB INDEX!!!!
+        //FALTA ACTUALIZAR TAB INDEX!!!!
     }
 
     private class DragMouseAdapter extends MouseAdapter {
@@ -212,8 +226,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     llenarDatosMiembro(id);
                     actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboEstiloLetra.getSelectedItem().toString());
                     campo.setBounds(valx, valy, ancho, alto);
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 2:
                     //Binario
@@ -221,8 +235,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     llenarDatosMiembro(id);
                     actualizarComponente(textoDato.getText(), Integer.parseInt(valEjeX.getText()), Integer.parseInt(valEjeY.getText()), comboTipoLetra.getSelectedItem().toString(), colorDato.getForeground().getRGB(), Integer.parseInt(tamanoLetra.getText()), compEnUso.getWidth(), compEnUso.getHeight(), comboEstiloLetra.getSelectedItem().toString());
                     radioB.setBounds(valx, valy, 100, 20);
-                    componentes[tabIndex ] = radioB;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = radioB;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 3:
                     //FechaHora
@@ -234,8 +248,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 4:
                     //Texto
@@ -247,8 +261,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 5:
                     //Incremental
@@ -260,8 +274,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 6:
                     //Jerarquia
@@ -273,8 +287,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 case 7:
                     //Lista
@@ -286,8 +300,8 @@ public class frameFormulario extends javax.swing.JFrame {
                     frameVistaPrevia.add(campo);
                     campo.setBounds(valx, valy, 100, 20);
                     frameVistaPrevia.repaint();
-                    componentes[tabIndex ] = campo;
-                    idsComponentes[tabIndex ] = IDEnUso;
+                    componentes[tabIndex] = campo;
+                    idsComponentes[tabIndex] = IDEnUso;
                     break;
                 default:
                     break;
@@ -1220,7 +1234,7 @@ public class frameFormulario extends javax.swing.JFrame {
         //Se agrega el valor al formulario
         String nombre = JOptionPane.showInputDialog(this, "Favor ingresar el nombre del campo a agregar", "", JOptionPane.QUESTION_MESSAGE);
         nombre.replaceAll(" ", "_");
-        agregarRotulo("et. "+ nombre,IDcampoConcreto);
+        agregarRotulo("et. " + nombre, IDcampoConcreto);
         //En este switch se debe crear una instancia del nuevo tipo campo a agregar al formulario
         switch (comboTipos.getSelectedIndex()) {
             case 1:
@@ -1375,7 +1389,7 @@ public class frameFormulario extends javax.swing.JFrame {
      * Agrega al formulario un campo nuevo tipo Fecha Hora
      * @param nombre
      */
-    private JFormattedTextField agregarTipoFechaHora(String nombre, int ID){
+    private JFormattedTextField agregarTipoFechaHora(String nombre, int ID) {
 
         //Esto es temporal!! se debe crear un objeto de fechahora...
         JFormattedTextField jtf = new JFormattedTextField();
@@ -1451,7 +1465,7 @@ public class frameFormulario extends javax.swing.JFrame {
         jtf.setBounds(100, 1, 100, 20);
         jtf.setFont(Font.decode("Arial-Plain-12"));
         compEnUso = jtf;
-        */
+         */
         return jtf;
     }
 
@@ -1536,14 +1550,14 @@ public class frameFormulario extends javax.swing.JFrame {
 
     private void botonAgregarEtqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarEtqActionPerformed
         String texto = JOptionPane.showInputDialog(this, "Favor ingresar el texto para la etiqueta", "", JOptionPane.QUESTION_MESSAGE);
-        agregarRotulo(texto,-1);///***************con un -1 en idCampo pues no tiene campo asociado
+        agregarRotulo(texto, -1);///***************con un -1 en idCampo pues no tiene campo asociado
     }//GEN-LAST:event_botonAgregarEtqActionPerformed
 
     /**
      * Agrega un rotulo/etiqueta nueva al formulario
      * Llama al metodo respectivo para guardar en la BD tamb
      */
-    private void agregarRotulo(String texto,int idCampo) {
+    private void agregarRotulo(String texto, int idCampo) {
         //Como es etiqueta uso tabIndex -1
         //Esta era la original
         //IDEnUso = miFormulario.agregarMiembro(texto, 1, 1, 100, 20, "Arial", Color.BLACK.getRGB(), 12, 0, idCampo, -1, "Plain");
@@ -1566,29 +1580,29 @@ public class frameFormulario extends javax.swing.JFrame {
     private void botonMasAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAnchoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth() + 3, compEnUso.getHeight());
-    //hay q actualizar la instancia del componente!!!
-    //miFormulario
+        //hay q actualizar la instancia del componente!!!
+        //miFormulario
     }//GEN-LAST:event_botonMasAnchoActionPerformed
 
     private void botonMasAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMasAltoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth(), compEnUso.getHeight() + 2);
-    //hay q actualizar la instancia del componente!!!
-    //miFormulario
+        //hay q actualizar la instancia del componente!!!
+        //miFormulario
     }//GEN-LAST:event_botonMasAltoActionPerformed
 
     private void botonMenosAnchoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosAnchoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth() - 3, compEnUso.getHeight());
-    //hay q actualizar la instancia del componente!!!
-    //miFormulario
+        //hay q actualizar la instancia del componente!!!
+        //miFormulario
     }//GEN-LAST:event_botonMenosAnchoActionPerformed
 
     private void botonMenosAltoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMenosAltoActionPerformed
         // TODO add your handling code here:
         compEnUso.setSize(compEnUso.getWidth(), compEnUso.getHeight() - 2);
-    //hay q actualizar la instancia del componente!!!
-    //miFormulario
+        //hay q actualizar la instancia del componente!!!
+        //miFormulario
     }//GEN-LAST:event_botonMenosAltoActionPerformed
 
     private void botonTabIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonTabIndexActionPerformed
@@ -1625,9 +1639,10 @@ public class frameFormulario extends javax.swing.JFrame {
         frameTI.setVisible(true);
     }
 
-    /**
-     * Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
-     */
+    /// <summary>
+    /// Abre la ventana donde se muestran los componentes del formulario para ordenar el tab index
+    /// </summary>
+    /// <param name="valores"></param>
     public void cambioTabIndex(String[] valores) {
         for (int i = 0; i < numCampos; i++) {
             String id = (valores[i].split(" "))[0];
@@ -1637,10 +1652,10 @@ public class frameFormulario extends javax.swing.JFrame {
         actualizarTabIndex(valores);
     }
 
-    /**
-     * Actualiza el NextFocusableComponente de los componentes del formulario
-     * @param valores
-     */
+    /// <summary>
+    /// Actualiza el NextFocusableComponente de los componentes del formulario
+    /// </summary>
+    /// <param name="valores"></param>
     public void actualizarTabIndex(String[] valores) {
         int idAnt = Integer.parseInt((valores[0].split(" "))[0]);
         //recorre todos los componentes
@@ -1672,9 +1687,9 @@ public class frameFormulario extends javax.swing.JFrame {
         return -1;
     }
 
-    /**
-     * Llena el tree view
-     */
+    /// <summary>
+    /// Llena el treeview con los tipos de campo existentes disponibles para el formulario
+    /// </summary>
     public void llenarTreeView() {
         //Llena los valores del Tree View
         String[] tiposCampo = {"Numero", "Binario", "FechaHora", "Texto", "Incremental", "Jerarquia", "Lista"};
@@ -1720,9 +1735,9 @@ public class frameFormulario extends javax.swing.JFrame {
         return valores;
     }
 
-    /**
-     * Muestra los panes necesarios segun lo que se vaya a mostrar
-     */
+    /// <summary>
+    /// Muestra los panes necesarios segun lo seleccionado en el treeview
+    /// </summary>
     public void abrirNodoHoja() {
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolPrincipal.getLastSelectedPathComponent();
@@ -1761,7 +1776,7 @@ public class frameFormulario extends javax.swing.JFrame {
                                         llenarDatosReadOnly(nombre, 7);
                                     } else {
                                         ocultarPanes();
-                                    //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
+                                        //JOptionPane.showMessageDialog(null, "¡Favor seleccionar un dato hoja!", "", JOptionPane.ERROR_MESSAGE);
                                     }
                                 }
                             }
@@ -1772,9 +1787,9 @@ public class frameFormulario extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Oculta todos los panes
-     */
+    /// <summary>
+    /// Oculta todos los panes con la información de los tipos de campo
+    /// </summary>
     public void ocultarPanes() {
         panePrincipal.setVisible(false);
         paneBinario.setVisible(false);
@@ -1787,11 +1802,9 @@ public class frameFormulario extends javax.swing.JFrame {
         paneFormulario.setVisible(false);
     }
 
-    /**
-     * Llena los datos en read-only
-     * @param nombre
-     * @param tipo
-     */
+    /// <summary>
+    /// Llena los datos del tipo de campo en modo de solo lectura
+    /// </summary>
     public void llenarDatosReadOnly(String nombre, int tipo) {
         //Trae todos los valores de la tabla TIPOCAMPO
         String valoresGlobales = buscarDatosEnBD(nombre);
@@ -1884,10 +1897,11 @@ public class frameFormulario extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
-     * @param nombre: Indica el nombre del tipo de campo que va a buscar
-     */
+    /// <summary>
+    /// Función encargada de buscar los valores TIPOCAMPO segun el nombre en la base de datos
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <returns></returns>
     public String buscarDatosEnBD(String nombre) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
@@ -1906,10 +1920,11 @@ public class frameFormulario extends javax.swing.JFrame {
         return valores;
     }
 
-    /**
-     * Encargado de buscar los valores TIPOCAMPO segun el nombre en la base de datos
-     * @param nombre: Indica el nombre del tipo de campo que va a buscar
-     */
+    /// <summary>
+    /// función encargada de obtener el correlativo del tipo de campo seleccionado para agregar al formulario
+    /// </summary>
+    /// <param name="nombre"></param>
+    /// <returns></returns>
     public String getIDTipoCampo(String nombre) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
@@ -1924,11 +1939,12 @@ public class frameFormulario extends javax.swing.JFrame {
         return valores;
     }
 
-    /**
-     * Encargado de buscar el valor del nombre en la base de datos
-     * @param ID: Indica el ID del campo que va a buscar
-     * @param tipo: Indica el tipo de campo que va a buscar
-     */
+    /// <summary>
+    /// Encargado de buscar el valor del nombre en la base de datos
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <param name="tipo"></param>
+    /// <returns></returns>
     public String buscarPorTipoEnBD(int ID, int tipo) {
         ControladorBD buscador = new ControladorBD();
         String[] tiposCampo = {"NUMERO", "BINARIO", "FECHAHORA", "TEXTO", "INCREMENTAL", "JERARQUIA", "LISTA"};
@@ -1946,11 +1962,11 @@ public class frameFormulario extends javax.swing.JFrame {
         return valores;
     }
 
-    /**
-     * Encargado de buscar el valor del nombre en la base de datos
-     * @param ID: Indica el ID del campo que va a buscar
-     * @param tipo: Indica el tipo de campo que va a buscar
-     */
+    /// <summary>
+    /// Encargado de buscar el valor de la lista en la base de datos
+    /// </summary>
+    /// <param name="ID"></param>
+    /// <returns></returns>
     public String buscarMiembroLista(int ID) {
         ControladorBD buscador = new ControladorBD();
         String valores = "";
@@ -1968,6 +1984,9 @@ public class frameFormulario extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    /// <summary>
+    /// main que crea un nuevo frameFormulario
+    /// </summary>
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
@@ -1977,6 +1996,7 @@ public class frameFormulario extends javax.swing.JFrame {
             }
         });
     }
+
     private void buscarElementoPath() {
         int indice = 0;
         while (!((JButton) vectorPath.get(indice)).hasFocus()) {
@@ -2050,13 +2070,12 @@ public class frameFormulario extends javax.swing.JFrame {
 
     @org.jdesktop.application.Action
     public void crearComando() {
-        int num=miFormulario.getCorrelativo();
+        int num = miFormulario.getCorrelativo();
         frameComandos comando = new frameComandos();
         comando.setVisible(true);
 
 
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree arbolPrincipal;
     private javax.swing.JButton botonActualizar;
