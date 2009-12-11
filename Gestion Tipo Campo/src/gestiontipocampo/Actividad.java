@@ -32,7 +32,12 @@ public class Actividad implements Comparable{
     private boolean exclusivo;
     private boolean obligatorio;
 
-    @Override
+    /**
+     * Método que compara una instancia de actividad con la actividad a la que se le aplica
+     * Se basa en el correlativo para ver si son iguales
+     * @param Actividad o
+     * @return true si la actividad enviada por parametro es igual a la que se le aplica el método, false en cualquier otro caso
+     */
     public int compareTo(Object o) {
         if( this.correlativo == ((Actividad)(o)).correlativo)
             return 0;
@@ -92,7 +97,7 @@ public class Actividad implements Comparable{
     }
 
     /**
-     * Constructor completo, resibe todos los datos y los guarda en la BD de una vez.
+     * Constructor completo, recibe todos los datos y los guarda en la BD de una vez.
      * @param correlativoFlujo
      * @param nombre
      * @param descripcion
@@ -128,6 +133,9 @@ public class Actividad implements Comparable{
         this.fechaActualizacion = new Date();
     }
 
+    /**
+     * Guarda los datos de la actividad en la base de datos de configuración
+     */
     public void crearActividad(){
         this.correlativo = consultaActividad.nuevaActividad(correlativoFlujo, nombre, descripcion, tipo, estadoInicial, estadoFinal, esSimple, repetible, masiva, requiereRevision, hitoDeControl, paralelo, exclusivo, obligatorio);
     }
@@ -253,11 +261,18 @@ public class Actividad implements Comparable{
         return replica;
     }
 
-    //Sets y gets.
+    /**
+     * Método que obtiene el correlativo de la actidad
+     * @return int correlativo
+     */
     public int getCorrelativo() {
         return correlativo;
     }
 
+    /**
+     * Obtiene el correlativo del Flujo de Trabajo al que pertenece la actividad
+     * @return int correlativo del Flujo de Trabajo
+     */
     public int getCorrelativoFlujo() {
         return correlativoFlujo;
     }
@@ -282,6 +297,10 @@ public class Actividad implements Comparable{
         return requiereRevision;
     }
 
+    /**
+     * Método que pregunta si la actividad es simple o no.
+     * @return true en caso de que la actividad sea simple, false en caso contrario
+     */
     public boolean isSimple() {
         return esSimple;
     }
@@ -306,74 +325,148 @@ public class Actividad implements Comparable{
         this.masiva = masiva;
     }
 
+    /**
+     * Método que
+     * @param requiereRevision
+     */
     public void setRequiereRevision(boolean requiereRevision) {
         this.requiereRevision = requiereRevision;
     }
 
+    /**
+     * Asigna a la actividad el valor para indicar si es simple o no
+     * @param boolean simple
+     */
     public void setSimple(boolean simple) {
         this.esSimple = simple;
     }
 
+    /**
+     * Obtiene la descripción de la Actividad
+     * @return String descipción
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Asigna la descripción a la Actividad
+     * @param String descripcion, indica la descripción de la Actividad
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     * Obtiene la fecha de actualización de la Actividad
+     * @return Date fechaActualizacion
+     */
     public Date getFechaActualizacion() {
         return fechaActualizacion;
     }
 
+    /**
+     * Establece la fecha de actualización de la Actividad
+     * @param Date fechaActualizacion, fecha de la ultima actualización realizada a la Actividad
+     */
     public void setFechaActualizacion(Date fechaActualizacion) {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    /**
+     *
+     * Obtiene el nombre de la Actividad
+     * @return String nombre
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Establece el nombre de la Actividad
+     * @param String nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Averigua si la Actividad es repetible o no
+     * @return true si es repetible, false si no lo es
+     */
     public boolean isRepetible() {
         return repetible;
     }
 
+    /**
+     * Establece si la Actividad será repetible o no
+     * @param repetible
+     */
     public void setRepetible(boolean repetible) {
         this.repetible = repetible;
     }
 
+    /**
+     * Obtiene el tipo de la Actividad
+     * @return int Tipo
+     */
     public int getTipo() {
         return tipo;
     }
+
+    /**
+     * Establece el tipo de la Actividad
+     * @param int tipo
+     */
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * Averigua si la Actividad es exclusiva o no
+     * @return true si la Actividad es exclusiva, false en caso contrario
+     */
     public boolean isExclusivo() {
         return exclusivo;
     }
 
+    /**
+     * Establece si la actividad es Exclusiva o no
+     * @param bolean exclusivo
+     */
     public void setExclusivo(boolean exclusivo) {
         this.exclusivo = exclusivo;
     }
 
+    /**
+     * Averigua si la Actividad es de caracter obligatorio o no
+     * @return bolean True si es obligatorio, false en caso contrario
+     */
     public boolean isObligatorio() {
         return obligatorio;
     }
 
+    /**
+     * Establece si la actividad es obligatoria o no
+     * @param boolean obligatorio
+     */
     public void setObligatorio(boolean obligatorio) {
         this.obligatorio = obligatorio;
     }
 
+    /**
+     * Averiagua si la activada es paralela o no
+     * @return boolean True si la activadad es paralela
+     */
     public boolean isParalelo() {
         return paralelo;
     }
 
+    /**
+     * Establece si la Actividad va a ser paralela o no
+     * @param boolean paralelo
+     */
     public void setParalelo(boolean paralelo) {
         this.paralelo = paralelo;
     }

@@ -14,12 +14,7 @@ import java.util.Vector;
  */
 public abstract class ConsultaFormulario extends ControladorBD {
 
-    /**
-     * Guarda un nuevo formulario en la BD
-     * @param nombre
-     * @param descripcion
-     * @return el ID del formulario creado
-     */
+
 
     /**
      * Retorna todos los formularios en un vector como para cargarlos en un combo
@@ -66,6 +61,12 @@ public abstract class ConsultaFormulario extends ControladorBD {
         }
         return campos;
     }
+
+    /**
+     * Obtiene todos los miembros que componen el formulario indicado por el correlativo enviado por parámetro
+     * @param int idFormulario id del formulario del que se desaen los miembros
+     * @return Vector que contiene los TipoCampo que contiene el formulario
+     */
     public Vector obtenerMiembrosFormulariosSoloNombres(int idFormulario) {
 
         Vector campos = new Vector();
@@ -85,6 +86,13 @@ public abstract class ConsultaFormulario extends ControladorBD {
         }
         return campos;
     }
+
+    /**
+     * Guarda el nombre y la descripción de un nuevo formulario
+     * @param String nombre del formulario a guardar
+     * @param String descripcion del formulario a guardar
+     * @return int Correlativo del formulario que fue guardado
+     */
     public abstract int guardaFormulario(String nombre, String descripcion);
 
     /**
@@ -113,8 +121,23 @@ public abstract class ConsultaFormulario extends ControladorBD {
         return ID;
     }
 
+
     /**
-     * Agrega una etiqueta
+     * Agrega una etiqueta en el formulario indicado por el parámetro IDFormulario con todas las especificaciones que se envían por parámetro
+     * @param IDFormulario
+     * @param nombre
+     * @param valX
+     * @param valY
+     * @param ancho
+     * @param alto
+     * @param tipoLetra
+     * @param color
+     * @param tamanoLetra
+     * @param IDTP
+     * @param IDCC
+     * @param tabIndex
+     * @param estiloLetra
+     * @return int id de la etiquieta agregada en el formulario
      */
         public int agregarEtiq(int IDFormulario, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int IDCC, int tabIndex, String estiloLetra){
         this.doUpdate("insert into MIEMBROFORMULARIO (IDFormulario, nombre, valX, valY, ancho, alto, tipoLetra, color, tamanoLetra, IDTipoCampo, IDCampo, tabIndex, estiloLetra, esEtiqueta) values ('" + IDFormulario + "', '" + nombre + "', " + valX + ", " + valY + ", " + ancho + ", " + alto + ", '" + tipoLetra + "', '" + color + "', '" + tamanoLetra + "', " + IDTP + ", " + IDCC + ", " + tabIndex + ", '" + estiloLetra + "', '"+ (1 == 1) +"');");
@@ -139,13 +162,13 @@ public abstract class ConsultaFormulario extends ControladorBD {
     /**
      * Modifica los datos del miembro
      * @param ID ID del miembro a modificar
-     * @param nombre
-     * @param valX
-     * @param valY
-     * @param tipoLetra
-     * @param color
-     * @param tamanoLetra
-     * @param IDTP
+     * @param nombre nuevo nombre que se le quiere poner al miembro del formulario
+     * @param valX nuevo valor de x que se le va a dar al miembro del formulario
+     * @param valY nuevo valor de y que se le va a dar al miembre del formulario
+     * @param tipoLetra nuevo tipo de letra que se le asignará al miembro del formulario
+     * @param color nuevo color que se le agregará al miembro del formulario
+     * @param tamanoLetra nuevo tamaño de la letra que se le dará al miembro del formulario
+     * @param IDTP Id del flujo de trabajo al que pertenece el formulario
      */
     public abstract void updateMiembro(int ID, String nombre, int valX, int valY, int ancho, int alto, String tipoLetra, int color, int tamanoLetra, int IDTP, int tabIndex, String estiloLetra);
 

@@ -133,7 +133,7 @@ public class ConsultaActividadMySQL extends ConsultaActividad {
 
     /**
      * Retorna todas las actividades en un vector como para cargarlos en un combo
-     * @return Vector con los datos de la actividade en este orden: correlativo, nombre
+     * @return Vector con los datos de la actividades en este orden: correlativo, nombre
      */
     public Vector obtenerTodasLasActividades() {
         Vector campos = new Vector();
