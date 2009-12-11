@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.Vector;
 
 /**
- *
+ * Clase donde están todas las consultas de SQLServer a la base de datos con la información de los comandos
  * @author luiscarlosch
  */
 public class ConsultaComandoSQLServer extends ConsultaComando{

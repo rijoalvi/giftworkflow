@@ -18,6 +18,7 @@ import javax.swing.*;
 
 /**
  * The application's main frame.
+ * 
  */
 public class GestionTipoCampoView extends FrameView {
 

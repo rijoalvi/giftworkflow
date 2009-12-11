@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
- *
+ * Para devolver todos los datos relacionados a actividades
  * @author Ricardo
  */
 public class ConsultaActividadSQLServer extends ConsultaActividad {

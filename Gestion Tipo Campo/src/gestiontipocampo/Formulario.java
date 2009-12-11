@@ -7,7 +7,7 @@ package gestiontipocampo;
 import java.util.*;
 
 /**
- *
+ *  Clase que encapsula todas las operaciones de un Formulario
  * @author Alberto
  */
 public class Formulario {

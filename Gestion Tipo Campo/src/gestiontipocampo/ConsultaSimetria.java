@@ -9,7 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-
+/**
+ * Clase donde están todas las consultas a la base de datos con la información de las simetrías
+ * @author lucachaco
+ */
 public class ConsultaSimetria extends ControladorBD{
 
     public ConsultaSimetria(){

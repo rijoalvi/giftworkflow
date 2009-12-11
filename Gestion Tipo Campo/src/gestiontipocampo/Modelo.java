@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 /**
- *
+ * Clase que sirve como estructura de datos para almecenar en controles
  * @author luiscarlosch@gmail.com
  */
 public class Modelo {

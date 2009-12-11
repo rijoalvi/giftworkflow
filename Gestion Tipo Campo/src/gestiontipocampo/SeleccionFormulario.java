@@ -17,7 +17,7 @@ import javax.swing.JTree;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Sección que sirve para dividir el formulario
  * @author ea63183
  */
 public class SeleccionFormulario extends javax.swing.JFrame {

@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Vector;
 
 /**
- *
+ *Clase donde están todas las consultas de MySQL a la base de datos con la información de los formularios
  * @author Alberto
  */
 public class ConsultaFormularioMySQL extends ConsultaFormulario {

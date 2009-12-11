@@ -6,7 +6,7 @@
 package gestiontipocampo;
 import java.util.*;
 /**
- *
+ * Clase donde están todas las consultas de MySQL a la base de datos con la información del tipo campo Lista
  * @author luiscarlosch
  */
 public class ConsultaListaMySQL extends ConsultaLista {

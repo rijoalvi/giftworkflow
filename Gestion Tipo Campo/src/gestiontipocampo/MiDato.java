@@ -5,7 +5,7 @@
 package gestiontipocampo;
 
 /**
- *
+ * Clase que sirve como par ordenado de dos cadenas de texto
  * @author luiscarlosch@gmail.com
  */
 public class MiDato implements Comparable {

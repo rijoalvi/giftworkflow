@@ -8,7 +8,7 @@ package gestiontipocampo;
 import java.util.Vector;
 
 /**
- *
+ * Clase para menejo de comandos
  * @author Alberto
  */
 public class Comando  {

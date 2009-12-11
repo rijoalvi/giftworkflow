@@ -17,7 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.util.*;
 
 /**
- *
+ * Ventana que le sirve al usuario para el mantenimiento de los comandos.
  * @author Ricardo
  */
 public class frameComandos extends javax.swing.JFrame {
